@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="gerenciadorDespesaModule">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+<link rel="stylesheet" href="../../dependecy/style/materialdesignicons.min.css" />
+<link rel="stylesheet" href="../../dependecy/style/vendor.bundle.base.css" />
+<link rel="stylesheet" href="../../dependecy/style/select2.min.css" />
+<link rel="stylesheet" href="../../dependecy/style/select2-bootstrap.min.css" />
+<link rel="stylesheet" href="../../dependecy/style/style.css" />
+<link rel="stylesheet" href="../../dependecy/library/codeSeven-toastr-50092cc/build/toastr.css" />
+<!-- <link rel="shortcut icon" href="" /> -->
+<script src="../../dependecy/library/angular-js-v1.6.0/angular.min.js"></script>
+<script src="../../dependecy/library/jquery-v3.4.1/jquery-3.2.1.min.js"></script>
+<script src="../../dependecy/library/codeSeven-toastr-50092cc/build/toastr.min.js"></script>
+<link rel="shortcut icon" href="../../dependecy/font/materialdesignicons-webfont.eot" />
+<link rel="shortcut icon" href="../../dependecy/font/materialdesignicons-webfont.ttf" />
+<link rel="shortcut icon" href="../../dependecy/font/materialdesignicons-webfont.woff" />
+<link rel="shortcut icon" href="../../dependecy/font/materialdesignicons-webfont.woff2" />
+<script src="../../module/funcionalidade-manter-despesa/funcionalidade-manter-despesa-controller/gerenciador-despesa-controller.js"></script>
+<title>PLFINC - Plataforma de Lançamento Financeiro</title>
+</head>
+<body ng-controller="gerenciadorDespesaController" class="sidebar-icon-only">
+
+  <toast></toast>
+
+  <div class="container-scroller">
+    <nav class="sidebar sidebar-offcanvas" id="sidebar">
+      <div class="sidebar-brand-wrapper d-none d-lg-flex align-items-center justify-content-center fixed-top">
+        <a class="sidebar-brand brand-logo" href="#">
+          <h4 class="card-title">PLFINC</h4>
+        </a> <a class="sidebar-brand brand-logo-mini" href="#">&nbsp;</a>
+      </div>
+      <ul class="nav">
+        <li class="nav-item profile">
+          <div class="profile-desc">
+            <div class="profile-pic">
+              <div class="count-indicator">
+                <img class="img-xs rounded-circle " src="../../dependecy/image/boy-512.png" alt=""> <span class="count bg-success"></span>
+              </div>
+              <div class="profile-name">
+                <h5 class="mb-0 font-weight-normal">José Quintin</h5>
+              </div>
+            </div>
+            <a href="#" id="profile-dropdown" data-toggle="dropdown"><i class="mdi mdi-dots-vertical"></i></a>
+            <div class="dropdown-menu dropdown-menu-right sidebar-dropdown preview-list" aria-labelledby="profile-dropdown">
+              <a href="#" class="dropdown-item preview-item">
+                <div class="preview-thumbnail">
+                  <div class="preview-icon bg-dark rounded-circle">
+                    <i class="mdi mdi-settings text-primary"></i>
+                  </div>
+                </div>
+                <div class="preview-item-content">
+                  <p class="preview-subject ellipsis mb-1 text-small">Account settings</p>
+                </div>
+              </a>
+              <div class="dropdown-divider"></div>
+              <a href="#" class="dropdown-item preview-item">
+                <div class="preview-thumbnail">
+                  <div class="preview-icon bg-dark rounded-circle">
+                    <i class="mdi mdi-onepassword  text-info"></i>
+                  </div>
+                </div>
+                <div class="preview-item-content">
+                  <p class="preview-subject ellipsis mb-1 text-small">Change Password</p>
+                </div>
+              </a>
+              <div class="dropdown-divider"></div>
+              <a href="#" class="dropdown-item preview-item">
+                <div class="preview-thumbnail">
+                  <div class="preview-icon bg-dark rounded-circle">
+                    <i class="mdi mdi-calendar-today text-success"></i>
+                  </div>
+                </div>
+                <div class="preview-item-content">
+                  <p class="preview-subject ellipsis mb-1 text-small">To-do list</p>
+                </div>
+              </a>
+            </div>
+          </div>
+        </li>
+        <li class="nav-item nav-category"><span class="nav-link">Funcionalidades</span></li>
+        <li class="nav-item menu-items"><a class="nav-link" href="../../index.html"> <span class="menu-icon"> <i class="mdi mdi-speedometer"></i>
+          </span> <span class="menu-title">Principal</span>
+        </a></li>
+        <li class="nav-item menu-items"><a class="nav-link" data-toggle="collapse" href="#page-layouts" aria-expanded="false" aria-controls="page-layouts"> <span class="menu-icon"> <i class="mdi mdi-view-list"></i>
+          </span> <span class="menu-title">Lançamentos</span> <i class="menu-arrow"></i>
+        </a>
+          <div class="collapse" id="page-layouts">
+            <ul class="nav flex-column sub-menu">
+              <li class="nav-item"><a class="nav-link" href="../../pages/layout/boxed-layout.html">Despesa Variável</a></li>
+              <li class="nav-item"><a class="nav-link" href="../../pages/layout/rtl-layout.html">Pagamentos</a></li>
+            </ul>
+          </div></li>
+        <li class="nav-item menu-items"><a class="nav-link" data-toggle="collapse" href="#sidebar-layouts" aria-expanded="false" aria-controls="sidebar-layouts"> <span class="menu-icon"> <i class="mdi mdi-crosshairs-gps"></i>
+          </span> <span class="menu-title">Pagamentos</span> <i class="menu-arrow"></i>
+        </a>
+          <div class="collapse" id="sidebar-layouts">
+            <ul class="nav flex-column sub-menu">
+              <li class="nav-item"><a class="nav-link" href="#">Despesas Fixas</a></li>
+              <li class="nav-item"><a class="nav-link" href="#">Empréstimos</a></li>
+              <li class="nav-item"><a class="nav-link" href="#">Compact menu</a></li>
+              <li class="nav-item"><a class="nav-link" href="#">Compact menu</a></li>
+              <li class="nav-item"><a class="nav-link" href="#">Compact menu</a></li>
+            </ul>
+          </div></li>
+        <li class="nav-item nav-category"><span class="nav-link">Relatórios</span></li>
+        <li class="nav-item menu-items"><a class="nav-link" data-toggle="collapse" href="#auth" aria-expanded="false" aria-controls="auth"> <span class="menu-icon"> <i class="mdi mdi-security"></i>
+          </span> <span class="menu-title">Movimentação</span> <i class="menu-arrow"></i>
+        </a>
+          <div class="collapse" id="auth">
+            <ul class="nav flex-column sub-menu">
+              <li class="nav-item"><a class="nav-link" href="../../pages/samples/login.html"> Login </a></li>
+              <li class="nav-item"><a class="nav-link" href="../../pages/samples/login-2.html"> Login 2</a></li>
+              <li class="nav-item"><a class="nav-link" href="../../pages/samples/register.html"> Register</a></li>
+              <li class="nav-item"><a class="nav-link" href="../../pages/samples/register-2.html">Register 2 </a></li>
+              <li class="nav-item"><a class="nav-link" href="../../pages/samples/lock-screen.html">Lockscreen </a></li>
+            </ul>
+          </div></li>
+        <li class="nav-item nav-category"><span class="nav-link">Configurações</span></li>
+        <li class="nav-item menu-items"><a class="nav-link" data-toggle="collapse" href="#error" aria-expanded="false" aria-controls="error"> <span class="menu-icon"> <i class="mdi mdi-lock"></i>
+          </span> <span class="menu-title">Error pages</span> <i class="menu-arrow"></i>
+        </a>
+          <div class="collapse" id="error">
+            <ul class="nav flex-column sub-menu">
+              <li class="nav-item"><a class="nav-link" href="../../pages/samples/error-404.html"> 404 </a></li>
+              <li class="nav-item"><a class="nav-link" href="../../pages/samples/error-500.html"> 500 </a></li>
+            </ul>
+          </div></li>
+        <li class="nav-item menu-items"><a class="nav-link" data-toggle="collapse" href="#e-commerce" aria-expanded="false" aria-controls="e-commerce"> <span class="menu-icon"> <i class="mdi mdi-medical-bag"></i>
+          </span> <span class="menu-title">E-commerce</span> <i class="menu-arrow"></i>
+        </a>
+          <div class="collapse" id="e-commerce">
+            <ul class="nav flex-column sub-menu">
+              <li class="nav-item"><a class="nav-link" href="../../pages/samples/invoice.html"> Invoice </a></li>
+              <li class="nav-item"><a class="nav-link" href="../../pages/samples/pricing-table.html"> Pricing Table </a></li>
+              <li class="nav-item"><a class="nav-link" href="../../pages/samples/orders.html"> Orders </a></li>
+            </ul>
+          </div></li>
+        <li class="nav-item nav-category"><span class="nav-link">Calendário</span></li>
+        <li class="nav-item menu-items"><a class="nav-link" href="../../pages/apps/calendar.html"> <span class="menu-icon"> <i class="mdi mdi-calendar-today"></i>
+          </span> <span class="menu-title">Calendar</span>
+        </a></li>
+        <li class="nav-item nav-category"><span class="nav-link">Tarefas</span></li>
+        <li class="nav-item menu-items"><a class="nav-link" href="../../pages/apps/todo.html"> <span class="menu-icon"> <i class="mdi mdi-bulletin-board"></i>
+          </span> <span class="menu-title">Todo list</span>
+        </a></li>
+        <li class="nav-item menu-items"><a class="nav-link" href="../../pages/apps/email.html"> <span class="menu-icon"> <i class="mdi mdi-email"></i>
+          </span> <span class="menu-title">E-mail</span>
+        </a></li>
+        <li class="nav-item nav-category"><span class="nav-link">Notificações</span></li>
+        <li class="nav-item menu-items"><a class="nav-link" href="../../pages/apps/gallery.html"> <span class="menu-icon"> <i class="mdi mdi-image-filter-center-focus-weak"></i>
+          </span> <span class="menu-title">Gallery</span>
+        </a></li>
+        <li class="nav-item menu-items"><a class="nav-link" href="http://www.bootstrapdash.com/demo/corona/jquery/documentation/documentation.html"> <span class="menu-icon"> <i class="mdi mdi-file-document-box"></i>
+          </span> <span class="menu-title">Documentation</span>
+        </a></li>
+      </ul>
+    </nav>
+    <!-- partial -->
+    <div class="container-fluid page-body-wrapper">
+      <!-- partial:../../partials/_navbar.html -->
+      <nav class="navbar p-0 fixed-top d-flex flex-row">
+        <div class="navbar-brand-wrapper d-flex d-lg-none align-items-center justify-content-center">
+          <a class="navbar-brand brand-logo-mini" href="../../index.html"><img src="../../dependecy/image/logo-mini.svg" alt="logo" /></a>
+        </div>
+        <div class="navbar-menu-wrapper flex-grow d-flex align-items-stretch">
+          <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
+            <span class="mdi mdi-menu"></span>
+          </button>
+          <ul class="navbar-nav w-100">
+            <li class="nav-item w-100">
+              <form class="nav-link mt-2 mt-md-0 d-none d-lg-flex search">
+                <input type="text" class="form-control" placeholder="Pesquisar por Funcionalidade">
+              </form>
+            </li>
+          </ul>
+          <ul class="navbar-nav navbar-nav-right">
+            <li class="nav-item dropdown d-none d-lg-block"><a class="nav-link btn btn-primary create-new-button" id="createbuttonDropdown" data-toggle="dropdown" aria-expanded="false" href="#">+ Novo Lançamento Financeiro</a>
+              <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="createbuttonDropdown">
+                <!-- <h6 class="p-3 mb-0">Tipo de Lançamento</h6>
+                                <div class="dropdown-divider"></div> -->
+                <a class="dropdown-item preview-item">
+                  <div class="preview-thumbnail">
+                    <div class="preview-icon bg-dark rounded-circle">
+                      <i class="mdi mdi-layers text-danger"></i>
+                    </div>
+                  </div>
+                  <div class="preview-item-content">
+                    <p class="preview-subject ellipsis mb-1">Lançar Receita</p>
+                  </div>
+                </a> <a class="dropdown-item preview-item">
+                  <div class="preview-thumbnail">
+                    <div class="preview-icon bg-dark rounded-circle">
+                      <i class="mdi mdi-file-outline text-primary"></i>
+                    </div>
+                  </div>
+                  <div class="preview-item-content">
+                    <p class="preview-subject ellipsis mb-1">Lançar Despesa Fixa</p>
+                  </div>
+                </a> <a class="dropdown-item preview-item">
+                  <div class="preview-thumbnail">
+                    <div class="preview-icon bg-dark rounded-circle">
+                      <i class="mdi mdi-web text-info"></i>
+                    </div>
+                  </div>
+                  <div class="preview-item-content">
+                    <p class="preview-subject ellipsis mb-1">LançarDespesa Variável</p>
+                  </div>
+                </a> <a class="dropdown-item preview-item">
+                  <div class="preview-thumbnail">
+                    <div class="preview-icon bg-dark rounded-circle">
+                      <i class="mdi mdi-layers text-danger"></i>
+                    </div>
+                  </div>
+                  <div class="preview-item-content">
+                    <p class="preview-subject ellipsis mb-1">Lançar Empréstimos</p>
+                  </div>
+                </a>
+                <div class="dropdown-divider"></div>
+                <p class="p-3 mb-0 text-center">Gerenciar</p>
+              </div></li>
+            <li class="nav-item nav-settings d-none d-lg-block"><a class="nav-link" href="#"> <i class="mdi mdi-view-grid"></i>
+            </a></li>
+            <li class="nav-item dropdown border-left"><a class="nav-link count-indicator dropdown-toggle" id="messageDropdown" href="#" data-toggle="dropdown" aria-expanded="false"> <i class="mdi mdi-email"></i> <span class="count bg-success"></span>
+            </a>
+              <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="messageDropdown">
+                <h6 class="p-3 mb-0">Messages</h6>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item preview-item">
+                  <div class="preview-thumbnail">
+                    <!-- <img src="../../dependecy/image/face15.jpg" alt="image" class="rounded-circle profile-pic"> -->
+                  </div>
+                  <div class="preview-item-content">
+                    <p class="preview-subject ellipsis mb-1">Mark send you a message</p>
+                    <p class="text-muted mb-0">1 Minutes ago</p>
+                  </div>
+                </a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item preview-item">
+                  <div class="preview-thumbnail">
+                    <!-- <img src="../../dependecy/image/face15.jpg" alt="image" class="rounded-circle profile-pic"> -->
+                  </div>
+                  <div class="preview-item-content">
+                    <p class="preview-subject ellipsis mb-1">Cregh send you a message</p>
+                    <p class="text-muted mb-0">15 Minutes ago</p>
+                  </div>
+                </a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item preview-item">
+                  <div class="preview-thumbnail">
+                    <!-- <img src="../../dependecy/image/face15.jpg" alt="image" class="rounded-circle profile-pic"> -->
+                  </div>
+                  <div class="preview-item-content">
+                    <p class="preview-subject ellipsis mb-1">Profile picture updated</p>
+                    <p class="text-muted mb-0">18 Minutes ago</p>
+                  </div>
+                </a>
+                <div class="dropdown-divider"></div>
+                <p class="p-3 mb-0 text-center">4 new messages</p>
+              </div></li>
+            <li class="nav-item dropdown border-left"><a class="nav-link count-indicator dropdown-toggle" id="notificationDropdown" href="#" data-toggle="dropdown"> <i class="mdi mdi-bell"></i> <span class="count bg-danger"></span>
+            </a>
+              <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="notificationDropdown">
+                <h6 class="p-3 mb-0">Notifications</h6>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item preview-item">
+                  <div class="preview-thumbnail">
+                    <div class="preview-icon bg-dark rounded-circle">
+                      <i class="mdi mdi-calendar text-success"></i>
+                    </div>
+                  </div>
+                  <div class="preview-item-content">
+                    <p class="preview-subject mb-1">Event today</p>
+                    <p class="text-muted ellipsis mb-0">Just a reminder that you have an event today</p>
+                  </div>
+                </a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item preview-item">
+                  <div class="preview-thumbnail">
+                    <div class="preview-icon bg-dark rounded-circle">
+                      <i class="mdi mdi-settings text-danger"></i>
+                    </div>
+                  </div>
+                  <div class="preview-item-content">
+                    <p class="preview-subject mb-1">Settings</p>
+                    <p class="text-muted ellipsis mb-0">Update dashboard</p>
+                  </div>
+                </a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item preview-item">
+                  <div class="preview-thumbnail">
+                    <div class="preview-icon bg-dark rounded-circle">
+                      <i class="mdi mdi-link-variant text-warning"></i>
+                    </div>
+                  </div>
+                  <div class="preview-item-content">
+                    <p class="preview-subject mb-1">Launch Admin</p>
+                    <p class="text-muted ellipsis mb-0">New admin wow!</p>
+                  </div>
+                </a>
+                <div class="dropdown-divider"></div>
+                <p class="p-3 mb-0 text-center">See all notifications</p>
+              </div></li>
+            <li class="nav-item dropdown"><a class="nav-link" id="profileDropdown" href="#" data-toggle="dropdown">
+                <div class="navbar-profile">
+                  <!-- <img class="img-xs rounded-circle" src="../../dependecy/image/face15.jpg" alt=""> -->
+                  <p class="mb-0 d-none d-sm-block navbar-profile-name">José Quintin (Administrador Financeiro)</p>
+                  <i class="mdi mdi-menu-down d-none d-sm-block"></i>
+                </div>
+            </a>
+              <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="profileDropdown">
+                <h6 class="p-3 mb-0">Profile</h6>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item preview-item">
+                  <div class="preview-thumbnail">
+                    <div class="preview-icon bg-dark rounded-circle">
+                      <i class="mdi mdi-settings text-success"></i>
+                    </div>
+                  </div>
+                  <div class="preview-item-content">
+                    <p class="preview-subject mb-1">Settings</p>
+                  </div>
+                </a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item preview-item">
+                  <div class="preview-thumbnail">
+                    <div class="preview-icon bg-dark rounded-circle">
+                      <i class="mdi mdi-logout text-danger"></i>
+                    </div>
+                  </div>
+                  <div class="preview-item-content">
+                    <p class="preview-subject mb-1">Log out</p>
+                  </div>
+                </a>
+                <div class="dropdown-divider"></div>
+                <p class="p-3 mb-0 text-center">Advanced settings</p>
+              </div></li>
+          </ul>
+          <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
+            <span class="mdi mdi-format-line-spacing"></span>
+          </button>
+        </div>
+      </nav>
+      <div class="main-panel">
+        <div class="content-wrapper">
+          <div class="page-header">
+            <h3 class="page-title">&nbsp;</h3>
+            <nav aria-label="breadcrumb">
+              <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="#">Principal</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Manter Despesa</li>
+              </ol>
+            </nav>
+          </div>
+          <!--CONTEUDO -->
+          <div class="row">
+            <div class="col-md-12 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <h4 class="card-title">Cadastrar Despesas</h4>
+                  <div class="dropdown-divider"></div>
+                  <form class="forms-sample">
+
+                    <div class="row">
+                      <div class="col-md-8">
+                        <div class="form-group">
+                          <label for="favorecido" class="col-sm-12 col-form-label">Favorecido (obrigatório)</label>
+                          <div class="col-sm-20">
+                            <input id="favorecido" type="text" name="favorecido" ng-model="despesaModel.favorecido" placeholder="Nome Fantasia do Estabelecimento" class="form-control" />
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-4">
+                        <div class="form-group">
+                          <label for="data_despesa" class="col-sm-12 col-form-label">Data da Despesa (obrigatório)</label>
+                          <div class="col-sm-20">
+                            <input id="data_despesa" type="text" name="data_despesa" ng-model="despesaModel.data_despesa" placeholder="DD/MM/AAAA" class="form-control" />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="row">
+                      <div class="col-md-2">
+                        <div class="form-group">
+                          <label for="is_item_unico" class="col-sm-12 col-form-label">Itens (obrigatório)</label>
+                          <select id="is_item_unico" name="is_item_unico" ng-model="despesaModel.is_item_unico" ng-change="verificarItemUnico(despesaModel)" class="form-control">
+                            <option value="true">Único</option>
+                            <option value="false">Múltiplo</option>
+                          </select>
+                        </div>
+                      </div>
+                      <div class="col-md-5">
+                        <div class="form-group">
+                          <label for="produto_servico" class="col-sm-12 col-form-label">Produto ou Serviço (obrigatório)</label>
+                          <div class="col-sm-20">
+                            <input id="produto_servico" type="text" name="produto_servico" ng-model="despesaModel.produto_servico" placeholder="Nome do Produto ou Serviço"  class="form-control" />
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-5">
+                        <div class="form-group">
+                          <label for="valor_despesa" class="col-sm-12 col-form-label">Valor da Despesa (obrigatório)</label>
+                          <div class="col-sm-20">
+                            <input id="valor_despesa" type="text" name="valor_despesa" ng-model="despesaModel.valor_despesa" placeholder="R$ 00,00" class="form-control" />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="row" ng-if="isItemUnicoFlag">
+                      <div class="col-lg-12 grid-margin stretch-card">
+                        <button type="button" ng-click="cadastrarProdutoServico(despesaModel)" class="btn btn-outline-secondary btn-lg btn-block">Cadastrar Produto ou Serviço</button>
+                      </div>
+                    </div>
+
+                    <div class="row"  ng-if="produtoServicoList.length > 0">
+                      <div class="col-lg-12 grid-margin stretch-card">
+                        <div class="card">
+                          <div class="card-body">
+                            <div class="table-responsive">
+                              <table class="table">
+                                <thead>
+                                  <tr>
+                                    <th>#</th>
+                                    <th>Produto ou Serviço</th>
+                                    <th>Valor</th>
+                                    <th>Ação</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  <tr ng-repeat="produtoServicoResultado in produtoServicoList track by $index">
+                                    <td>{{produtoServicoResultado.codigo}}</td>
+                                    <td>{{produtoServicoResultado.produtoServico}}</td>
+                                    <td>{{produtoServicoResultado.valorProdutoServico}}</td>
+                                    <td>
+                                      <button class="btn btn-outline-info">Verificar</button>
+                                      <button ng-click="removeProdutoServico(produtoServicoResultado)" class="btn btn-outline-danger">Excluir</button>
+                                    </td>
+                                  </tr>
+                                </tbody>
+                              </table>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="row">
+                      <div class="col-md-3">
+                        <div class="form-group">
+                          <label for="is_forma_pagamento_unico">Forma de Pagamento</label>
+                          <select id="is_forma_pagamento_unico" name="is_forma_pagamento_unico" ng-model="despesaModel.is_forma_pagamento_unico" ng-change="verificarFormaPagamentoUnico(despesaModel)" class="form-control">
+                            <option value="true">Pagamento Único</option>
+                            <option value="false">Pagamento Múltiplo</option>
+                          </select>
+                        </div>
+                      </div>
+                      <div class="col-md-3">
+                        <div class="form-group">
+                          <label for="fonte_pagamento">Fonte de Pagamento</label>
+                          <select id="fonte_pagamento"
+                                  name="fonte_pagamento"
+                                  ng-model="despesaModel.fonte_pagamento"
+                                  ng-options="fontePagamentoResultado.nomeFontePagamento for fontePagamentoResultado in fontePagamentoList track by fontePagamentoResultado.codigo"
+                                  class="form-control">
+                          </select>
+                        </div>
+                      </div>
+                      <div class="col-md-3">
+                        <div class="form-group">
+                          <label for="canal_pagamento">Canal de Pagamento</label>
+                          <select id="canal_pagamento" 
+                                  name="canal_pagamento" 
+                                  ng-model="despesaModel.canal_pagamento" 
+                                  ng-options="canalPagamentoResultado.nomeCanalPagamento for canalPagamentoResultado in canalPagamentoList track by canalPagamentoResultado.codigo"
+                                  class="form-control">
+                          </select>
+                        </div>
+                      </div>
+                      <div class="col-md-3">
+                        <div class="form-group">
+                          <label for="responsavel_pagamento">Responsável pelo Pagamento</label>
+                          <select id="responsavel_pagamento" 
+                                  name="responsavel_pagamento" 
+                                  ng-model="despesaModel.responsavel_pagamento" 
+                                  ng-options="responsavelPagamentoResultado.nomeResponsavelPagamento for responsavelPagamentoResultado in responsavelPagamentoList track by responsavelPagamentoResultado.codigo"
+                                  class="form-control">
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+
+                  <div class="row" ng-if="isFormaPagamentoUnicoFlag">
+                    <div class="col-lg-12 grid-margin stretch-card">
+                      <button type="button" ng-click="cadastrarFormaPagamento(despesaModel)" class="btn btn-outline-secondary btn-lg btn-block">Cadastrar Forma de Pagamento</button>
+                    </div>
+                  </div>
+
+                  <div class="row" ng-if="formaPagamentoList.length > 0">
+                    <div class="col-lg-12 grid-margin stretch-card">
+                      <div class="card">
+                        <div class="card-body">
+                          <div class="table-responsive">
+                            <table class="table">
+                              <thead>
+                                <tr>
+                                  <th>#</th>
+                                  <th>Fonte de Pagamento</th>
+                                  <th>Canal de Pagamento</th>
+                                  <th>Valor do Pagamento</th>
+                                  <th>Ação</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                <tr>
+                                  <td>1</td>
+                                  <td>Carteira Pessoal (Dinheiro)</td>
+                                  <td>Pagamento em Caixa do Estabelecimento</td>
+                                  <td>R$ 18,00</td>
+                                  <td> <button class="btn btn-outline-info">Verificar</button> </td>
+                                </tr>
+                                <tr>
+                                  <td>2</td>
+                                  <td>Banco Santander do Brasil S.A (Cartão de Crédito)</td>
+                                  <td>Pagamento em Caixa do Estabelecimento</td>
+                                  <td>R$ 25,00</td>
+                                  <td>
+                                    <button class="btn btn-outline-info">Verificar</button>
+                                    <button class="btn btn-outline-danger">Excluir</button>
+                                  </td>
+                                </tr>
+                              </tbody>
+                            </table>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="dropdown-divider"></div>
+
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <div class="col-sm-20">
+                          <button type="submit" ng-click="persist(despesaModel)" class="btn btn-primary mr-2 btn-lg btn-block">Cadastrar Despesa</button>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-3">
+                      <div class="form-group">
+                        <div class="col-sm-20">
+                          <button type="submit" ng-click="persist(despesaModel)" class="btn btn-warning mr-2 btn-lg btn-block">Cadastrar Outra</button>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-3">
+                      <div class="form-group">
+                        <div class="col-sm-20">
+                          <button type="submit" ng-click="clearDespesModelAll()" class="btn btn-danger btn-lg btn-block">Cancelar</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!--CONTEUDO -->
+        </div>
+        <footer class="footer">
+          <div class="d-sm-flex justify-content-center justify-content-sm-between">
+            <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © 2019 <a href="https://www.bootstrapdash.com/" target="_blank">BootstrapDash</a>. All rights reserved.
+            </span> <span class="text-muted float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Hand-crafted & made with <i class="mdi mdi-heart text-danger"></i>
+            </span>
+          </div>
+        </footer>
+      </div>
+    </div>
+  </div>
+  <script src="../../dependecy/script/vendor.bundle.base.js"></script>
+  <script src="../../dependecy/script/select2.min.js"></script>
+  <script src="../../dependecy/script/typeahead.bundle.min.js"></script>
+  <script src="../../dependecy/script/off-canvas.js"></script>
+  <script src="../../dependecy/script/hoverable-collapse.js"></script>
+  <script src="../../dependecy/script/misc.js"></script>
+  <script src="../../dependecy/script/settings.js"></script>
+  <script src="../../dependecy/script/todolist.js"></script>
+  <script src="../../dependecy/script/file-upload.js"></script>
+  <script src="../../dependecy/script/typeahead.js"></script>
+  <script src="../../dependecy/script/select2.js"></script>
+</body>
+</html>
