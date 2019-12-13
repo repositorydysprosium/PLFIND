@@ -8,9 +8,12 @@ gerenciadorDespesaModule.controller('gerenciadorDespesaController', function($sc
 			$scope.despesaModel.fonte_pagamento = "Selecione";
 			$scope.despesaModel.canal_pagamento = "0";
 			$scope.despesaModel.responsavel_pagamento = "0";
+			toastr.options.progressBar = true;
+			toastr.options.positionClass = 'toast-top-right';
+			toastr.options.timeOut = '10000';
 		};
 
-		var despesaList = 
+		var despesaList =
 		[
 			{
 				codigo: 1,
@@ -24,7 +27,7 @@ gerenciadorDespesaModule.controller('gerenciadorDespesaController', function($sc
 				canal_pagamento: 'Pagamento no Caixa do Estabelecimento',
 				valor_pagamento_multiplo: 'R$ 55,00',
 				responsavel_pagamento: 'Jose Quintin',
-			}, 
+			},
 			{
 				codigo: 2,
 				favorecido: 'Só Digital Comércio e Serviços de Informática (Rodoviária do Plano Piloto)',
@@ -37,7 +40,7 @@ gerenciadorDespesaModule.controller('gerenciadorDespesaController', function($sc
 				canal_pagamento: 'Pagamento no Caixa do Estabelecimento',
 				valor_pagamento_multiplo: 'R$ 55,00',
 				responsavel_pagamento: 'Jamile Batista Alves',
-			}, 
+			},
 			// {
 			// 	codigo: 3,
 			// 	favorecido: 'Supermercado PraVocê (Taguatinga Centro)',
@@ -109,7 +112,7 @@ gerenciadorDespesaModule.controller('gerenciadorDespesaController', function($sc
 		$scope.produtoServicoList = [];
 
 		$scope.formaPagamentoList = [];
-		
+
 		$scope.despesaList = despesaList;
 
 		$scope.despesaModel = {};
@@ -117,6 +120,8 @@ gerenciadorDespesaModule.controller('gerenciadorDespesaController', function($sc
 		$scope.isItemUnicoFlag = false;
 
 		$scope.isFormaPagamentoUnicoFlag = false;
+
+		$scope.isInvalidoFlag = false;
 
 		$scope.fontePagamentoList = fontePagamentoList;
 
@@ -137,13 +142,12 @@ gerenciadorDespesaModule.controller('gerenciadorDespesaController', function($sc
 			responsavelPagamento: null,
 		};
 
-		// FIXME [PLFINC] {} -- ""
 		$scope.persist = function(despesaModel) {
 			console.log(despesaModel);
 			if(isValidaDespesaVariavel(despesaModel)) {
 				despesaList.push(despesaModel);
 				$scope.clearDespesModelAll();
-				toastr.success('Dados cadastrados com Sucesso!');
+				toastr.success('Dados cadastrados com Sucesso!', 'Sucesso', {timeOut: 5000})
 			}
 		};
 
@@ -164,7 +168,7 @@ gerenciadorDespesaModule.controller('gerenciadorDespesaController', function($sc
 
 		$scope.removeProdutoServico = function(produtoServicoModel) {
 			for( let index = 0 ; index < $scope.produtoServicoList.length ; index++ ) {
-				if (produtoServicoModel.produtoServico === $scope.produtoServicoList[index].produtoServico && 
+				if (produtoServicoModel.produtoServico === $scope.produtoServicoList[index].produtoServico &&
 					produtoServicoModel.valorProdutoServico === $scope.produtoServicoList[index].valorProdutoServico) {
 					$scope.produtoServicoList.splice(index, 1);
 				}
@@ -191,12 +195,14 @@ gerenciadorDespesaModule.controller('gerenciadorDespesaController', function($sc
 			}
 		};
 
-		// FIXME [PLFINC] {} -- ""
 		function isValidaDespesaVariavel(despesaModel) {
 			if(despesaModel.favorecido == null || despesaModel.favorecido == undefined) {
-				// window.alert("Campo obrigatório não informado!");
-				toastr.error('Campo obrigatório não informado!');
+				favorecido_.className = "form-group has-danger";
+				$scope.isInvalidoFlag = true;
 				return false;
+			} else {
+				favorecido_.className = "form-group";
+				$scope.isInvalidoFlag = false;
 			}
 			return true;
 		};
