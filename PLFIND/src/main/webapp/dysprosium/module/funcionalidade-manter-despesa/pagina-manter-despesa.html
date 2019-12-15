@@ -359,7 +359,7 @@
             <div class="col-md-12 grid-margin stretch-card">
               <div class="card">
                 <div class="card-body">
-                  <h4 class="card-title">Cadastrar Despesas</h4>
+                  <h4 class="card-title">Cadastrar Despesas Variáveis</h4>
                   <div class="dropdown-divider"></div>
                   <form class="forms-sample">
 
@@ -369,17 +369,20 @@
                           <label for="favorecido" class="col-sm-12 col-form-label">Favorecido (obrigatório)</label>
                           <div class="col-sm-20">
                             <input id="favorecido" type="text" name="favorecido" ng-model="despesaModel.favorecido" placeholder="Nome Fantasia do Estabelecimento" class="form-control" />
-                            <div ng-show="isInvalidoFlag == true">
-                              <label id="favorecido-error" for="favorecido-error" class="error mt-2 text-danger">Campo Obrigatório</label>
+                            <div ng-show="isCamposFavorecidoInvalidoFlag == true">
+                              <label class="error mt-2 text-danger">Campo Obrigatório</label>
                             </div>
                           </div>
                         </div>
                       </div>
                       <div class="col-md-4">
-                        <div class="form-group">
+                        <div id="data_despesa_" class="form-group">
                           <label for="data_despesa" class="col-sm-12 col-form-label">Data da Despesa (obrigatório)</label>
                           <div class="col-sm-20">
                             <input id="data_despesa" type="text" name="data_despesa" ng-model="despesaModel.data_despesa" placeholder="DD/MM/AAAA" class="form-control" />
+                            <div ng-show="isCamposDataDespesaInvalidoFlag == true">
+                              <label class="error mt-2 text-danger">Campo Obrigatório</label>
+                            </div>
                           </div>
                         </div>
                       </div>
@@ -396,18 +399,24 @@
                         </div>
                       </div>
                       <div class="col-md-5">
-                        <div class="form-group">
+                        <div id="produto_servico_" class="form-group">
                           <label for="produto_servico" class="col-sm-12 col-form-label">Produto ou Serviço (obrigatório)</label>
                           <div class="col-sm-20">
                             <input id="produto_servico" type="text" name="produto_servico" ng-model="despesaModel.produto_servico" placeholder="Nome do Produto ou Serviço"  class="form-control" />
+                            <div ng-show="isCampoProdutoServicoInvalidoFlag == true">
+                              <label class="error mt-2 text-danger">Campo Obrigatório</label>
+                            </div>
                           </div>
                         </div>
                       </div>
                       <div class="col-md-5">
-                        <div class="form-group">
+                        <div id="valor_despesa_" class="form-group">
                           <label for="valor_despesa" class="col-sm-12 col-form-label">Valor da Despesa (obrigatório)</label>
                           <div class="col-sm-20">
                             <input id="valor_despesa" type="text" name="valor_despesa" ng-model="despesaModel.valor_despesa" placeholder="R$ 00,00" class="form-control" />
+                            <div ng-show="isCampoValorDespesaInvalidoFlag == true">
+                              <label class="error mt-2 text-danger">Campo Obrigatório</label>
+                            </div>
                           </div>
                         </div>
                       </div>
@@ -462,36 +471,45 @@
                         </div>
                       </div>
                       <div class="col-md-3">
-                        <div class="form-group">
-                          <label for="fonte_pagamento">Fonte de Pagamento</label>
+                        <div id="fonte_pagamento_" class="form-group">
+                          <label for="fonte_pagamento">Fonte de Pagamento (obrigatório)</label>
                           <select id="fonte_pagamento"
                                   name="fonte_pagamento"
                                   ng-model="despesaModel.fonte_pagamento"
                                   ng-options="fontePagamentoResultado.nomeFontePagamento for fontePagamentoResultado in fontePagamentoList track by fontePagamentoResultado.codigo"
                                   class="form-control">
                           </select>
+                          <div ng-show="isCampoFontePagamentoInvalidoFlag == true">
+                            <label class="error mt-2 text-danger">Campo Obrigatório</label>
+                          </div>
                         </div>
                       </div>
                       <div class="col-md-3">
-                        <div class="form-group">
-                          <label for="canal_pagamento">Canal de Pagamento</label>
+                        <div id="canal_pagamento_" class="form-group">
+                          <label for="canal_pagamento">Canal de Pagamento (obrigatório)</label>
                           <select id="canal_pagamento" 
                                   name="canal_pagamento" 
                                   ng-model="despesaModel.canal_pagamento" 
                                   ng-options="canalPagamentoResultado.nomeCanalPagamento for canalPagamentoResultado in canalPagamentoList track by canalPagamentoResultado.codigo"
                                   class="form-control">
                           </select>
+                          <div ng-show="isCampoCanalPagamentoInvalidoFlag == true">
+                            <label class="error mt-2 text-danger">Campo Obrigatório</label>
+                          </div>
                         </div>
                       </div>
                       <div class="col-md-3">
-                        <div class="form-group">
-                          <label for="responsavel_pagamento">Responsável pelo Pagamento</label>
+                        <div id="responsavel_pagamento_" class="form-group">
+                          <label for="responsavel_pagamento">Responsável pelo Pagamento (obrigatório)</label>
                           <select id="responsavel_pagamento" 
                                   name="responsavel_pagamento" 
                                   ng-model="despesaModel.responsavel_pagamento" 
                                   ng-options="responsavelPagamentoResultado.nomeResponsavelPagamento for responsavelPagamentoResultado in responsavelPagamentoList track by responsavelPagamentoResultado.codigo"
                                   class="form-control">
                           </select>
+                          <div ng-show="isCampoResponsavelPagamentoInvalidoFlag == true">
+                            <label class="error mt-2 text-danger">Campo Obrigatório</label>
+                          </div>
                         </div>
                       </div>
                     </div>
