@@ -5,6 +5,7 @@ gerenciadorDespesaModule.controller('gerenciadorDespesaController', function($sc
 		function initializer() {
 			$scope.despesaModel.is_item_unico = "true";
 			$scope.despesaModel.is_forma_pagamento_unico = "true";
+			$scope.despesaModel.quantidade_produto_servico = 1;
 			$scope.despesaModel.fonte_pagamento = null;
 			$scope.despesaModel.canal_pagamento = null;
 			$scope.despesaModel.responsavel_pagamento = null;
@@ -124,6 +125,7 @@ gerenciadorDespesaModule.controller('gerenciadorDespesaController', function($sc
 		$scope.isCampoFontePagamentoInvalidoFlag = false;
 		$scope.isCampoCanalPagamentoInvalidoFlag = false;
 		$scope.isCampoResponsavelPagamentoInvalidoFlag = false;
+		$scope.isCampoQuantidadeProdutoServicoInvalidoFlag = false;
 		
 		$scope.fontePagamentoList = fontePagamentoList;
 
@@ -204,6 +206,7 @@ gerenciadorDespesaModule.controller('gerenciadorDespesaController', function($sc
 			   isCampoDataDespesaValid(despesaModel) &&
 			   isCampoProdutoServicoValid(despesaModel) &&
 			   isCampoValorDespesaValid(despesaModel) &&
+			   isCampoQuantidadeProdutoServicoValid(despesaModel) &&
 			   isCampoFontePagamentoValid(despesaModel) &&
 			   isCampoCanalPagamentoValid(despesaModel) && 
 			   isCampoResponsavelPagamentoValid(despesaModel)) {
@@ -260,6 +263,18 @@ gerenciadorDespesaModule.controller('gerenciadorDespesaController', function($sc
 			return true;
 		}
 
+		function isCampoQuantidadeProdutoServicoValid(despesaModel) {
+			if(despesaModel.quantidade_produto_servico == null || despesaModel.quantidade_produto_servico == undefined || despesaModel.quantidade_produto_servico == "") {
+				quantidade_produto_servico_.className = "form-group has-danger text-danger";
+				$scope.isCampoQuantidadeProdutoServicoInvalidoFlag = true;
+				return false;
+			} else {
+				quantidade_produto_servico_.className = "form-group";
+				$scope.isCampoQuantidadeProdutoServicoInvalidoFlag = false;
+			}
+			return true;
+		}
+
 		function isCampoFontePagamentoValid(despesaModel) {
 			if(despesaModel.fonte_pagamento == null) {
 				fonte_pagamento_.className = "form-group has-danger text-danger";
@@ -299,6 +314,7 @@ gerenciadorDespesaModule.controller('gerenciadorDespesaController', function($sc
 		$scope.clearDespesModelAll = function() {
 			$scope.despesaModel = {
 				is_item_unico: "true",
+				quantidade_item: 1,
 				is_forma_pagamento_unico: "true",
 				fonte_pagamento: null,
 				canal_pagamento: null,
@@ -308,6 +324,8 @@ gerenciadorDespesaModule.controller('gerenciadorDespesaController', function($sc
 			$scope.formaPagamentoList = [];
 			$scope.isItemUnicoFlag = false;
 			$scope.isFormaPagamentoUnicoFlag = false;
+
+			$scope.despesaModel.quantidade_produto_servico = 1;
 
 			favorecido_.className = "form-group";
 			$scope.isCamposFavorecidoInvalidoFlag = false;
@@ -320,6 +338,9 @@ gerenciadorDespesaModule.controller('gerenciadorDespesaController', function($sc
 
 			valor_despesa_.className = "form-group";
 			$scope.isCampoValorDespesaInvalidoFlag = false;
+
+			quantidade_produto_servico_.className = "form-group";
+			$scope.isCampoQuantidadeProdutoServicoInvalidoFlag = false;
 
 			fonte_pagamento_.className = "form-group";
 			$scope.isCampoFontePagamentoInvalidoFlag = false;

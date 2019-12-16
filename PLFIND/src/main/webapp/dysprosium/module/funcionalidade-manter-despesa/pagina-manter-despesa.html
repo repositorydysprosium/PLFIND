@@ -398,7 +398,7 @@
                           </select>
                         </div>
                       </div>
-                      <div class="col-md-5">
+                      <div class="col-md-4">
                         <div id="produto_servico_" class="form-group">
                           <label for="produto_servico" class="col-sm-12 col-form-label">Produto ou Serviço (obrigatório)</label>
                           <div class="col-sm-20">
@@ -409,12 +409,23 @@
                           </div>
                         </div>
                       </div>
-                      <div class="col-md-5">
+                      <div class="col-md-4">
                         <div id="valor_despesa_" class="form-group">
                           <label for="valor_despesa" class="col-sm-12 col-form-label">Valor da Despesa (obrigatório)</label>
                           <div class="col-sm-20">
                             <input id="valor_despesa" type="text" name="valor_despesa" ng-model="despesaModel.valor_despesa" placeholder="R$ 00,00" class="form-control" />
                             <div ng-show="isCampoValorDespesaInvalidoFlag == true">
+                              <label class="error mt-2 text-danger">Campo Obrigatório</label>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-2">
+                        <div id="quantidade_produto_servico_" class="form-group">
+                          <label for="quantidade_produto_servico" class="col-sm-12 col-form-label">Quantidade</label>
+                          <div class="col-sm-20">
+                            <input id="quantidade_produto_servico" type="text" name="quantidade_produto_servico" value="1" ng-model="despesaModel.quantidade_produto_servico" placeholder="Quantidade" class="form-control" />
+                            <div ng-show="isCampoQuantidadeProdutoServicoInvalidoFlag == true">
                               <label class="error mt-2 text-danger">Campo Obrigatório</label>
                             </div>
                           </div>
