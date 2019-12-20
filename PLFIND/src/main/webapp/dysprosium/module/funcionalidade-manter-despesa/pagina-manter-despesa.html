@@ -531,6 +531,16 @@
                     </div>
                   </div>
 
+                  <div class="col-md-12">
+                    <div id="observacao_despesa_" class="form-group">
+                      <label for="observacao_despesa">Observação</label>
+                      <textarea id="observacao_despesa" ng-model="despesaModel.observacao_despesa" class="form-control" rows="4"></textarea>
+                      <div ng-show="isCampoObservacaoInvalidoFlag == true">
+                        <label class="error mt-2 text-danger">Campo Obrigatório</label>
+                      </div>
+                    </div>
+                  </div>
+
                   <div class="row" ng-if="formaPagamentoList.length > 0">
                     <div class="col-lg-12 grid-margin stretch-card">
                       <div class="card">

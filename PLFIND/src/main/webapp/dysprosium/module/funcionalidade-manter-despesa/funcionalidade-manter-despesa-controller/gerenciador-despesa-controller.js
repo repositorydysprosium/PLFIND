@@ -126,6 +126,7 @@ gerenciadorDespesaModule.controller('gerenciadorDespesaController', function($sc
 		$scope.isCampoCanalPagamentoInvalidoFlag = false;
 		$scope.isCampoResponsavelPagamentoInvalidoFlag = false;
 		$scope.isCampoQuantidadeProdutoServicoInvalidoFlag = false;
+		$scope.isCampoObservacaoInvalidoFlag = false;
 		
 		$scope.fontePagamentoList = fontePagamentoList;
 
@@ -209,7 +210,8 @@ gerenciadorDespesaModule.controller('gerenciadorDespesaController', function($sc
 			   isCampoQuantidadeProdutoServicoValid(despesaModel) &&
 			   isCampoFontePagamentoValid(despesaModel) &&
 			   isCampoCanalPagamentoValid(despesaModel) && 
-			   isCampoResponsavelPagamentoValid(despesaModel)) {
+			   isCampoResponsavelPagamentoValid(despesaModel) &&
+			   isCampoObservacaoValid(despesaModel)) {
 				return true;
 			}
 			return false;
@@ -311,6 +313,18 @@ gerenciadorDespesaModule.controller('gerenciadorDespesaController', function($sc
 			return true;
 		}
 
+		function isCampoObservacaoValid(despesaModel) {
+			if(despesaModel.observacao_despesa == null) {
+				observacao_despesa_.className = "form-group has-danger text-danger";
+				$scope.isCampoObservacaoInvalidoFlag = true;
+				return false;
+			} else {
+				observacao_despesa_.className = "form-group";
+				$scope.isCampoObservacaoInvalidoFlag = false;
+			}
+			return true;
+		}
+
 		$scope.clearDespesModelAll = function() {
 			$scope.despesaModel = {
 				is_item_unico: "true",
@@ -350,6 +364,9 @@ gerenciadorDespesaModule.controller('gerenciadorDespesaController', function($sc
 
 			responsavel_pagamento_.className = "form-group";
 			$scope.isCampoResponsavelPagamentoInvalidoFlag = false;
+
+			observacao_despesa_.className = "form-group";
+			$scope.isCampoObservacaoInvalidoFlag = false;
 		};
 
 		function clearProdutoServico() {
