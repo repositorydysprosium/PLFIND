@@ -1,0 +1,6 @@
+br/com/plataformalancamento/dysprosioum/entity/DespesaVariavelEntity.class
+br/com/plataformalancamento/dysprosioum/repository/DespesaVariavelRepository.class
+br/com/plataformalancamento/dysprosioum/factory/DespesaVariavelFactory.class
+br/com/plataformalancamento/dysprosioum/service/DespesaVariavelService.class
+br/com/plataformalancamento/dysprosioum/resource/DespesaVariavelResource.class
+br/com/plataformalancamento/dysprosioum/utility/ConstanteUtility.class
