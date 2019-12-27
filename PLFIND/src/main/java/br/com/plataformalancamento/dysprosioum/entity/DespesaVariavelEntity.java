@@ -4,36 +4,62 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+import br.com.plataformalancamento.dysprosioum.utility.ConstanteUtility;
+
+@Entity
+@Table(name =  ConstanteUtility.TABLE_NAME_TB_DESPESA_VARIAVEL)
 public class DespesaVariavelEntity implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	
+	@Id
+	@GeneratedValue
+	@Column(name = "CODIGO", nullable = false)
 	private Long codigo;
 	
+	@Column(name = "ID_FAVORECIDO", nullable = false)
 	private Long favorecido;
 	
+	@Column(name = "ID_ITEM_DESPESA", nullable = false)
 	private Long itemDespesa;
 	
+	@Column(name = "ID_FORMA_PAGAMENTO", nullable = false)
 	private Long formaPagamento;
 	
+	@Column(name = "ID_PRODUTO_SERVICO", nullable = false)
 	private Long produtoServico;
 	
+	@Column(name = "ID_FONTE_PAGAMENTO", nullable = false)
 	private Long fontePagamento;
 	
+	@Column(name = "ID_CANAL_PAGAMENTO", nullable = false)
 	private Long canalPagamento;
 	
+	@Column(name = "ID_RESPONSAVEL_PAGAMENTO", nullable = false)
 	private Long responsavelPagamento;
 	
+	@Column(name = "VALOR_TOTAL_DESPESA", nullable = false)
 	private BigDecimal valorDespesa;
 	
+	@Column(name = "DATA_DESPESA", nullable = false)
 	private Date dataDespesa;
 	
+	@Column(name = "QUANTIDADE_ITEM_DESPESA", nullable = false)
 	private Integer quantidadeItem;
 	
+	@Column(name = "IS_FONTE_PAGAMENTO", nullable = false)
 	private Boolean isFontePagamentoUnico;
 	
+	@Column(name = "ID_ITEM_UNICO", nullable = false)
 	private Boolean isItemUnico;
 	
+	@Column(name = "OBSERVACAO", nullable = true)
 	private String observacaoDespesaVariavel;
 	
 	public DespesaVariavelEntity() { }

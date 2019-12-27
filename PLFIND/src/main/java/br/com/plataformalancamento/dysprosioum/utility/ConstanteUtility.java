@@ -8,4 +8,6 @@ public interface ConstanteUtility {
 	public static final String DESPESA_VARIAVEL_RESOURCE = "/despesaVariavelResource";
 	
 	public static final String MENSAGEM_CONSULTA_SUCESSO = "Consulta Realizada com Sucesso!";
+	
+	public static final String TABLE_NAME_TB_DESPESA_VARIAVEL = "TB_DESPESA_VARIAVEL";
 }
