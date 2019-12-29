@@ -487,7 +487,7 @@
                           <select id="fonte_pagamento"
                                   name="fonte_pagamento"
                                   ng-model="despesaModel.fonte_pagamento"
-                                  ng-options="fontePagamentoResultado.nomeFontePagamento for fontePagamentoResultado in fontePagamentoList track by fontePagamentoResultado.codigo"
+                                  ng-options="fontePagamentoResultado.nome for fontePagamentoResultado in fontePagamentoList track by fontePagamentoResultado.codigo"
                                   class="form-control">
                           </select>
                           <div ng-show="isCampoFontePagamentoInvalidoFlag == true">
@@ -501,7 +501,7 @@
                           <select id="canal_pagamento" 
                                   name="canal_pagamento" 
                                   ng-model="despesaModel.canal_pagamento" 
-                                  ng-options="canalPagamentoResultado.nomeCanalPagamento for canalPagamentoResultado in canalPagamentoList track by canalPagamentoResultado.codigo"
+                                  ng-options="canalPagamentoResultado.nome for canalPagamentoResultado in canalPagamentoList track by canalPagamentoResultado.codigo"
                                   class="form-control">
                           </select>
                           <div ng-show="isCampoCanalPagamentoInvalidoFlag == true">
@@ -515,7 +515,7 @@
                           <select id="responsavel_pagamento" 
                                   name="responsavel_pagamento" 
                                   ng-model="despesaModel.responsavel_pagamento" 
-                                  ng-options="responsavelPagamentoResultado.nomeResponsavelPagamento for responsavelPagamentoResultado in responsavelPagamentoList track by responsavelPagamentoResultado.codigo"
+                                  ng-options="responsavelPagamentoResultado.nome for responsavelPagamentoResultado in responsavelPagamentoList track by responsavelPagamentoResultado.codigo"
                                   class="form-control">
                           </select>
                           <div ng-show="isCampoResponsavelPagamentoInvalidoFlag == true">

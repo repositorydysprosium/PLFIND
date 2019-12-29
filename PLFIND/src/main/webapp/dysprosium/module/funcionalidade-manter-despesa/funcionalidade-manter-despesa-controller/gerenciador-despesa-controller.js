@@ -1,8 +1,11 @@
 var gerenciadorDespesaModule = angular.module('gerenciadorDespesaModule', []);
 
-gerenciadorDespesaModule.controller('gerenciadorDespesaController', function($scope) {
+gerenciadorDespesaModule.controller('gerenciadorDespesaController', function($scope, $http) {
 
 		function initializer() {
+			$scope.recuperarFontePagamento();
+			$scope.recuperarCanalPagamento();
+			$scope.recuperarResponsavelPagamento();
 			$scope.despesaModel.is_item_unico = "true";
 			$scope.despesaModel.is_forma_pagamento_unico = "true";
 			$scope.despesaModel.quantidade_produto_servico = 1;
@@ -14,103 +17,21 @@ gerenciadorDespesaModule.controller('gerenciadorDespesaController', function($sc
 			toastr.options.timeOut = '10000';
 		};
 
-		var despesaList =
-		[
-			{
-				codigo: 1,
-				favorecido: 'Só Digital Comércio e Serviços de Informática (Rodoviária do Plano Piloto)',
-				data_despesa: '04/12/2019',
-				is_item_unico: false,
-				produto_servico: 'Mouse Óptico sem fio Multilaser',
-				valor_despesa: 'R$ 55,00',
-				is_forma_pagamento_unico: false,
-				fonte_pagamento: 'Carteira Pessoal (Dinheiro)',
-				canal_pagamento: 'Pagamento no Caixa do Estabelecimento',
-				valor_pagamento_multiplo: 'R$ 55,00',
-				responsavel_pagamento: 'Jose Quintin',
-			},
-			{
-				codigo: 2,
-				favorecido: 'Só Digital Comércio e Serviços de Informática (Rodoviária do Plano Piloto)',
-				data_despesa: '04/12/2019',
-				is_item_unico: false,
-				produto_servico: 'Cabo USB Shinka (Carregador de iPhone)',
-				valor_despesa: 'R$ 45,00',
-				is_forma_pagamento_unico: false,
-				fonte_pagamento: 'Banco Santander do Brasil S.A (Cartão de Crédito)',
-				canal_pagamento: 'Pagamento no Caixa do Estabelecimento',
-				valor_pagamento_multiplo: 'R$ 55,00',
-				responsavel_pagamento: 'Jamile Batista Alves',
-			},
-			// {
-			// 	codigo: 3,
-			// 	favorecido: 'Supermercado PraVocê (Taguatinga Centro)',
-			// 	data_despesa: '05/12/2019',
-			// 	is_item_unico: true,
-			// 	produto_servico: 'Filé de Tilápia Copacol 800gm',
-			// 	valor_despesa: 'R$ 32,95',
-			// 	is_forma_pagamento_unico: false,
-			// 	fonte_pagamento: 'Banco Nubank do Brasil S.A (Cartão de Crédito)',
-			// 	canal_pagamento: 'Pagamento em Caixa do Estabelecimento',
-			// 	valor_pagamento_multiplo: 'R$ 55,00',
-			// 	responsavel_pagamento: 'Jamile Batista Alves',
-			// }
-		];
-
-		var fontePagamentoList = [
-			{
-				codigo: 1,
-				nomeFontePagamento: "Banco Santander (Cartão de Crédito)",
-			},
-			{
-				codigo: 2,
-				nomeFontePagamento: "Banco Caixa Econômica Federal (Cartão de Débito)",
-			},
-			{
-				codigo: 3,
-				nomeFontePagamento: "Banco Nubank (Cartão de Débito)",
-			}
-		];
-
-		var canalPagamentoList = [
-			{
-				codigo: 1,
-				nomeCanalPagamento: "Pagamento em Caixa",
-			},
-			{
-				codigo: 2,
-				nomeCanalPagamento: "Pagamento via Internet Banking",
-			},
-			{
-				codigo: 3,
-				nomeCanalPagamento: "Pagamento com Cartão de Crédito",
-			},
-			{
-				codigo: 4,
-				nomeCanalPagamento: "Pagamento com Boleto Bancário",
-			},
-			{
-				codigo: 5,
-				nomeCanalPagamento: "Pagamento com Cheque Prédatado",
-			}
-		];
-
-		var responsavelPagamentoList = [
-			{
-				codigo: 1,
-				nomeResponsavelPagamento: "Jamille Batista Alves",
-			},
-			{
-				codigo: 2,
-				nomeResponsavelPagamento: "José Quintin",
-			}
-		];
+		var URL_FONTE_PAGAMENTO = "http://localhost:8080/PLFIND-1.0.0.0-SNAPSHOT/PLFIND/fontePagamentoResource";
+		var URL_CANAL_PAGAMENTO = "http://localhost:8080/PLFIND-1.0.0.0-SNAPSHOT/PLFIND/canalPagamentoResource";
+		var URL_RESPONSAVEL_PAGAMENTO = "http://localhost:8080/PLFIND-1.0.0.0-SNAPSHOT/PLFIND/responsavelPagamentoResource";
 
 		$scope.produtoServicoList = [];
 
 		$scope.formaPagamentoList = [];
 
-		$scope.despesaList = despesaList;
+		$scope.fontePagamentoList = [];
+
+		$scope.canalPagamentoList = [];
+
+		$scope.responsavelPagamentoList = [];
+
+		$scope.despesaVariavelList = [];
 
 		$scope.despesaModel = {};
 
@@ -126,12 +47,6 @@ gerenciadorDespesaModule.controller('gerenciadorDespesaController', function($sc
 		$scope.isCampoCanalPagamentoInvalidoFlag = false;
 		$scope.isCampoResponsavelPagamentoInvalidoFlag = false;
 		$scope.isCampoQuantidadeProdutoServicoInvalidoFlag = false;
-		
-		$scope.fontePagamentoList = fontePagamentoList;
-
-		$scope.canalPagamentoList = canalPagamentoList;
-
-		$scope.responsavelPagamentoList = responsavelPagamentoList;
 
 		var produtoServicoModel = {
 			codigo: null,
@@ -146,10 +61,34 @@ gerenciadorDespesaModule.controller('gerenciadorDespesaController', function($sc
 			responsavelPagamento: null,
 		};
 
+		$scope.recuperarFontePagamento = function() {
+			$http.get(URL_FONTE_PAGAMENTO).then(function(response) {
+				$scope.fontePagamentoList = response.data;
+			}, function(responseError) {
+				toastr.error('Serviço de recuperação da Fonte do Pagamento não encontrado!', 'Erro do Sistema', {timeOut: 10000});
+			});
+		};
+
+		$scope.recuperarCanalPagamento = function() {
+			$http.get(URL_CANAL_PAGAMENTO).then(function(response) {
+				$scope.canalPagamentoList = response.data;
+			}, function(responseError) {
+				toastr.error('Serviço de recuperação da Canal do Pagamento não encontrado!', 'Erro do Sistema', {timeOut: 10000});
+			});
+		};
+
+		$scope.recuperarResponsavelPagamento = function() {
+			$http.get(URL_RESPONSAVEL_PAGAMENTO).then(function(response) {
+				$scope.responsavelPagamentoList = response.data;
+			}, function(responseError) {
+				toastr.error('Serviço de recuperação do Responsável pelo Pagamento não encontrado!', 'Erro do Sistema', {timeOut: 10000});
+			});
+		};
+
 		$scope.persist = function(despesaModel) {
 			console.log(despesaModel);
 			if(isValidaDespesaVariavel(despesaModel)) {
-				despesaList.push(despesaModel);
+				$scope.despesaVariavelList.push(despesaModel);
 				$scope.clearDespesModelAll();
 				toastr.success('Dados cadastrados com Sucesso!', 'Sucesso', {timeOut: 5000})
 			}

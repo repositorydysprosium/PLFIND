@@ -1,6 +1,16 @@
+br/com/plataformalancamento/dysprosioum/resource/FontePagamentoResource.class
 br/com/plataformalancamento/dysprosioum/entity/DespesaVariavelEntity.class
+br/com/plataformalancamento/dysprosioum/application/ApplicationRest.class
+br/com/plataformalancamento/dysprosioum/resource/CanalPagamentoResource.class
+br/com/plataformalancamento/dysprosioum/entity/ResponsavelPagamentoDomain.class
+br/com/plataformalancamento/dysprosioum/utility/ConstanteUtility.class
+br/com/plataformalancamento/dysprosioum/factory/ResponsavelPagamentoFactory.class
+br/com/plataformalancamento/dysprosioum/factory/FontePagamentoFactory.class
+br/com/plataformalancamento/dysprosioum/entity/CanalPagamentoDomain.class
+br/com/plataformalancamento/dysprosioum/entity/FontePagamentoEntity.class
+br/com/plataformalancamento/dysprosioum/factory/CanalPagamentoFactory.class
 br/com/plataformalancamento/dysprosioum/repository/DespesaVariavelRepository.class
 br/com/plataformalancamento/dysprosioum/factory/DespesaVariavelFactory.class
 br/com/plataformalancamento/dysprosioum/service/DespesaVariavelService.class
 br/com/plataformalancamento/dysprosioum/resource/DespesaVariavelResource.class
-br/com/plataformalancamento/dysprosioum/utility/ConstanteUtility.class
+br/com/plataformalancamento/dysprosioum/resource/ResposavelPagamentoResource.class
