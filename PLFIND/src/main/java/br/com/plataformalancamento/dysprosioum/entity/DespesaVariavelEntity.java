@@ -9,11 +9,13 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.xml.bind.annotation.XmlRootElement;
 
 import br.com.plataformalancamento.dysprosioum.utility.ConstanteUtility;
 
 @Entity
 @Table(name =  ConstanteUtility.TABLE_NAME_TB_DESPESA_VARIAVEL)
+@XmlRootElement
 public class DespesaVariavelEntity implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -24,7 +26,7 @@ public class DespesaVariavelEntity implements Serializable {
 	private Long codigo;
 	
 	@Column(name = "ID_FAVORECIDO", nullable = false)
-	private Long favorecido;
+	private FavorecidoDomain favorecido;
 	
 	@Column(name = "ID_ITEM_DESPESA", nullable = false)
 	private Long itemDespesa;
@@ -36,10 +38,10 @@ public class DespesaVariavelEntity implements Serializable {
 	private Long produtoServico;
 	
 	@Column(name = "ID_FONTE_PAGAMENTO", nullable = false)
-	private Long fontePagamento;
+	private FontePagamentoEntity fontePagamento;
 	
 	@Column(name = "ID_CANAL_PAGAMENTO", nullable = false)
-	private Long canalPagamento;
+	private CanalPagamentoDomain canalPagamento;
 	
 	@Column(name = "ID_RESPONSAVEL_PAGAMENTO", nullable = false)
 	private Long responsavelPagamento;
@@ -64,6 +66,27 @@ public class DespesaVariavelEntity implements Serializable {
 	
 	public DespesaVariavelEntity() { }
 
+	public DespesaVariavelEntity(Long codigo, FavorecidoDomain favorecido, Long itemDespesa, Long formaPagamento,
+			Long produtoServico, FontePagamentoEntity fontePagamento, CanalPagamentoDomain canalPagamento, Long responsavelPagamento,
+			BigDecimal valorDespesa, Date dataDespesa, Integer quantidadeItem, Boolean isFontePagamentoUnico,
+			Boolean isItemUnico, String observacaoDespesaVariavel) {
+		super();
+		this.codigo = codigo;
+		this.favorecido = favorecido;
+		this.itemDespesa = itemDespesa;
+		this.formaPagamento = formaPagamento;
+		this.produtoServico = produtoServico;
+		this.fontePagamento = fontePagamento;
+		this.canalPagamento = canalPagamento;
+		this.responsavelPagamento = responsavelPagamento;
+		this.valorDespesa = valorDespesa;
+		this.dataDespesa = dataDespesa;
+		this.quantidadeItem = quantidadeItem;
+		this.isFontePagamentoUnico = isFontePagamentoUnico;
+		this.isItemUnico = isItemUnico;
+		this.observacaoDespesaVariavel = observacaoDespesaVariavel;
+	}
+
 	public DespesaVariavelEntity(Long codigo) {
 		super();
 		this.codigo = codigo;
@@ -77,11 +100,11 @@ public class DespesaVariavelEntity implements Serializable {
 		this.codigo = codigo;
 	}
 
-	public Long getFavorecido() {
+	public FavorecidoDomain getFavorecido() {
 		return favorecido;
 	}
 
-	public void setFavorecido(Long favorecido) {
+	public void setFavorecido(FavorecidoDomain favorecido) {
 		this.favorecido = favorecido;
 	}
 
@@ -109,19 +132,19 @@ public class DespesaVariavelEntity implements Serializable {
 		this.produtoServico = produtoServico;
 	}
 
-	public Long getFontePagamento() {
+	public FontePagamentoEntity getFontePagamento() {
 		return fontePagamento;
 	}
 
-	public void setFontePagamento(Long fontePagamento) {
+	public void setFontePagamento(FontePagamentoEntity fontePagamento) {
 		this.fontePagamento = fontePagamento;
 	}
 
-	public Long getCanalPagamento() {
+	public CanalPagamentoDomain getCanalPagamento() {
 		return canalPagamento;
 	}
 
-	public void setCanalPagamento(Long canalPagamento) {
+	public void setCanalPagamento(CanalPagamentoDomain canalPagamento) {
 		this.canalPagamento = canalPagamento;
 	}
 

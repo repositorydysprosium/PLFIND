@@ -13,6 +13,11 @@ public class CanalPagamentoDomain implements Serializable {
 	private Boolean isValido;
 	
 	public CanalPagamentoDomain() { }
+	
+	public CanalPagamentoDomain(Long codigo) {
+		super();
+		this.codigo = codigo;
+	}
 
 	public Long getCodigo() {
 		return codigo;

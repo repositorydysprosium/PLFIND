@@ -6,7 +6,10 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import br.com.plataformalancamento.dysprosioum.entity.CanalPagamentoDomain;
 import br.com.plataformalancamento.dysprosioum.entity.DespesaVariavelEntity;
+import br.com.plataformalancamento.dysprosioum.entity.FavorecidoDomain;
+import br.com.plataformalancamento.dysprosioum.entity.FontePagamentoEntity;
 
 public class DespesaVariavelFactory implements Serializable {
 
@@ -17,12 +20,12 @@ public class DespesaVariavelFactory implements Serializable {
 	public static DespesaVariavelEntity recuperarDepesaVariavelSoDigitalInformatica() {
 		DespesaVariavelEntity despesaVariavelEntitySoDigitalInformatica = new DespesaVariavelEntity();
 			despesaVariavelEntitySoDigitalInformatica.setCodigo(1L);
-			despesaVariavelEntitySoDigitalInformatica.setFavorecido(1L);
+			despesaVariavelEntitySoDigitalInformatica.setFavorecido(new FavorecidoDomain(1L));
 			despesaVariavelEntitySoDigitalInformatica.setItemDespesa(1L);
 			despesaVariavelEntitySoDigitalInformatica.setFormaPagamento(1L);
 			despesaVariavelEntitySoDigitalInformatica.setProdutoServico(1L);
-			despesaVariavelEntitySoDigitalInformatica.setFontePagamento(1L);
-			despesaVariavelEntitySoDigitalInformatica.setCanalPagamento(1L);
+			despesaVariavelEntitySoDigitalInformatica.setFontePagamento(new FontePagamentoEntity(1L));
+			despesaVariavelEntitySoDigitalInformatica.setCanalPagamento(new CanalPagamentoDomain(1L));
 			despesaVariavelEntitySoDigitalInformatica.setResponsavelPagamento(1L);
 			despesaVariavelEntitySoDigitalInformatica.setValorDespesa(new BigDecimal(45));
 			despesaVariavelEntitySoDigitalInformatica.setDataDespesa(new Date());
@@ -36,12 +39,12 @@ public class DespesaVariavelFactory implements Serializable {
 	public static DespesaVariavelEntity recuperarDepesaVariavelSupermercadoPraVoce() {
 		DespesaVariavelEntity despesaVariavelEntitySupermercadoPraVoce = new DespesaVariavelEntity();
 			despesaVariavelEntitySupermercadoPraVoce.setCodigo(1L);
-			despesaVariavelEntitySupermercadoPraVoce.setFavorecido(1L);
+			despesaVariavelEntitySupermercadoPraVoce.setFavorecido(new FavorecidoDomain(1L));
 			despesaVariavelEntitySupermercadoPraVoce.setItemDespesa(1L);
 			despesaVariavelEntitySupermercadoPraVoce.setFormaPagamento(1L);
 			despesaVariavelEntitySupermercadoPraVoce.setProdutoServico(1L);
-			despesaVariavelEntitySupermercadoPraVoce.setFontePagamento(1L);
-			despesaVariavelEntitySupermercadoPraVoce.setCanalPagamento(1L);
+			despesaVariavelEntitySupermercadoPraVoce.setFontePagamento(new FontePagamentoEntity(1L));
+			despesaVariavelEntitySupermercadoPraVoce.setCanalPagamento(new CanalPagamentoDomain(1L));
 			despesaVariavelEntitySupermercadoPraVoce.setResponsavelPagamento(1L);
 			despesaVariavelEntitySupermercadoPraVoce.setValorDespesa(new BigDecimal(45));
 			despesaVariavelEntitySupermercadoPraVoce.setDataDespesa(new Date());

@@ -13,6 +13,12 @@ public class FontePagamentoEntity implements Serializable {
 	private Boolean isAtivo;
 
 	public FontePagamentoEntity() { }
+	
+	public FontePagamentoEntity(Long codigo) { 
+		super();
+		this.codigo = codigo;
+		
+	}
 
 	public Long getCodigo() {
 		return codigo;
