@@ -26,8 +26,12 @@ public class FontePagamentoResource implements Serializable {
 	
 	@GET
 	public List<FontePagamentoEntity> fontePagamentoEntityList() {
-		LOGGER.info(ConstanteUtility.MENSAGEM_CONSULTA_SUCESSO);
+//		LOGGER.info(ConstanteUtility.MENSAGEM_CONSULTA_SUCESSO);
 		return FontePagamentoFactory.getFontePagamentoList();
+	}
+	
+	public static Logger getLogger() {
+		return LOGGER;
 	}
 	
 }

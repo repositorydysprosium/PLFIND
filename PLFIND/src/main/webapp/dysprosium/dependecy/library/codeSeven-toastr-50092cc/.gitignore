@@ -16,7 +16,7 @@ bower_components
 /Scripts
 /report
 /tests/coverage
-
+.classpath
 
 # Compiled source #
 ###################

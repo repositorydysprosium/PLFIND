@@ -35,7 +35,7 @@ public class DespesaVariavelEntity implements Serializable {
 	private Long formaPagamento;
 	
 	@Column(name = "ID_PRODUTO_SERVICO", nullable = false)
-	private Long produtoServico;
+	private ProdutoServicoDomain produtoServico;
 	
 	@Column(name = "ID_FONTE_PAGAMENTO", nullable = false)
 	private FontePagamentoEntity fontePagamento;
@@ -67,7 +67,7 @@ public class DespesaVariavelEntity implements Serializable {
 	public DespesaVariavelEntity() { }
 
 	public DespesaVariavelEntity(Long codigo, FavorecidoDomain favorecido, Long itemDespesa, Long formaPagamento,
-			Long produtoServico, FontePagamentoEntity fontePagamento, CanalPagamentoDomain canalPagamento, Long responsavelPagamento,
+			ProdutoServicoDomain produtoServico, FontePagamentoEntity fontePagamento, CanalPagamentoDomain canalPagamento, Long responsavelPagamento,
 			BigDecimal valorDespesa, Date dataDespesa, Integer quantidadeItem, Boolean isFontePagamentoUnico,
 			Boolean isItemUnico, String observacaoDespesaVariavel) {
 		super();
@@ -124,11 +124,11 @@ public class DespesaVariavelEntity implements Serializable {
 		this.formaPagamento = formaPagamento;
 	}
 
-	public Long getProdutoServico() {
+	public ProdutoServicoDomain getProdutoServico() {
 		return produtoServico;
 	}
 
-	public void setProdutoServico(Long produtoServico) {
+	public void setProdutoServico(ProdutoServicoDomain produtoServico) {
 		this.produtoServico = produtoServico;
 	}
 

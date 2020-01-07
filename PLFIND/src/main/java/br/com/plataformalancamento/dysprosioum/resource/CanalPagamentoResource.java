@@ -26,8 +26,12 @@ public class CanalPagamentoResource implements Serializable {
 	
 	@GET
 	public List<CanalPagamentoDomain> finAll() {
-		LOGGER.info(ConstanteUtility.MENSAGEM_CONSULTA_SUCESSO);
+//		LOGGER.info(ConstanteUtility.MENSAGEM_CONSULTA_SUCESSO);
 		return CanalPagamentoFactory.finAll();
+	}
+	
+	public static Logger getLogger() {
+		return LOGGER;
 	}
 
 }

@@ -10,6 +10,7 @@ import br.com.plataformalancamento.dysprosioum.entity.CanalPagamentoDomain;
 import br.com.plataformalancamento.dysprosioum.entity.DespesaVariavelEntity;
 import br.com.plataformalancamento.dysprosioum.entity.FavorecidoDomain;
 import br.com.plataformalancamento.dysprosioum.entity.FontePagamentoEntity;
+import br.com.plataformalancamento.dysprosioum.entity.ProdutoServicoDomain;
 
 public class DespesaVariavelFactory implements Serializable {
 
@@ -23,7 +24,7 @@ public class DespesaVariavelFactory implements Serializable {
 			despesaVariavelEntitySoDigitalInformatica.setFavorecido(new FavorecidoDomain(1L));
 			despesaVariavelEntitySoDigitalInformatica.setItemDespesa(1L);
 			despesaVariavelEntitySoDigitalInformatica.setFormaPagamento(1L);
-			despesaVariavelEntitySoDigitalInformatica.setProdutoServico(1L);
+			despesaVariavelEntitySoDigitalInformatica.setProdutoServico(new ProdutoServicoDomain(1L));
 			despesaVariavelEntitySoDigitalInformatica.setFontePagamento(new FontePagamentoEntity(1L));
 			despesaVariavelEntitySoDigitalInformatica.setCanalPagamento(new CanalPagamentoDomain(1L));
 			despesaVariavelEntitySoDigitalInformatica.setResponsavelPagamento(1L);
@@ -42,7 +43,7 @@ public class DespesaVariavelFactory implements Serializable {
 			despesaVariavelEntitySupermercadoPraVoce.setFavorecido(new FavorecidoDomain(1L));
 			despesaVariavelEntitySupermercadoPraVoce.setItemDespesa(1L);
 			despesaVariavelEntitySupermercadoPraVoce.setFormaPagamento(1L);
-			despesaVariavelEntitySupermercadoPraVoce.setProdutoServico(1L);
+			despesaVariavelEntitySupermercadoPraVoce.setProdutoServico(new ProdutoServicoDomain(1L));
 			despesaVariavelEntitySupermercadoPraVoce.setFontePagamento(new FontePagamentoEntity(1L));
 			despesaVariavelEntitySupermercadoPraVoce.setCanalPagamento(new CanalPagamentoDomain(1L));
 			despesaVariavelEntitySupermercadoPraVoce.setResponsavelPagamento(1L);

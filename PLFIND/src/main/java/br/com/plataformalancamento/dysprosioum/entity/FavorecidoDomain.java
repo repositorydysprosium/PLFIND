@@ -2,6 +2,9 @@ package br.com.plataformalancamento.dysprosioum.entity;
 
 import java.io.Serializable;
 
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement
 public class FavorecidoDomain implements Serializable {
 
 	private static final long serialVersionUID = 1L;
