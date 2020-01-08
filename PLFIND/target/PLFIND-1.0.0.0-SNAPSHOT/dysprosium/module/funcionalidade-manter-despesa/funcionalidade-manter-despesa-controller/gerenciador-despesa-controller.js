@@ -3,24 +3,31 @@ var gerenciadorDespesaModule = angular.module('gerenciadorDespesaModule', []);
 gerenciadorDespesaModule.controller('gerenciadorDespesaController', function($scope, $http) {
 
 		function initializer() {
+			$scope.recuperarFavorecido();
 			$scope.recuperarFontePagamento();
 			$scope.recuperarCanalPagamento();
 			$scope.recuperarResponsavelPagamento();
-			$scope.despesaModel.is_item_unico = "true";
-			$scope.despesaModel.is_forma_pagamento_unico = "true";
-			$scope.despesaModel.quantidade_produto_servico = 1;
-			$scope.despesaModel.fonte_pagamento = null;
-			$scope.despesaModel.canal_pagamento = null;
-			$scope.despesaModel.responsavel_pagamento = null;
+			$scope.despesaModel.isItemUnico = "true";
+			$scope.despesaModel.isFormaPagamentoUnico = "true";
+			$scope.despesaModel.quantidadeProdutoServico = 1;
+			$scope.despesaModel.fontePagamento = null;
+			$scope.despesaModel.canalPagamento = null;
+			$scope.despesaModel.produtoServico = null;
+			$scope.despesaModel.responsavelPagamento = null;
 			toastr.options.progressBar = true;
 			toastr.options.positionClass = 'toast-top-right';
 			toastr.options.timeOut = '10000';
 		};
 
+		var URL_FAVORECIDO_FIND_ALL = "http://localhost:8080/PLFIND-1.0.0.0-SNAPSHOT/PLFIND/favorecidoResource/findAll";
 		var URL_FONTE_PAGAMENTO = "http://localhost:8080/PLFIND-1.0.0.0-SNAPSHOT/PLFIND/fontePagamentoResource";
 		var URL_CANAL_PAGAMENTO = "http://localhost:8080/PLFIND-1.0.0.0-SNAPSHOT/PLFIND/canalPagamentoResource";
 		var URL_RESPONSAVEL_PAGAMENTO = "http://localhost:8080/PLFIND-1.0.0.0-SNAPSHOT/PLFIND/responsavelPagamentoResource";
+		var URL_DESPESA_VARIAVEL_FIND_ALL = "http://localhost:8080/PLFIND-1.0.0.0-SNAPSHOT/PLFIND/despesaVariavelResource/findAll";
+		var URL_DESPESA_VARIAVEL_PERSIST = "http://localhost:8080/PLFIND-1.0.0.0-SNAPSHOT/PLFIND/despesaVariavelResource/persist";
 
+		$scope.favorecidoList = [];
+		
 		$scope.produtoServicoList = [];
 
 		$scope.formaPagamentoList = [];
@@ -61,6 +68,14 @@ gerenciadorDespesaModule.controller('gerenciadorDespesaController', function($sc
 			responsavelPagamento: null,
 		};
 
+		$scope.recuperarFavorecido = function() {
+			$http.get(URL_FAVORECIDO_FIND_ALL).then(function(response) {
+				$scope.favorecidoList = response.data;
+			}, function(responseError) {
+				toastr.error('Serviço de recuperação do Favorecido não encontrado!', 'Erro do Sistema', {timeOut: 10000});
+			});
+		};
+		
 		$scope.recuperarFontePagamento = function() {
 			$http.get(URL_FONTE_PAGAMENTO).then(function(response) {
 				$scope.fontePagamentoList = response.data;
@@ -88,25 +103,35 @@ gerenciadorDespesaModule.controller('gerenciadorDespesaController', function($sc
 		$scope.persist = function(despesaModel) {
 			console.log(despesaModel);
 			if(isValidaDespesaVariavel(despesaModel)) {
-				$scope.despesaVariavelList.push(despesaModel);
-				$scope.clearDespesModelAll();
-				toastr.success('Dados cadastrados com Sucesso!', 'Sucesso', {timeOut: 5000})
+				despesaModel.dataDespesa = formatarData(despesaModel.dataDespesa);
+				$http.post(URL_DESPESA_VARIAVEL_PERSIST, despesaModel).then(function(response) {
+					$scope.despesaVariavelList.push(response.data);
+					$scope.clearDespesModelAll();
+					toastr.success('Dados cadastrados com Sucesso!', 'Sucesso', {timeOut: 5000});
+				}, function(responseError) {
+					toastr.error('Não foi possível cadastrar a Despesa Variável! ' + responseError.data + "'", 'Erro do Sistema', {timeOut: 10000});
+				});
 			}
+		};
+		
+		function formatarData(data) {
+			var dataFormatada = new Date(data);
+			return dataFormatada;
 		};
 
 		$scope.cadastrarProdutoServico = function(despesaModel) {
 			if(isValidaDespesaVariavel(despesaModel)) {
-				produtoServicoModel.produtoServico = despesaModel.produto_servico;
-				produtoServicoModel.valorProdutoServico = despesaModel.valor_despesa;
+				produtoServicoModel.produtoServico = despesaModel.produtoServico;
+				produtoServicoModel.valorProdutoServico = despesaModel.valorDespesa;
 				$scope.produtoServicoList.push(angular.copy(produtoServicoModel));
 				clearProdutoServico();
 			}
 		};
 
 		$scope.cadastrarFormaPagamento = function(despesaModel) {
-			formaPagamentoModel.fontePagamento = despesaModel.fonte_pagamento;
-			formaPagamentoModel.canalPagamento = despesaModel.canal_pagamento;
-			formaPagamentoModel.responsavelPagamento = despesaModel.responsavel_pagamento;
+			formaPagamentoModel.fontePagamento = despesaModel.fontePagamento;
+			formaPagamentoModel.canalPagamento = despesaModel.canalPagamento;
+			formaPagamentoModel.responsavelPagamento = despesaModel.responsavelPagamento;
 			$scope.formaPagamentoList.push(angular.copy(formaPagamentoModel));
 			clearFormaPagamento();
 		};
@@ -122,7 +147,7 @@ gerenciadorDespesaModule.controller('gerenciadorDespesaController', function($sc
 
 		$scope.verificarItemUnico = function(despesaModel) {
 			if(despesaModel != undefined) {
-				if (despesaModel.is_item_unico == "true") {
+				if (despesaModel.isItemUnico == "true") {
 					$scope.isItemUnicoFlag = false;
 				} else {
 					$scope.isItemUnicoFlag = true;
@@ -132,7 +157,7 @@ gerenciadorDespesaModule.controller('gerenciadorDespesaController', function($sc
 
 		$scope.verificarFormaPagamentoUnico = function(despesaModel) {
 			if(despesaModel != undefined) {
-				if (despesaModel.is_forma_pagamento_unico == "true") {
+				if (despesaModel.isFormaPagamentoUnico == "true") {
 					$scope.isFormaPagamentoUnicoFlag = false;
 				} else {
 					$scope.isFormaPagamentoUnicoFlag = true;
@@ -167,84 +192,84 @@ gerenciadorDespesaModule.controller('gerenciadorDespesaController', function($sc
 		}
 
 		function isCampoDataDespesaValid(despesaModel) {
-			if(despesaModel.data_despesa == null || despesaModel.data_despesa == undefined || despesaModel.data_despesa == "") {
-				data_despesa_.className = "form-group has-danger";
+			if(despesaModel.dataDespesa == null || despesaModel.dataDespesa == undefined || despesaModel.dataDespesa == "") {
+				dataDespesa_.className = "form-group has-danger";
 				$scope.isCamposDataDespesaInvalidoFlag = true;
 				return false;
 			} else {
-				data_despesa_.className = "form-group";
+				dataDespesa_.className = "form-group";
 				$scope.isCamposDataDespesaInvalidoFlag = false;
 			}
 			return true;
 		}
 
 		function isCampoProdutoServicoValid(despesaModel) {
-			if(despesaModel.produto_servico == null || despesaModel.produto_servico == undefined || despesaModel.produto_servico == "") {
-				produto_servico_.className = "form-group has-danger";
+			if(despesaModel.produtoServico == null || despesaModel.produtoServico == undefined || despesaModel.produtoServico == "") {
+				produtoServico_.className = "form-group has-danger";
 				$scope.isCampoProdutoServicoInvalidoFlag = true;
 				return false;
 			} else {
-				produto_servico_.className = "form-group";
+				produtoServico_.className = "form-group";
 				$scope.isCampoProdutoServicoInvalidoFlag = false;
 			}
 			return true;
 		}
 
 		function isCampoValorDespesaValid(despesaModel) {
-			if(despesaModel.valor_despesa == null || despesaModel.valor_despesa == undefined || despesaModel.valor_despesa == "") {
-				valor_despesa_.className = "form-group has-danger";
+			if(despesaModel.valorDespesa == null || despesaModel.valorDespesa == undefined || despesaModel.valorDespesa == "") {
+				valorDespesa_.className = "form-group has-danger";
 				$scope.isCampoValorDespesaInvalidoFlag = true;
 				return false;
 			} else {
-				valor_despesa_.className = "form-group";
+				valorDespesa_.className = "form-group";
 				$scope.isCampoValorDespesaInvalidoFlag = false;
 			}
 			return true;
 		}
 
 		function isCampoQuantidadeProdutoServicoValid(despesaModel) {
-			if(despesaModel.quantidade_produto_servico == null || despesaModel.quantidade_produto_servico == undefined || despesaModel.quantidade_produto_servico == "") {
-				quantidade_produto_servico_.className = "form-group has-danger text-danger";
+			if(despesaModel.quantidadeProdutoServico == null || despesaModel.quantidadeProdutoServico == undefined || despesaModel.quantidadeProdutoServico == "") {
+				quantidadeProdutoServico_.className = "form-group has-danger text-danger";
 				$scope.isCampoQuantidadeProdutoServicoInvalidoFlag = true;
 				return false;
 			} else {
-				quantidade_produto_servico_.className = "form-group";
+				quantidadeProdutoServico_.className = "form-group";
 				$scope.isCampoQuantidadeProdutoServicoInvalidoFlag = false;
 			}
 			return true;
 		}
 
 		function isCampoFontePagamentoValid(despesaModel) {
-			if(despesaModel.fonte_pagamento == null) {
-				fonte_pagamento_.className = "form-group has-danger text-danger";
+			if(despesaModel.fontePagamento == null) {
+				fontePagamento_.className = "form-group has-danger text-danger";
 				$scope.isCampoFontePagamentoInvalidoFlag = true;
 				return false;
 			} else {
-				fonte_pagamento_.className = "form-group";
+				fontePagamento_.className = "form-group";
 				$scope.isCampoFontePagamentoInvalidoFlag = false;
 			}
 			return true;
 		}
 
 		function isCampoCanalPagamentoValid(despesaModel) {
-			if(despesaModel.canal_pagamento == null) {
-				canal_pagamento_.className = "form-group has-danger text-danger";
+			if(despesaModel.canalPagamento == null) {
+				canalPagamento_.className = "form-group has-danger text-danger";
 				$scope.isCampoCanalPagamentoInvalidoFlag = true;
 				return false;
 			} else {
-				canal_pagamento_.className = "form-group";
+				canalPagamento_.className = "form-group";
 				$scope.isCampoCanalPagamentoInvalidoFlag = false;
-			}
+			}fontePagamento
 			return true;
 		}
 
 		function isCampoResponsavelPagamentoValid(despesaModel) {
-			if(despesaModel.responsavel_pagamento == null) {
-				responsavel_pagamento_.className = "form-group has-danger text-danger";
+			if(despesaModel.responsavelPagamento == null) {
+				responsavelPagamento_.className = "form-group has-danger text-danger";
 				$scope.isCampoResponsavelPagamentoInvalidoFlag = true;
 				return false;
 			} else {
-				responsavel_pagamento_.className = "form-group";
+				responsavelPagamento_.className = "form-group";
 				$scope.isCampoResponsavelPagamentoInvalidoFlag = false;
 			}
 			return true;
@@ -252,54 +277,55 @@ gerenciadorDespesaModule.controller('gerenciadorDespesaController', function($sc
 
 		$scope.clearDespesModelAll = function() {
 			$scope.despesaModel = {
-				is_item_unico: "true",
-				quantidade_item: 1,
-				is_forma_pagamento_unico: "true",
-				fonte_pagamento: null,
-				canal_pagamento: null,
-				responsavel_pagamento: null,
+				isItemUnico: "true",
+				quantidadeProdutoServico: 1,
+				isFormaPagamentoUnico: "true",
+				fontePagamento: null,
+				canalPagamento: null,
+				responsavelPagamento: null,
+				produtoServico: null,
 			};
 			$scope.produtoServicoList = [];
 			$scope.formaPagamentoList = [];
 			$scope.isItemUnicoFlag = false;
 			$scope.isFormaPagamentoUnicoFlag = false;
 
-			$scope.despesaModel.quantidade_produto_servico = 1;
+			$scope.despesaModel.quantidadeProdutoServico = 1;
 
 			favorecido_.className = "form-group";
 			$scope.isCamposFavorecidoInvalidoFlag = false;
 
-			data_despesa_.className = "form-group";
+			dataDespesa_.className = "form-group";
 			$scope.isCamposDataDespesaInvalidoFlag = false;
 
-			produto_servico_.className = "form-group";
+			produtoServico_.className = "form-group";
 			$scope.isCampoProdutoServicoInvalidoFlag = false;
 
-			valor_despesa_.className = "form-group";
+			valorDespesa_.className = "form-group";
 			$scope.isCampoValorDespesaInvalidoFlag = false;
 
-			quantidade_produto_servico_.className = "form-group";
+			quantidadeProdutoServico_.className = "form-group";
 			$scope.isCampoQuantidadeProdutoServicoInvalidoFlag = false;
 
-			fonte_pagamento_.className = "form-group";
+			fontePagamento_.className = "form-group";
 			$scope.isCampoFontePagamentoInvalidoFlag = false;
 
-			canal_pagamento_.className = "form-group";
+			canalPagamento_.className = "form-group";
 			$scope.isCampoCanalPagamentoInvalidoFlag = false;
 
-			responsavel_pagamento_.className = "form-group";
+			responsavelPagamento_.className = "form-group";
 			$scope.isCampoResponsavelPagamentoInvalidoFlag = false;
 		};
 
 		function clearProdutoServico() {
-			$scope.despesaModel.produto_servico = null;
-			$scope.despesaModel.valor_despesa = null;
+			$scope.despesaModel.produtoServico = null;
+			$scope.despesaModel.valorDespesa = null;
 		};
 
 		function clearFormaPagamento() {
-			$scope.despesaModel.fonte_pagamento = null;
-			$scope.despesaModel.canal_pagamento = null;
-			$scope.despesaModel.responsavel_pagamento = null;
+			$scope.despesaModel.fontePagamento = null;
+			$scope.despesaModel.canalPagamento = null;
+			$scope.despesaModel.responsavelPagamento = null;
 		};
 
 		initializer();

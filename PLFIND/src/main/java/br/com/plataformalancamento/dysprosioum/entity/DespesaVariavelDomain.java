@@ -7,7 +7,11 @@ import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -23,23 +27,33 @@ public class DespesaVariavelDomain implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	@Id
-	@GeneratedValue
+	@SequenceGenerator(name = "SEQUENCE_DESPESA_VARIAVEL", sequenceName = "SEQUENCE_DESPESA_VARIAVEL", allocationSize = 1)
+	@GeneratedValue(generator = "SEQUENCE_DESPESA_VARIAVEL", strategy = GenerationType.SEQUENCE)
 	@Column(name = "CODIGO", nullable = false)
 	private Long codigo;
 	
-	@Column(name = "ID_FAVORECIDO", nullable = false)
+	@OneToOne
+	@JoinColumn(name = "ID_FAVORECIDO", referencedColumnName = "codigo", nullable = false)
 	private FavorecidoDomain favorecido;
 	
-	@Column(name = "ID_FONTE_PAGAMENTO", nullable = false)
+	@OneToOne
+	@JoinColumn(name = "ID_FONTE_PAGAMENTO", referencedColumnName = "codigo", nullable = false)
 	private FontePagamentoEntity fontePagamento;
 	
-	@Column(name = "ID_CANAL_PAGAMENTO", nullable = false)
+	@OneToOne
+	@JoinColumn(name = "ID_FORMA_PAGAMENTO", referencedColumnName = "codigo", nullable = false)
+	private FormaPagamentoDomain formaPagamento;
+	
+	@OneToOne
+	@JoinColumn(name = "ID_CANAL_PAGAMENTO", referencedColumnName = "codigo", nullable = false)
 	private CanalPagamentoDomain canalPagamento;
 	
-	@Column(name = "ID_RESPONSAVEL_PAGAMENTO", nullable = false)
+	@OneToOne
+	@JoinColumn(name = "ID_RESPONSAVEL_PAGAMENTO", referencedColumnName = "codigo", nullable = false)
 	private ResponsavelPagamentoDomain responsavelPagamento;
 	
-	@Column(name = "ID_PRODUTO_SERVICO", nullable = false)
+	@OneToOne
+	@JoinColumn(name = "ID_PRODUTO_SERVICO", referencedColumnName = "codigo", nullable = false)
 	private ProdutoServicoDomain produtoServico;
 	
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
@@ -168,6 +182,14 @@ public class DespesaVariavelDomain implements Serializable {
 
 	public void setObservacao(String observacao) {
 		this.observacao = observacao;
+	}
+
+	public FormaPagamentoDomain getFormaPagamento() {
+		return formaPagamento;
+	}
+
+	public void setFormaPagamento(FormaPagamentoDomain formaPagamento) {
+		this.formaPagamento = formaPagamento;
 	}
 
 	public static long getSerialversionuid() {

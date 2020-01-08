@@ -14,7 +14,6 @@ public class CanalPagamentoFactory implements Serializable {
 	
 	public static CanalPagamentoDomain getCanalPagamentoPagamentoCaixa() {
 		CanalPagamentoDomain canalPagamentoDomain = new CanalPagamentoDomain();
-			canalPagamentoDomain.setCodigo(1L);
 			canalPagamentoDomain.setNome("Pagamento em Caixa");
 			canalPagamentoDomain.setIsValido(Boolean.TRUE);
 		return canalPagamentoDomain;

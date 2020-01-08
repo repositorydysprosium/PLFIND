@@ -14,8 +14,8 @@ import javax.ws.rs.core.MediaType;
 import org.jboss.logging.Logger;
 
 import br.com.plataformalancamento.dysprosioum.entity.DespesaVariavelDomain;
-import br.com.plataformalancamento.dysprosioum.entity.DespesaVariavelEntity;
 import br.com.plataformalancamento.dysprosioum.factory.DespesaVariavelFactory;
+import br.com.plataformalancamento.dysprosioum.service.DespesaVariavelService;
 import br.com.plataformalancamento.dysprosioum.utility.ConstanteUtility;
 
 @Path(ConstanteUtility.DESPESA_VARIAVEL_RESOURCE)
@@ -27,26 +27,50 @@ public class DespesaVariavelResource implements Serializable {
 	
 	private static final Logger LOGGER = Logger.getLogger(DespesaVariavelResource.class);
 	
-	List<DespesaVariavelDomain> despesaVariavelEntityList = new ArrayList<DespesaVariavelDomain>();
+	private List<DespesaVariavelDomain> despesaVariavelEntityList = new ArrayList<DespesaVariavelDomain>();
 	
-	public DespesaVariavelResource() { }
+	private DespesaVariavelService despesaVariavelService;
+	
+	public DespesaVariavelResource() {
+		this.despesaVariavelService = new DespesaVariavelService();
+	}
 	
 	@GET
 	@Path("/findAll")
-	public List<DespesaVariavelEntity> findAll() {
-		List<DespesaVariavelEntity> despesaVariavelEntityList = DespesaVariavelFactory.findAll();
-		return despesaVariavelEntityList;
+	public List<DespesaVariavelDomain> findAll() {
+		List<DespesaVariavelDomain> despesaVariavelDomainList = DespesaVariavelFactory.findAll();
+		return despesaVariavelDomainList;
 	}
 	
 	@POST
 	@Path("/persist")
-	public DespesaVariavelDomain persist(DespesaVariavelDomain despesaVariavelEntity) {
-		despesaVariavelEntityList.add(despesaVariavelEntity);
-		return despesaVariavelEntity;
+	public DespesaVariavelDomain persist(DespesaVariavelDomain despesaVariavelDomain) {
+		despesaVariavelService.persist(despesaVariavelDomain);
+		return despesaVariavelDomain;
 	}
 	
 	public static Logger getLogger() {
 		return LOGGER;
+	}
+
+	public List<DespesaVariavelDomain> getDespesaVariavelEntityList() {
+		return despesaVariavelEntityList;
+	}
+
+	public void setDespesaVariavelEntityList(List<DespesaVariavelDomain> despesaVariavelEntityList) {
+		this.despesaVariavelEntityList = despesaVariavelEntityList;
+	}
+
+	public DespesaVariavelService getDespesaVariavelService() {
+		return despesaVariavelService;
+	}
+
+	public void setDespesaVariavelService(DespesaVariavelService despesaVariavelService) {
+		this.despesaVariavelService = despesaVariavelService;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
 	}
 	
 }

@@ -12,6 +12,7 @@ import org.jboss.logging.Logger;
 
 import br.com.plataformalancamento.dysprosioum.entity.CanalPagamentoDomain;
 import br.com.plataformalancamento.dysprosioum.factory.CanalPagamentoFactory;
+import br.com.plataformalancamento.dysprosioum.service.CanalPagamentoService;
 import br.com.plataformalancamento.dysprosioum.utility.ConstanteUtility;
 
 @Path(ConstanteUtility.CANAL_PAGAMENTO_RESOURCE)
@@ -22,16 +23,39 @@ public class CanalPagamentoResource implements Serializable {
 	
 	private static final Logger LOGGER = Logger.getLogger(CanalPagamentoResource.class);
 	
-	public CanalPagamentoResource() { }
+	private CanalPagamentoService canalPagamentoService;
+	
+	public CanalPagamentoResource() { 
+		this.canalPagamentoService = new CanalPagamentoService();
+	}
+	
+	public CanalPagamentoDomain persist(CanalPagamentoDomain canalPagamentoDomain) {
+		return this.canalPagamentoService.persist(canalPagamentoDomain);
+	}
+	
+	public CanalPagamentoDomain findOne(Long codigo) {
+		return this.canalPagamentoService.findOne(codigo);
+	}
 	
 	@GET
 	public List<CanalPagamentoDomain> finAll() {
-//		LOGGER.info(ConstanteUtility.MENSAGEM_CONSULTA_SUCESSO);
 		return CanalPagamentoFactory.finAll();
 	}
 	
 	public static Logger getLogger() {
 		return LOGGER;
+	}
+
+	public CanalPagamentoService getCanalPagamentoService() {
+		return canalPagamentoService;
+	}
+
+	public void setCanalPagamentoService(CanalPagamentoService canalPagamentoService) {
+		this.canalPagamentoService = canalPagamentoService;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
 	}
 
 }

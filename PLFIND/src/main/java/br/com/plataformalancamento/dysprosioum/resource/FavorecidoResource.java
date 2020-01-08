@@ -35,7 +35,6 @@ public class FavorecidoResource implements Serializable {
 	@GET
 	@Path("/findAll")
 	public List<FavorecidoDomain> findAll() {
-//		LOGGER.info(ConstanteUtility.MENSAGEM_CONSULTA_SUCESSO);
 		return favorecidoService.findAll();
 	}
 
