@@ -1,9 +1,14 @@
 package br.com.plataformalancamento.dysprosioum.service;
 
 import java.io.Serializable;
+import java.util.List;
+
+import javax.enterprise.context.RequestScoped;
 
 import br.com.plataformalancamento.dysprosioum.entity.CanalPagamentoDomain;
+import br.com.plataformalancamento.dysprosioum.factory.CanalPagamentoFactory;
 
+@RequestScoped
 public class CanalPagamentoService implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -12,6 +17,10 @@ public class CanalPagamentoService implements Serializable {
 	
 	public CanalPagamentoService() { 
 		this.canalPagamentoRepository = new CanalPagamentoRepository();
+	}
+	
+	public List<CanalPagamentoDomain> finAll() {
+		return CanalPagamentoFactory.finAll();
 	}
 	
 	public CanalPagamentoDomain persist(CanalPagamentoDomain canalPagamentoDomain) {

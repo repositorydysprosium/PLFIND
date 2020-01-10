@@ -10,11 +10,13 @@ import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
+import javax.xml.bind.annotation.XmlRootElement;
 
 import br.com.plataformalancamento.dysprosioum.utility.ConstanteUtility;
 
 @Entity
 @Table(name = ConstanteUtility.TABLE_NAME_TB_CANAL_PAGAMENTO)
+@XmlRootElement
 public class CanalPagamentoDomain implements Serializable {
 
 	private static final long serialVersionUID = 1L;

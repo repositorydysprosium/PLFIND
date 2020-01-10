@@ -21,7 +21,7 @@ gerenciadorDespesaModule.controller('gerenciadorDespesaController', function($sc
 
 		var URL_FAVORECIDO_FIND_ALL = "http://localhost:8080/PLFIND-1.0.0.0-SNAPSHOT/PLFIND/favorecidoResource/findAll";
 		var URL_FONTE_PAGAMENTO = "http://localhost:8080/PLFIND-1.0.0.0-SNAPSHOT/PLFIND/fontePagamentoResource";
-		var URL_CANAL_PAGAMENTO = "http://localhost:8080/PLFIND-1.0.0.0-SNAPSHOT/PLFIND/canalPagamentoResource";
+		var URL_CANAL_PAGAMENTO = "http://localhost:8080/PLFIND-1.0.0.0-SNAPSHOT/PLFIND/canalPagamentoResource/findAll";
 		var URL_RESPONSAVEL_PAGAMENTO = "http://localhost:8080/PLFIND-1.0.0.0-SNAPSHOT/PLFIND/responsavelPagamentoResource";
 		var URL_DESPESA_VARIAVEL_FIND_ALL = "http://localhost:8080/PLFIND-1.0.0.0-SNAPSHOT/PLFIND/despesaVariavelResource/findAll";
 		var URL_DESPESA_VARIAVEL_PERSIST = "http://localhost:8080/PLFIND-1.0.0.0-SNAPSHOT/PLFIND/despesaVariavelResource/persist";
