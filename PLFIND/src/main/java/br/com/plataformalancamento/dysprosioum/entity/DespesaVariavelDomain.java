@@ -63,9 +63,6 @@ public class DespesaVariavelDomain implements Serializable {
 	@Column(name = "VALOR_TOTAL_DESPESA", nullable = false)
 	private BigDecimal valorDespesa;
 	
-	@Column(name = "QUANTIDADE_PRODUTO_SERVICO", nullable = false)
-	private Integer quantidadeProdutoServico;
-	
 	@Column(name = "IS_ITEM_UNICO", nullable = false)
 	private Boolean isItemUnico;
 	
@@ -110,14 +107,6 @@ public class DespesaVariavelDomain implements Serializable {
 
 	public void setIsItemUnico(Boolean isItemUnico) {
 		this.isItemUnico = isItemUnico;
-	}
-
-	public Integer getQuantidadeProdutoServico() {
-		return quantidadeProdutoServico;
-	}
-
-	public void setQuantidadeProdutoServico(Integer quantidadeProdutoServico) {
-		this.quantidadeProdutoServico = quantidadeProdutoServico;
 	}
 	
 	public Boolean getIsFormaPagamentoUnico() {

@@ -9,7 +9,7 @@ gerenciadorDespesaModule.controller('gerenciadorDespesaController', function($sc
 			$scope.recuperarResponsavelPagamento();
 			$scope.despesaModel.isItemUnico = "true";
 			$scope.despesaModel.isFormaPagamentoUnico = "true";
-			$scope.despesaModel.quantidadeProdutoServico = 1;
+//			$scope.despesaModel.produtoServico.quantidadeProdutoServico = 1;
 			$scope.despesaModel.fontePagamento = null;
 			$scope.despesaModel.canalPagamento = null;
 			$scope.despesaModel.produtoServico = null;
@@ -118,11 +118,34 @@ gerenciadorDespesaModule.controller('gerenciadorDespesaController', function($sc
 			var dataFormatada = new Date(data);
 			return dataFormatada;
 		};
-
+		
+		function verificarProdutoServicoDuplicado(produtoServico) {
+			if($scope.produtoServicoList.length > 0) {
+				for( let index = 0 ; index < $scope.produtoServicoList.length ; index++ ) {
+					var produtoServicoRetorno = $scope.produtoServicoList[index].produtoServico;
+					if (produtoServico.descricao === produtoServicoRetorno.descricao && 
+						produtoServicoRetorno.valorProdutoServico === produtoServicoRetorno.valorProdutoServico &&
+						produtoServicoRetorno.quantidadeProdutoServico === produtoServicoRetorno.quantidadeProdutoServico) {
+						toastr.error('Produto ou Serviço já cadastrado!', 'Dados Duplicados', {timeOut: 5000});
+						return false;
+					}
+				}
+			}
+			return true;
+		};
+		
+		function calcularValorTotalProdutoServico(despesaModel) {
+			return despesaModel.valorProdutoServico * despesaModel.quantidadeProdutoServico;
+		};
+		
 		$scope.cadastrarProdutoServico = function(despesaModel) {
-			if(isValidaDespesaVariavel(despesaModel)) {
+			if(isValidaDespesaVariavel(despesaModel) && verificarProdutoServicoDuplicado(despesaModel.produtoServico)) {
 				produtoServicoModel.produtoServico = despesaModel.produtoServico;
-				produtoServicoModel.valorProdutoServico = despesaModel.valorDespesa;
+				produtoServicoModel.valorProdutoServico = despesaModel.valorProdutoServico;
+				if(despesaModel.produtoServico.quantidadeProdutoServico != 1) {
+					produtoServicoModel.valorProdutoServico = calcularValorTotalProdutoServico(despesaModel.produtoServico);
+					console.log(produtoServicoModel.valorProdutoServico);
+				}
 				$scope.produtoServicoList.push(angular.copy(produtoServicoModel));
 				clearProdutoServico();
 			}
@@ -216,19 +239,21 @@ gerenciadorDespesaModule.controller('gerenciadorDespesaController', function($sc
 		}
 
 		function isCampoValorDespesaValid(despesaModel) {
-			if(despesaModel.valorDespesa == null || despesaModel.valorDespesa == undefined || despesaModel.valorDespesa == "") {
-				valorDespesa_.className = "form-group has-danger";
+			if(despesaModel.produtoServico.valorProdutoServico == null || despesaModel.produtoServico.valorProdutoServico == undefined || despesaModel.produtoServico.valorProdutoServicoa == "") {
+				valorProdutoServico_.className = "form-group has-danger";
 				$scope.isCampoValorDespesaInvalidoFlag = true;
 				return false;
 			} else {
-				valorDespesa_.className = "form-group";
+				valorProdutoServico_.className = "form-group";
 				$scope.isCampoValorDespesaInvalidoFlag = false;
 			}
 			return true;
 		}
 
 		function isCampoQuantidadeProdutoServicoValid(despesaModel) {
-			if(despesaModel.quantidadeProdutoServico == null || despesaModel.quantidadeProdutoServico == undefined || despesaModel.quantidadeProdutoServico == "") {
+			if(despesaModel.produtoServico.quantidadeProdutoServico == null || 
+			   despesaModel.produtoServico.quantidadeProdutoServico == undefined || 
+			   despesaModel.produtoServico.quantidadeProdutoServico == "") {
 				quantidadeProdutoServico_.className = "form-group has-danger text-danger";
 				$scope.isCampoQuantidadeProdutoServicoInvalidoFlag = true;
 				return false;
@@ -301,7 +326,7 @@ gerenciadorDespesaModule.controller('gerenciadorDespesaController', function($sc
 			produtoServico_.className = "form-group";
 			$scope.isCampoProdutoServicoInvalidoFlag = false;
 
-			valorDespesa_.className = "form-group";
+			valorProdutoServico_.className = "form-group";
 			$scope.isCampoValorDespesaInvalidoFlag = false;
 
 			quantidadeProdutoServico_.className = "form-group";
@@ -319,7 +344,7 @@ gerenciadorDespesaModule.controller('gerenciadorDespesaController', function($sc
 
 		function clearProdutoServico() {
 			$scope.despesaModel.produtoServico = null;
-			$scope.despesaModel.valorDespesa = null;
+			$scope.despesaModel.valorProdutoServico = null;
 		};
 
 		function clearFormaPagamento() {

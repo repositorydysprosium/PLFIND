@@ -69,7 +69,6 @@ public class DespesaVariavelFactory implements Serializable {
 			depesaVariavelPanificadoraReiPao.setIsItemUnico(true);
 			depesaVariavelPanificadoraReiPao.setObservacao("");
 			depesaVariavelPanificadoraReiPao.setProdutoServico(new ProdutoServicoDomain(1L));
-			depesaVariavelPanificadoraReiPao.setQuantidadeProdutoServico(1);
 			depesaVariavelPanificadoraReiPao.setResponsavelPagamento(new ResponsavelPagamentoDomain(1L));
 			depesaVariavelPanificadoraReiPao.setValorDespesa(new BigDecimal(10));
 		return depesaVariavelPanificadoraReiPao;

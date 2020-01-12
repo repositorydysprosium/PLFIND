@@ -1,6 +1,7 @@
 package br.com.plataformalancamento.dysprosioum.service;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
@@ -26,12 +27,17 @@ public class DespesaVariavelService implements Serializable {
 	
 	public DespesaVariavelDomain persist(DespesaVariavelDomain despesaVariavelDomain) {
 		despesaVariavelDomain.setProdutoServico(cadastrarProdutoServico(despesaVariavelDomain.getProdutoServico()));
+		despesaVariavelDomain.setValorDespesa(recuperarValorTotalDespesaVariavel(despesaVariavelDomain));
 		return this.despesaVariavelRepository.persist(despesaVariavelDomain);
 	}
 	
 	private ProdutoServicoDomain cadastrarProdutoServico(ProdutoServicoDomain produtoServicoDomain) {
 		produtoServicoService.persist(produtoServicoDomain);
 		return produtoServicoDomain;
+	}
+	
+	private BigDecimal recuperarValorTotalDespesaVariavel(DespesaVariavelDomain despesaVariavelDomainParameter) {
+		return despesaVariavelDomainParameter.getProdutoServico().getValorProdutoServico();
 	}
 
 	public DespesaVariavelRepository getDespesaVariavelRepository() {

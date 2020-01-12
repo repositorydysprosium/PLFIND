@@ -1,6 +1,7 @@
 package br.com.plataformalancamento.dysprosioum.entity;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -27,6 +28,10 @@ public class ProdutoServicoDomain implements Serializable {
 	private Long codigo;
 	
 	private String descricao;
+	
+	private Integer quantidadeProdutoServico;
+	
+	private BigDecimal valorProdutoServico;
 	
 	public ProdutoServicoDomain() { }
 
@@ -60,6 +65,22 @@ public class ProdutoServicoDomain implements Serializable {
 
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
+	}
+
+	public BigDecimal getValorProdutoServico() {
+		return valorProdutoServico;
+	}
+
+	public void setValorProdutoServico(BigDecimal valorProdutoServico) {
+		this.valorProdutoServico = valorProdutoServico;
+	}
+
+	public Integer getQuantidadeProdutoServico() {
+		return quantidadeProdutoServico;
+	}
+
+	public void setQuantidadeProdutoServico(Integer quantidadeProdutoServico) {
+		this.quantidadeProdutoServico = quantidadeProdutoServico;
 	}
 
 	public static long getSerialversionuid() {

@@ -434,10 +434,10 @@
                         </div>
                       </div>
                       <div class="col-md-4">
-                        <div id="valorDespesa_" class="form-group">
-                          <label for="valorDespesa" class="col-sm-12 col-form-label">Valor da Despesa (obrigatório)</label>
+                        <div id="valorProdutoServico_" class="form-group">
+                          <label for="valorProdutoServico" class="col-sm-12 col-form-label">Valor da Despesa (obrigatório)</label>
                           <div class="col-sm-20">
-                            <input id="valorDespesa" type="text" name="valorDespesa" ng-model="despesaModel.valorDespesa" placeholder="R$ 00,00" class="form-control" />
+                            <input id="valorProdutoServico" type="text" name="valorProdutoServico" ng-model="despesaModel.produtoServico.valorProdutoServico" placeholder="R$ 00,00" class="form-control" />
                             <div ng-show="isCampoValorDespesaInvalidoFlag == true">
                               <label class="error mt-2 text-danger">Campo Obrigatório</label>
                             </div>
@@ -448,7 +448,7 @@
                         <div id="quantidadeProdutoServico_" class="form-group">
                           <label for="quantidadeProdutoServico" class="col-sm-12 col-form-label">Quantidade</label>
                           <div class="col-sm-20">
-                            <input id="quantidadeProdutoServico" type="text" name="quantidadeProdutoServico" value="1" ng-model="despesaModel.quantidadeProdutoServico" placeholder="Quantidade" class="form-control" />
+                            <input id="quantidadeProdutoServico" type="text" name="quantidadeProdutoServico" value="1" ng-model="despesaModel.produtoServico.quantidadeProdutoServico" placeholder="Quantidade" class="form-control" />
                             <div ng-show="isCampoQuantidadeProdutoServicoInvalidoFlag == true">
                               <label class="error mt-2 text-danger">Campo Obrigatório</label>
                             </div>
@@ -473,6 +473,7 @@
                                   <tr>
                                     <th>#</th>
                                     <th>Produto ou Serviço</th>
+                                    <th>Quantidade</th>
                                     <th>Valor</th>
                                     <th>Ação</th>
                                   </tr>
@@ -480,10 +481,11 @@
                                 <tbody>
                                   <tr ng-repeat="produtoServicoResultado in produtoServicoList track by $index">
                                     <td>{{produtoServicoResultado.codigo}}</td>
-                                    <td>{{produtoServicoResultado.produtoServico}}</td>
+                                    <td>{{produtoServicoResultado.produtoServico.descricao}}</td>
+                                    <td>{{produtoServicoResultado.produtoServico.quantidadeProdutoServico}}</td>
                                     <td>{{produtoServicoResultado.valorProdutoServico}}</td>
                                     <td>
-                                      <button class="btn btn-outline-info">Verificar</button>
+                                      <button class="btn btn-outline-info">Editar</button>
                                       <button ng-click="removeProdutoServico(produtoServicoResultado)" class="btn btn-outline-danger">Excluir</button>
                                     </td>
                                   </tr>
@@ -583,7 +585,7 @@
                                   <td>Carteira Pessoal (Dinheiro)</td>
                                   <td>Pagamento em Caixa do Estabelecimento</td>
                                   <td>R$ 18,00</td>
-                                  <td> <button class="btn btn-outline-info">Verificar</button> </td>
+                                  <td> <button class="btn btn-outline-info">Editar</button> </td>
                                 </tr>
                                 <tr>
                                   <td>2</td>

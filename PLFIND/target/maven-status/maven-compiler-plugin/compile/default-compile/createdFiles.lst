@@ -10,6 +10,7 @@ br/com/plataformalancamento/dysprosioum/service/ProdutoServicoService.class
 br/com/plataformalancamento/dysprosioum/repository/FontePagamentoRepository.class
 br/com/plataformalancamento/dysprosioum/factory/DespesaVariavelFactory.class
 br/com/plataformalancamento/dysprosioum/resource/DespesaVariavelResource.class
+br/com/plataformalancamento/dysprosioum/repository/ResponsavelPagamentoRepository.class
 br/com/plataformalancamento/dysprosioum/resource/ResposavelPagamentoResource.class
 br/com/plataformalancamento/dysprosioum/resource/FontePagamentoResource.class
 br/com/plataformalancamento/dysprosioum/application/ApplicationRest.class
@@ -31,5 +32,6 @@ br/com/plataformalancamento/dysprosioum/service/FavorecidoService.class
 br/com/plataformalancamento/dysprosioum/factory/CanalPagamentoFactory.class
 br/com/plataformalancamento/dysprosioum/repository/DespesaVariavelRepository.class
 br/com/plataformalancamento/dysprosioum/service/DespesaVariavelService.class
+br/com/plataformalancamento/dysprosioum/service/ResponsavelPagamentoService.class
 br/com/plataformalancamento/dysprosioum/entity/FavorecidoDomain.class
 br/com/plataformalancamento/dysprosioum/entity/ProdutoServicoDomain.class
