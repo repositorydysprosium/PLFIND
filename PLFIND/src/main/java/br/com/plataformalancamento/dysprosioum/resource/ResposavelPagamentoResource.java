@@ -9,7 +9,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 import br.com.plataformalancamento.dysprosioum.entity.ResponsavelPagamentoDomain;
-import br.com.plataformalancamento.dysprosioum.factory.ResponsavelPagamentoFactory;
+import br.com.plataformalancamento.dysprosioum.service.ResponsavelPagamentoService;
 import br.com.plataformalancamento.dysprosioum.utility.ConstanteUtility;
 
 @Path(ConstanteUtility.RESPONSAVEL_PAGAMENTO_RESOURCE)
@@ -18,11 +18,15 @@ public class ResposavelPagamentoResource implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	
-	public ResposavelPagamentoResource() { }
+	private ResponsavelPagamentoService responsavelPagamentoService;
+	
+	public ResposavelPagamentoResource() { 
+		this.responsavelPagamentoService = new ResponsavelPagamentoService();
+	}
 	
 	@GET
 	public List<ResponsavelPagamentoDomain> findAll() {
-		return ResponsavelPagamentoFactory.finAll();
+		return this.responsavelPagamentoService.findAll();
 	}
 	
 }

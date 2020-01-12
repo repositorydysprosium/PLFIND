@@ -41,7 +41,7 @@ public class DespesaVariavelDomain implements Serializable {
 	private FontePagamentoEntity fontePagamento;
 	
 	@OneToOne
-	@JoinColumn(name = "ID_FORMA_PAGAMENTO", referencedColumnName = "codigo", nullable = false)
+	@JoinColumn(name = "ID_FORMA_PAGAMENTO", referencedColumnName = "codigo", nullable = true)
 	private FormaPagamentoDomain formaPagamento;
 	
 	@OneToOne

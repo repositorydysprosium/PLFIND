@@ -6,9 +6,11 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
+import br.com.plataformalancamento.dysprosioum.repository.BaseRepository;
 import br.com.plataformalancamento.dysprosioum.utility.ConstanteUtility;
 
-public class DatabaseConnection implements Serializable {
+@SuppressWarnings("rawtypes")
+public class DatabaseConnection extends BaseRepository implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	

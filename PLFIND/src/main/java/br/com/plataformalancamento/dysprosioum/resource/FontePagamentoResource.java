@@ -3,6 +3,8 @@ package br.com.plataformalancamento.dysprosioum.resource;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.enterprise.context.RequestScoped;
+import javax.inject.Inject;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
@@ -11,7 +13,7 @@ import javax.ws.rs.core.MediaType;
 import org.jboss.logging.Logger;
 
 import br.com.plataformalancamento.dysprosioum.entity.FontePagamentoEntity;
-import br.com.plataformalancamento.dysprosioum.factory.FontePagamentoFactory;
+import br.com.plataformalancamento.dysprosioum.service.FontePagamentoService;
 import br.com.plataformalancamento.dysprosioum.utility.ConstanteUtility;
 
 @Path(ConstanteUtility.FONTE_PAGAMENTO_RESOURCE)
@@ -22,12 +24,15 @@ public class FontePagamentoResource implements Serializable {
 	
 	private static final Logger LOGGER = Logger.getLogger(FontePagamentoResource.class);
 	
-	public FontePagamentoResource() { }
+	private FontePagamentoService fontePagamentoService;
+	
+	public FontePagamentoResource() { 
+		this.fontePagamentoService = new FontePagamentoService();
+	}
 	
 	@GET
 	public List<FontePagamentoEntity> fontePagamentoEntityList() {
-//		LOGGER.info(ConstanteUtility.MENSAGEM_CONSULTA_SUCESSO);
-		return FontePagamentoFactory.getFontePagamentoList();
+		return fontePagamentoService.findAll();
 	}
 	
 	public static Logger getLogger() {

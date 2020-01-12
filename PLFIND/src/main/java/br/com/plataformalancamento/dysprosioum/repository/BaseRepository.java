@@ -73,7 +73,6 @@ public class BaseRepository<C> implements BaseInterfaceRepository<C>, Serializab
 	public void beginTransaction() {
 		if(this.entityManager.getTransaction().isActive() == false) {
 			this.entityManager.getTransaction().begin();
-			getLogger().info("CONEXAO INICIADA...");
 		}
 	}
 	
@@ -92,7 +91,6 @@ public class BaseRepository<C> implements BaseInterfaceRepository<C>, Serializab
 	
 	public void closeEntityManager() {
 		entityManager.close();
-		getLogger().info("CONEXAO FINALIZADA...");
 	}
 	
 	public void cleanEntityManager() {

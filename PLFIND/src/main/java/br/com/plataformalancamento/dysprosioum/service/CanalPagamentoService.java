@@ -6,7 +6,7 @@ import java.util.List;
 import javax.enterprise.context.RequestScoped;
 
 import br.com.plataformalancamento.dysprosioum.entity.CanalPagamentoDomain;
-import br.com.plataformalancamento.dysprosioum.factory.CanalPagamentoFactory;
+import br.com.plataformalancamento.dysprosioum.repository.CanalPagamentoRepository;
 
 @RequestScoped
 public class CanalPagamentoService implements Serializable {
@@ -20,7 +20,7 @@ public class CanalPagamentoService implements Serializable {
 	}
 	
 	public List<CanalPagamentoDomain> finAll() {
-		return CanalPagamentoFactory.finAll();
+		return canalPagamentoRepository.findAll();
 	}
 	
 	public CanalPagamentoDomain persist(CanalPagamentoDomain canalPagamentoDomain) {

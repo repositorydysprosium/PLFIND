@@ -16,6 +16,7 @@ public class DatabaseConnectionTest {
 	private static void databaseConnection() {
 		DatabaseConnection databaseConnection = new DatabaseConnection();
 		LOGGER.info("CONEXAO REALIZADA COM SUCESSO: " + databaseConnection.openConnection());
+		databaseConnection.closeEntityManager();
 	}
 
 	public static Logger getLogger() {

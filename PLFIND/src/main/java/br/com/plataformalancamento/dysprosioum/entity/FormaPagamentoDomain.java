@@ -14,7 +14,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 import br.com.plataformalancamento.dysprosioum.utility.ConstanteUtility;
 
 @Entity
-@Table(name = ConstanteUtility.TABLE_NAME_TB_FONTE_PAGAMENTO)
+@Table(name = ConstanteUtility.TABLE_NAME_TB_FORMA_PAGAMENTO)
 @XmlRootElement
 public class FormaPagamentoDomain implements Serializable {
 

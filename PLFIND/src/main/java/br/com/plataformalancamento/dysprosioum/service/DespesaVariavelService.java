@@ -2,21 +2,36 @@ package br.com.plataformalancamento.dysprosioum.service;
 
 import java.io.Serializable;
 
+import javax.enterprise.context.RequestScoped;
+import javax.inject.Inject;
+
 import br.com.plataformalancamento.dysprosioum.entity.DespesaVariavelDomain;
+import br.com.plataformalancamento.dysprosioum.entity.ProdutoServicoDomain;
 import br.com.plataformalancamento.dysprosioum.repository.DespesaVariavelRepository;
 
+@RequestScoped
 public class DespesaVariavelService implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	
 	private DespesaVariavelRepository despesaVariavelRepository;
 	
+	@Inject
+	private ProdutoServicoService produtoServicoService;
+	
 	public DespesaVariavelService() { 
 		this.despesaVariavelRepository = new DespesaVariavelRepository();
+		this.produtoServicoService = new ProdutoServicoService();
 	}
 	
 	public DespesaVariavelDomain persist(DespesaVariavelDomain despesaVariavelDomain) {
+		despesaVariavelDomain.setProdutoServico(cadastrarProdutoServico(despesaVariavelDomain.getProdutoServico()));
 		return this.despesaVariavelRepository.persist(despesaVariavelDomain);
+	}
+	
+	private ProdutoServicoDomain cadastrarProdutoServico(ProdutoServicoDomain produtoServicoDomain) {
+		produtoServicoService.persist(produtoServicoDomain);
+		return produtoServicoDomain;
 	}
 
 	public DespesaVariavelRepository getDespesaVariavelRepository() {

@@ -34,18 +34,18 @@ public class CanalPagamentoResource implements Serializable {
 		this.canalPagamentoService = new CanalPagamentoService();
 	}
 	
+	@GET
+	@Path("/findAll")
+	public List<CanalPagamentoDomain> finAll() {
+		return canalPagamentoService.finAll();
+	}
+
 	public CanalPagamentoDomain persist(CanalPagamentoDomain canalPagamentoDomain) {
 		return this.canalPagamentoService.persist(canalPagamentoDomain);
 	}
 	
 	public CanalPagamentoDomain findOne(Long codigo) {
 		return this.canalPagamentoService.findOne(codigo);
-	}
-	
-	@GET
-	@Path("/findAll")
-	public List<CanalPagamentoDomain> finAll() {
-		return canalPagamentoService.finAll();
 	}
 	
 	public static Logger getLogger() {

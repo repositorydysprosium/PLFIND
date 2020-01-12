@@ -103,7 +103,7 @@ gerenciadorDespesaModule.controller('gerenciadorDespesaController', function($sc
 		$scope.persist = function(despesaModel) {
 			console.log(despesaModel);
 			if(isValidaDespesaVariavel(despesaModel)) {
-				despesaModel.dataDespesa = formatarData(despesaModel.dataDespesa);
+//				despesaModel.dataDespesa = formatarData(despesaModel.dataDespesa);
 				$http.post(URL_DESPESA_VARIAVEL_PERSIST, despesaModel).then(function(response) {
 					$scope.despesaVariavelList.push(response.data);
 					$scope.clearDespesModelAll();
