@@ -61,7 +61,7 @@ public class DespesaVariavelDomain implements Serializable {
 	private Date dataDespesa;
 	
 	@Column(name = "VALOR_TOTAL_DESPESA", nullable = false)
-	private BigDecimal valorDespesa;
+	private BigDecimal valorTotalDespesa;
 	
 	@Column(name = "IS_ITEM_UNICO", nullable = false)
 	private Boolean isItemUnico;
@@ -157,12 +157,12 @@ public class DespesaVariavelDomain implements Serializable {
 		return produtoServico;
 	}
 
-	public BigDecimal getValorDespesa() {
-		return valorDespesa;
+	public BigDecimal getValorTotalDespesa() {
+		return valorTotalDespesa;
 	}
 
-	public void setValorDespesa(BigDecimal valorDespesa) {
-		this.valorDespesa = valorDespesa;
+	public void setValorTotalDespesa(BigDecimal valorTotalDespesa) {
+		this.valorTotalDespesa = valorTotalDespesa;
 	}
 
 	public String getObservacao() {

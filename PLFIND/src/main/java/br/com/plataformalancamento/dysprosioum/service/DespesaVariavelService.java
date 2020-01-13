@@ -20,14 +20,14 @@ public class DespesaVariavelService implements Serializable {
 	@Inject
 	private ProdutoServicoService produtoServicoService;
 	
-	public DespesaVariavelService() { 
+	public DespesaVariavelService() {
 		this.despesaVariavelRepository = new DespesaVariavelRepository();
 		this.produtoServicoService = new ProdutoServicoService();
 	}
 	
 	public DespesaVariavelDomain persist(DespesaVariavelDomain despesaVariavelDomain) {
 		despesaVariavelDomain.setProdutoServico(cadastrarProdutoServico(despesaVariavelDomain.getProdutoServico()));
-		despesaVariavelDomain.setValorDespesa(recuperarValorTotalDespesaVariavel(despesaVariavelDomain));
+		despesaVariavelDomain.setValorTotalDespesa(recuperarValorTotalDespesaVariavel(despesaVariavelDomain));
 		return this.despesaVariavelRepository.persist(despesaVariavelDomain);
 	}
 	

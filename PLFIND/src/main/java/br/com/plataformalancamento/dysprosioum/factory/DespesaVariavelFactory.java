@@ -1,7 +1,6 @@
 package br.com.plataformalancamento.dysprosioum.factory;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -30,7 +29,7 @@ public class DespesaVariavelFactory implements Serializable {
 			despesaVariavelEntitySoDigitalInformatica.setFontePagamento(new FontePagamentoEntity(1L));
 			despesaVariavelEntitySoDigitalInformatica.setCanalPagamento(new CanalPagamentoDomain(1L));
 //			despesaVariavelEntitySoDigitalInformatica.setResponsavelPagamento(1L);
-			despesaVariavelEntitySoDigitalInformatica.setValorDespesa(new BigDecimal(45));
+//			despesaVariavelEntitySoDigitalInformatica.setValorDespesa(new BigDecimal(45));
 			despesaVariavelEntitySoDigitalInformatica.setDataDespesa(new Date());
 //			despesaVariavelEntitySoDigitalInformatica.setQuantidadeItem(1);
 //			despesaVariavelEntitySoDigitalInformatica.setIsFontePagamentoUnico(true);
@@ -49,7 +48,7 @@ public class DespesaVariavelFactory implements Serializable {
 			despesaVariavelEntitySupermercadoPraVoce.setFontePagamento(new FontePagamentoEntity(1L));
 			despesaVariavelEntitySupermercadoPraVoce.setCanalPagamento(new CanalPagamentoDomain(1L));
 //			despesaVariavelEntitySupermercadoPraVoce.setResponsavelPagamento(1L);
-			despesaVariavelEntitySupermercadoPraVoce.setValorDespesa(new BigDecimal(45));
+//			despesaVariavelEntitySupermercadoPraVoce.setValorDespesa(new BigDecimal(45));
 			despesaVariavelEntitySupermercadoPraVoce.setDataDespesa(new Date());
 //			despesaVariavelEntitySupermercadoPraVoce.setQuantidadeItem(1);
 //			despesaVariavelEntitySupermercadoPraVoce.setIsFontePagamentoUnico(true);
@@ -70,7 +69,7 @@ public class DespesaVariavelFactory implements Serializable {
 			depesaVariavelPanificadoraReiPao.setObservacao("");
 			depesaVariavelPanificadoraReiPao.setProdutoServico(new ProdutoServicoDomain(1L));
 			depesaVariavelPanificadoraReiPao.setResponsavelPagamento(new ResponsavelPagamentoDomain(1L));
-			depesaVariavelPanificadoraReiPao.setValorDespesa(new BigDecimal(10));
+//			depesaVariavelPanificadoraReiPao.setValorDespesa(new BigDecimal(10));
 		return depesaVariavelPanificadoraReiPao;
 	}
 	
