@@ -9,43 +9,33 @@ gerenciadorDespesaModule.controller('gerenciadorDespesaController', function($sc
 			$scope.recuperarResponsavelPagamento();
 			$scope.despesaModel.isItemUnico = "true";
 			$scope.despesaModel.isFormaPagamentoUnico = "true";
-//			$scope.despesaModel.produtoServico.quantidadeProdutoServico = 1;
 			$scope.despesaModel.fontePagamento = null;
 			$scope.despesaModel.canalPagamento = null;
 			$scope.despesaModel.produtoServico = null;
-			$scope.despesaModel.responsavelPagamento = null;
 			toastr.options.progressBar = true;
 			toastr.options.positionClass = 'toast-top-right';
 			toastr.options.timeOut = '10000';
 		};
 
-		var URL_FAVORECIDO_FIND_ALL = "http://localhost:8080/PLFIND-1.0.0.0-SNAPSHOT/PLFIND/favorecidoResource/findAll";
-		var URL_FONTE_PAGAMENTO = "http://localhost:8080/PLFIND-1.0.0.0-SNAPSHOT/PLFIND/fontePagamentoResource";
-		var URL_CANAL_PAGAMENTO = "http://localhost:8080/PLFIND-1.0.0.0-SNAPSHOT/PLFIND/canalPagamentoResource/findAll";
-		var URL_RESPONSAVEL_PAGAMENTO = "http://localhost:8080/PLFIND-1.0.0.0-SNAPSHOT/PLFIND/responsavelPagamentoResource";
-		var URL_DESPESA_VARIAVEL_FIND_ALL = "http://localhost:8080/PLFIND-1.0.0.0-SNAPSHOT/PLFIND/despesaVariavelResource/findAll";
-		var URL_DESPESA_VARIAVEL_PERSIST = "http://localhost:8080/PLFIND-1.0.0.0-SNAPSHOT/PLFIND/despesaVariavelResource/persist";
-
-		$scope.favorecidoList = [];
-		
-		$scope.produtoServicoList = [];
-
-		$scope.formaPagamentoList = [];
-
-		$scope.fontePagamentoList = [];
-
-		$scope.canalPagamentoList = [];
-
-		$scope.responsavelPagamentoList = [];
-
-		$scope.despesaVariavelList = [];
+		var URL_FAVORECIDO_FIND_ALL = "http://localhost:8180/PLFIND-1.0.0.0-SNAPSHOT/PLFIND/favorecidoResource/findAll";
+		var URL_FONTE_PAGAMENTO = "http://localhost:8180/PLFIND-1.0.0.0-SNAPSHOT/PLFIND/fontePagamentoResource";
+		var URL_CANAL_PAGAMENTO = "http://localhost:8180/PLFIND-1.0.0.0-SNAPSHOT/PLFIND/canalPagamentoResource/findAll";
+		var URL_RESPONSAVEL_PAGAMENTO = "http://localhost:8180/PLFIND-1.0.0.0-SNAPSHOT/PLFIND/responsavelPagamentoResource";
+		var URL_DESPESA_VARIAVEL_FIND_ALL = "http://localhost:8180/PLFIND-1.0.0.0-SNAPSHOT/PLFIND/despesaVariavelResource/findAll";
+		var URL_DESPESA_VARIAVEL_PERSIST = "http://localhost:8180/PLFIND-1.0.0.0-SNAPSHOT/PLFIND/despesaVariavelResource/persist";
 
 		$scope.despesaModel = {};
+		
+		$scope.favorecidoList = [];
+		$scope.produtoServicoList = [];
+		$scope.formaPagamentoList = [];
+		$scope.fontePagamentoList = [];
+		$scope.canalPagamentoList = [];
+		$scope.responsavelPagamentoList = [];
+		$scope.despesaVariavelList = [];
 
 		$scope.isItemUnicoFlag = false;
-
 		$scope.isFormaPagamentoUnicoFlag = false;
-
 		$scope.isCamposFavorecidoInvalidoFlag = false;
 		$scope.isCamposDataDespesaInvalidoFlag = false;
 		$scope.isCampoProdutoServicoInvalidoFlag = false;
@@ -58,6 +48,7 @@ gerenciadorDespesaModule.controller('gerenciadorDespesaController', function($sc
 		var produtoServicoModel = {
 			codigo: null,
 			produtoServico: null,
+			quantidadeProdutoServico: null,
 			valorProdutoServico: null,
 		};
 
@@ -103,7 +94,6 @@ gerenciadorDespesaModule.controller('gerenciadorDespesaController', function($sc
 		$scope.persist = function(despesaModel) {
 			console.log(despesaModel);
 			if(isValidaDespesaVariavel(despesaModel)) {
-//				despesaModel.dataDespesa = formatarData(despesaModel.dataDespesa);
 				$http.post(URL_DESPESA_VARIAVEL_PERSIST, despesaModel).then(function(response) {
 					$scope.despesaVariavelList.push(response.data);
 					$scope.clearDespesModelAll();
@@ -303,7 +293,6 @@ gerenciadorDespesaModule.controller('gerenciadorDespesaController', function($sc
 		$scope.clearDespesModelAll = function() {
 			$scope.despesaModel = {
 				isItemUnico: "true",
-				quantidadeProdutoServico: 1,
 				isFormaPagamentoUnico: "true",
 				fontePagamento: null,
 				canalPagamento: null,
@@ -314,8 +303,6 @@ gerenciadorDespesaModule.controller('gerenciadorDespesaController', function($sc
 			$scope.formaPagamentoList = [];
 			$scope.isItemUnicoFlag = false;
 			$scope.isFormaPagamentoUnicoFlag = false;
-
-			$scope.despesaModel.quantidadeProdutoServico = 1;
 
 			favorecido_.className = "form-group";
 			$scope.isCamposFavorecidoInvalidoFlag = false;

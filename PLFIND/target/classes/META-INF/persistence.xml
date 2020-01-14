@@ -20,7 +20,8 @@
 		<properties>
 			<property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/dbd_plfind" />
 			<property name="javax.persistence.jdbc.user" value="postgres" />
-			<property name="javax.persistence.jdbc.password" value="dysprosium" />
+<!-- 			<property name="javax.persistence.jdbc.password" value="dysprosium" /> -->
+			<property name="javax.persistence.jdbc.password" value="plataforma" />
 			<property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver" />
 			<property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect" />
 <!-- 			<property name="hibernate.transaction.jta.platform" value="java:jboss/datasources/PostgresDS" /> -->
