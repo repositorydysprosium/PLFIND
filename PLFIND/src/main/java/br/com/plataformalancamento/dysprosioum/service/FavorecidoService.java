@@ -26,6 +26,10 @@ public class FavorecidoService implements Serializable {
 	public List<FavorecidoDomain> findAll() {
 		return favorecidoRepository.findAll();
 	}
+	
+	public FavorecidoDomain persist(FavorecidoDomain favorecidoDomain) {
+		return favorecidoRepository.persist(favorecidoDomain);
+	}
 
 	public static Logger getLogger() {
 		return LOGGER;

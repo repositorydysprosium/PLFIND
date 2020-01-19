@@ -18,6 +18,7 @@ gerenciadorDespesaModule.controller('gerenciadorDespesaController', function($sc
 		};
 
 		var URL_FAVORECIDO_FIND_ALL = "http://localhost:8180/PLFIND-1.0.0.0-SNAPSHOT/PLFIND/favorecidoResource/findAll";
+		var URL_FAVORECIDO_PERSIST = "http://localhost:8180/PLFIND-1.0.0.0-SNAPSHOT/PLFIND/favorecidoResource/persist";
 		var URL_FONTE_PAGAMENTO = "http://localhost:8180/PLFIND-1.0.0.0-SNAPSHOT/PLFIND/fontePagamentoResource";
 		var URL_CANAL_PAGAMENTO = "http://localhost:8180/PLFIND-1.0.0.0-SNAPSHOT/PLFIND/canalPagamentoResource/findAll";
 		var URL_RESPONSAVEL_PAGAMENTO = "http://localhost:8180/PLFIND-1.0.0.0-SNAPSHOT/PLFIND/responsavelPagamentoResource";
@@ -102,6 +103,20 @@ gerenciadorDespesaModule.controller('gerenciadorDespesaController', function($sc
 					toastr.error('Não foi possível cadastrar a Despesa Variável! ' + responseError.data + "'", 'Erro do Sistema', {timeOut: 10000});
 				});
 			}
+		};
+		
+		$scope.cadastrarFavorecido = function(despesaModel) {
+			console.log(despesaModel);
+//			if(isValidaDespesaVariavel(despesaModel)) {
+				$http.post(URL_FAVORECIDO_PERSIST, despesaModel.favorecido).then(function(response) {
+					$scope.favorecidoList.push(response.data);
+					$scope.despesaModel.favorecido.codigo = response.data.codigo;
+//					$scope.clearDespesModelAll();
+					toastr.success('Favorecido cadastrado com Sucesso!', 'Sucesso', {timeOut: 5000});
+				}, function(responseError) {
+					toastr.error('Não foi possível cadastrar o novo Favorecido! ' + responseError.data + "'", 'Erro do Sistema', {timeOut: 10000});
+				});
+//			}
 		};
 		
 		function formatarData(data) {

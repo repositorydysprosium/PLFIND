@@ -7,6 +7,7 @@ import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
@@ -36,6 +37,12 @@ public class FavorecidoResource implements Serializable {
 	@Path("/findAll")
 	public List<FavorecidoDomain> findAll() {
 		return favorecidoService.findAll();
+	}
+	
+	@POST
+	@Path("/persist")
+	public FavorecidoDomain persist(FavorecidoDomain favorecidoDomain) {
+		return favorecidoService.persist(favorecidoDomain);
 	}
 
 	public FavorecidoService getFavorecidoService() {

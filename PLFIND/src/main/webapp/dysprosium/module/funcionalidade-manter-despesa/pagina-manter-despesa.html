@@ -365,6 +365,7 @@
                   <form class="forms-sample">
 
                     <div class="row">
+                    
                       <div class="col-md-8">
                         <div id="favorecido_" class="form-group">
                           <label for="favorecido" class="col-sm-8 col-form-label">Favorecido (obrigatório)</label>
@@ -396,7 +397,15 @@
                       </div>
                       -->
                       
-                      <div class="col-md-4">
+                      <div class="col-md-1">
+                        <div id="cadastrar_favorecido_" class="form-group">
+                          <div class="col-sm-20">
+							<input type="submit" value="+" data-toggle="modal" data-target="#exampleModal" class="btn btn-inverse-primary" style="margin: 35px">
+                          </div>
+                        </div>
+                      </div>
+                      
+                      <div class="col-md-3">
                         <div id="dataDespesa_" class="form-group">
                           <label for="dataDespesa" class="col-sm-12 col-form-label">Data da Despesa (obrigatório)</label>
                           <div class="col-sm-20">
@@ -637,7 +646,54 @@
             </div>
           </div>
           <!--CONTEUDO -->
-        </div>
+          
+          
+          <!-- MODAL -->
+		  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="cadastro_favorecido_modal" aria-hidden="true">
+			<div class="modal-dialog modal-lg" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="cadastro_favorecido_modal">Cadastro de Favorecido</h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<div class="col-md-12">
+	                        <div id="cadastro_favorecido_" class="form-group">
+	                          <label for="cadastro_favorecido" class="col-sm-12 col-form-label">Nome (obrigatório)</label>
+	                          <div class="col-sm-20">
+	                            <input id="cadastro_favorecido" type="text" name="cadastro_favorecido" ng-model="despesaModel.favorecido.nome" placeholder="Nome do Favorecido" class="form-control" />
+<!-- 	                            <div ng-show="isCamposDataDespesaInvalidoFlag == true"> -->
+<!-- 	                              <label class="error mt-2 text-danger">Campo Obrigatório</label> -->
+<!-- 	                            </div> -->
+	                          </div>
+	                        </div>
+                      </div>
+					</div>
+					<div class="modal-footer">
+						<div class="col-md-10">
+	                      <div class="form-group">
+	                        <div class="col-sm-20">
+	                          <button type="button" data-dismiss="modal" ng-click="cadastrarFavorecido(despesaModel)" class="btn btn-primary btn-block">Cadastrar Favorecido</button>
+	                        </div>
+	                      </div>
+	                    </div>
+						<div class="col-md-2">
+	                      <div class="form-group">
+	                        <div class="col-sm-20">
+	                          <button type="button" data-dismiss="modal" class="btn btn-danger btn-block">Cancelar</button>
+	                        </div>
+	                      </div>
+	                    </div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- MODAL -->
+
+
+				</div>
         <footer class="footer">
           <div class="d-sm-flex justify-content-center justify-content-sm-between">
             <span class="text-muted text-center text-sm-justify d-block d-sm-inline-block">Plataforma de Lançamento Financeiro Dysprosium</span> 
