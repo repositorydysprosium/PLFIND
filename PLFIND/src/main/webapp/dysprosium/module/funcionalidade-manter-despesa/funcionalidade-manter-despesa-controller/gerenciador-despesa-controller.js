@@ -124,6 +124,20 @@ gerenciadorDespesaModule.controller('gerenciadorDespesaController', function($sc
 			return dataFormatada;
 		};
 		
+		$scope.mascaraDataFormatoDDMMAAAA = function (dataParameter) {
+			var dataFormatada = dataParameter;
+			if (dataFormatada.length == 2) {
+				dataFormatada = dataFormatada + '/';
+				$scope.despesaModel.dataDespesa = dataFormatada;
+				return true;
+			}
+			if (dataFormatada.length == 5) {
+				dataFormatada = dataFormatada + '/';
+				$scope.despesaModel.dataDespesa = dataFormatada;
+				return true;
+			}
+		};
+		
 		function verificarProdutoServicoDuplicado(produtoServico) {
 			if($scope.produtoServicoList.length > 0) {
 				for( let index = 0 ; index < $scope.produtoServicoList.length ; index++ ) {
