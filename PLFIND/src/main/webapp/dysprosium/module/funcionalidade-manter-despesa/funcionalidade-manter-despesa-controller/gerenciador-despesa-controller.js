@@ -21,6 +21,7 @@ gerenciadorDespesaModule.controller('gerenciadorDespesaController', function($sc
 		var URL_FAVORECIDO_PERSIST = "http://localhost:8180/PLFIND-1.0.0.0-SNAPSHOT/PLFIND/favorecidoResource/persist";
 		var URL_FONTE_PAGAMENTO = "http://localhost:8180/PLFIND-1.0.0.0-SNAPSHOT/PLFIND/fontePagamentoResource";
 		var URL_CANAL_PAGAMENTO = "http://localhost:8180/PLFIND-1.0.0.0-SNAPSHOT/PLFIND/canalPagamentoResource/findAll";
+		var URL_CANAL_PAGAMENTO_PERSIST = "http://localhost:8180/PLFIND-1.0.0.0-SNAPSHOT/PLFIND/canalPagamentoResource/persist";
 		var URL_RESPONSAVEL_PAGAMENTO = "http://localhost:8180/PLFIND-1.0.0.0-SNAPSHOT/PLFIND/responsavelPagamentoResource";
 		var URL_DESPESA_VARIAVEL_FIND_ALL = "http://localhost:8180/PLFIND-1.0.0.0-SNAPSHOT/PLFIND/despesaVariavelResource/findAll";
 		var URL_DESPESA_VARIAVEL_PERSIST = "http://localhost:8180/PLFIND-1.0.0.0-SNAPSHOT/PLFIND/despesaVariavelResource/persist";
@@ -115,6 +116,20 @@ gerenciadorDespesaModule.controller('gerenciadorDespesaController', function($sc
 					toastr.success('Favorecido cadastrado com Sucesso!', 'Sucesso', {timeOut: 5000});
 				}, function(responseError) {
 					toastr.error('Não foi possível cadastrar o novo Favorecido! ' + responseError.data + "'", 'Erro do Sistema', {timeOut: 10000});
+				});
+//			}
+		};
+		
+		$scope.cadastrarCanalPagamento = function(despesaModel) {
+			console.log(despesaModel);
+//			if(isValidaDespesaVariavel(despesaModel)) {
+				$http.post(URL_CANAL_PAGAMENTO_PERSIST, despesaModel.canalPagamento).then(function(response) {
+					$scope.canalPagamentoList.push(response.data);
+					$scope.despesaModel.canalPagamento.codigo = response.data.codigo;
+//					$scope.clearDespesModelAll();
+					toastr.success('Canal de Pagamento cadastrado com Sucesso!', 'Sucesso', {timeOut: 5000});
+				}, function(responseError) {
+					toastr.error('Não foi possível cadastrar o novo Canal de Pagamento! ' + responseError.data + "'", 'Erro do Sistema', {timeOut: 10000});
 				});
 //			}
 		};

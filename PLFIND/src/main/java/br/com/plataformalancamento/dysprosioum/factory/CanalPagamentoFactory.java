@@ -12,6 +12,14 @@ public class CanalPagamentoFactory implements Serializable {
 	
 	public CanalPagamentoFactory() { }
 	
+	public static CanalPagamentoDomain getCanalPagamento(CanalPagamentoDomain canalPagamentoDomainParameter) {
+		CanalPagamentoDomain canalPagamentoDomain = canalPagamentoDomainParameter;
+			canalPagamentoDomain.setCodigo(null);
+			canalPagamentoDomain.setNome(canalPagamentoDomain.getNome());
+			canalPagamentoDomain.setIsValido(Boolean.TRUE);
+		return canalPagamentoDomain;
+	}
+	
 	public static CanalPagamentoDomain getCanalPagamentoPagamentoCaixa() {
 		CanalPagamentoDomain canalPagamentoDomain = new CanalPagamentoDomain();
 			canalPagamentoDomain.setCodigo(1L);

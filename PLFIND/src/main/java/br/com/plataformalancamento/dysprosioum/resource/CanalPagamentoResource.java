@@ -7,6 +7,7 @@ import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
@@ -39,9 +40,11 @@ public class CanalPagamentoResource implements Serializable {
 	public List<CanalPagamentoDomain> finAll() {
 		return canalPagamentoService.finAll();
 	}
-
+	
+	@POST
+	@Path("/persist")
 	public CanalPagamentoDomain persist(CanalPagamentoDomain canalPagamentoDomain) {
-		return this.canalPagamentoService.persist(canalPagamentoDomain);
+		return canalPagamentoService.persist(canalPagamentoDomain);
 	}
 	
 	public CanalPagamentoDomain findOne(Long codigo) {
