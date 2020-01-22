@@ -374,7 +374,7 @@
 
                     <div class="row">
                     
-                      <div class="col-md-8">
+                      <div class="col-md-7">
                         <div id="favorecido_" class="form-group">
                           <label for="favorecido" class="col-sm-8 col-form-label">Favorecido (obrigatório)</label>
                           <div class="col-sm-20">
@@ -388,6 +388,17 @@
                               <label class="error mt-2 text-danger">Campo Obrigatório</label>
                             </div>
                           </div>
+                        </div>
+                      </div>
+                      
+                       <div class="col-md-1">
+                        <div id="dataDespesa_" class="form-group">
+                          <label for="dataDespesa" class="col-sm-12 col-form-label"></label>
+                          <div class="col-sm-20">
+							<div class="col-sm-12" style="padding-top: 14px;">
+								<button type="submit" data-toggle="modal" data-target="#exampleModal" class="btn btn-primary mb-2">+</button>
+							</div>
+						  </div>
                         </div>
                       </div>
                       
@@ -405,15 +416,15 @@
                       </div>
                       -->
                       
-                      <div class="col-md-1">
-                        <div id="cadastrar_favorecido_" class="form-group">
-                          <div class="col-sm-20">
-							<input type="submit" value="+" data-toggle="modal" data-target="#exampleModal" class="btn btn-inverse-primary" style="margin: 35px">
-                          </div>
-                        </div>
-                      </div>
+<!--                       <div class="col-md-1"> -->
+<!--                         <div id="cadastrar_favorecido_" class="form-group"> -->
+<!--                           <div class="col-sm-20"> -->
+<!-- 							<input type="submit" value="+" data-toggle="modal" data-target="#exampleModal" class="btn btn-inverse-primary" style="margin: 35px"> -->
+<!--                           </div> -->
+<!--                         </div> -->
+<!--                       </div> -->
                       
-                      <div class="col-md-3">
+                      <div class="col-md-4">
                         <div id="dataDespesa_" class="form-group">
                           <label for="dataDespesa" class="col-sm-12 col-form-label">Data da Despesa (obrigatório)</label>
                           <div class="col-sm-20">
@@ -465,7 +476,7 @@
                         <div id="quantidadeProdutoServico_" class="form-group">
                           <label for="quantidadeProdutoServico" class="col-sm-12 col-form-label">Quantidade</label>
                           <div class="col-sm-20">
-                            <input id="quantidadeProdutoServico" type="text" name="quantidadeProdutoServico" value="1" ng-model="despesaModel.produtoServico.quantidadeProdutoServico" placeholder="Quantidade" class="form-control" />
+                            <input id="quantidadeProdutoServico" type="text" name="quantidadeProdutoServico" ng-model="despesaModel.produtoServico.quantidadeProdutoServico" placeholder="Quantidade" class="form-control" />
                             <div ng-show="isCampoQuantidadeProdutoServicoInvalidoFlag == true">
                               <label class="error mt-2 text-danger">Campo Obrigatório</label>
                             </div>
@@ -555,10 +566,13 @@
                       </div>
                       
                       <div class="col-md-1">
-                        <div id="cadastrar_favorecido_" class="form-group">
+                        <div id="canalPagamento_" class="form-group">
+                          <label for="canalPagamento" class="col-sm-12 col-form-label"></label>
                           <div class="col-sm-20">
-							<input type="submit" value="+" data-toggle="modal" data-target="#cadastrar_canal_pagamento_modal_" class="btn btn-inverse-primary" style="margin: 35px">
-                          </div>
+							<div class="col-sm-12" style="padding-top: 2px;">
+								<button type="submit" data-toggle="modal" data-target="#cadastrar_canal_pagamento_modal_" class="btn btn-primary mb-2">+</button>
+							</div>
+						  </div>
                         </div>
                       </div>
                       
