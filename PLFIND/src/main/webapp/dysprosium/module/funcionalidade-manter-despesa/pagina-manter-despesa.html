@@ -526,7 +526,7 @@
                     </div>
 
                     <div class="row">
-                      <div class="col-md-2">
+                      <div class="col-md-6">
                         <div class="form-group">
                           <label for="isFormaPagamentoUnico">Forma de Pagamento</label>
                           <select id="isFormaPagamentoUnico" name="isFormaPagamentoUnico" ng-model="despesaModel.isFormaPagamentoUnico" ng-change="verificarFormaPagamentoUnico(despesaModel)" class="form-control">
@@ -535,7 +535,7 @@
                           </select>
                         </div>
                       </div>
-                      <div class="col-md-3">
+                      <div class="col-md-6">
                         <div id="fontePagamento_" class="form-group">
                           <label for="fontePagamento">Fonte de Pagamento (obrigatório)</label>
                           <select id="fontePagamento"
@@ -550,7 +550,11 @@
                         </div>
                       </div>
                       
-                      <div class="col-md-3">
+                      </div>
+                      
+                      <div class="row">
+                      
+                      <div class="col-md-5">
                         <div id="canalPagamento_" class="form-group">
                           <label for="canalPagamento">Canal de Pagamento (obrigatório)</label>
                           <select id="canalPagamento" 
@@ -576,7 +580,7 @@
                         </div>
                       </div>
                       
-                      <div class="col-md-3">
+                      <div class="col-md-5">
                         <div id="responsavelPagamento_" class="form-group">
                           <label for="responsavelPagamento">Responsável pelo Pagamento (obrigatório)</label>
                           <select id="responsavelPagamento" 
@@ -590,7 +594,18 @@
                           </div>
                         </div>
                       </div>
-                    </div>
+
+                    <div class="col-md-1">
+                        <div id="responsavelPagamentoModal_" class="form-group">
+                          <label for="canalPagamento" class="col-sm-12 col-form-label"></label>
+                          <div class="col-sm-20">
+							<div class="col-sm-12" style="padding-top: 2px;">
+								<button type="submit" data-toggle="modal" data-target="#cadastrar_responsavel_pagamento_modal_" class="btn btn-primary mb-2">+</button>
+							</div>
+						  </div>
+                        </div>
+                      </div>
+                  </div>
 
                   <div class="row" ng-if="isFormaPagamentoUnicoFlag">
                     <div class="col-lg-12 grid-margin stretch-card">
@@ -600,7 +615,7 @@
 
                   <div class="col-md-12">
                     <div id="observacao_" class="form-group">
-                      <label for="observacao">Observação (obrigatório)</label>
+                      <label for="observacao" class="col-sm-12 col-form-label">Observação (obrigatório)</label>
                       <textarea id="observacao" ng-model="despesaModel.observacao" class="form-control" rows="4"></textarea>
                     </div>
                   </div>
@@ -679,7 +694,6 @@
           </div>
           <!--CONTEUDO -->
           
-          
           <!-- MODAL -->
 		  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="cadastro_favorecido_modal" aria-hidden="true">
 			<div class="modal-dialog modal-lg" role="document">
@@ -747,6 +761,48 @@
                       </div>
 					</div>
 					
+					<div class="modal-footer">
+						<div class="col-md-10">
+	                      <div class="form-group">
+	                        <div class="col-sm-20">
+	                          <button type="button" data-dismiss="modal" ng-click="cadastrarCanalPagamento(despesaModel)" class="btn btn-primary btn-block">Cadastrar Favorecido</button>
+	                        </div>
+	                      </div>
+	                    </div>
+						<div class="col-md-2">
+	                      <div class="form-group">
+	                        <div class="col-sm-20">
+	                          <button type="button" data-dismiss="modal" class="btn btn-danger btn-block">Cancelar</button>
+	                        </div>
+	                      </div>
+	                    </div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="modal fade" id="cadastrar_responsavel_pagamento_modal_" tabindex="-1" role="dialog" aria-labelledby="cadastrar_canal_pagamento_modal" aria-hidden="true">
+			<div class="modal-dialog modal-lg" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="cadastro_favorecido_modal">Cadastro de Canal de Pagamento</h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<div class="col-md-12">
+	                        <div id="cadastrar_responsavel_pagamento_modal" class="form-group">
+	                          <label for="cadastrar_responsavel_pagamento_modal" class="col-sm-12 col-form-label">Nome do Responsável do Pagamento (obrigatório)</label>
+	                          <div class="col-sm-20">
+	                            <input id="cadastrar_responsavel_pagamento" type="text" name="cadastrar_responsavel_pagamento" ng-model="despesaModel.responsavelPagamento.nome" placeholder="Nome do Responsável pelo Pagamento" class="form-control" />
+<!-- 	                            <div ng-show="isCamposDataDespesaInvalidoFlag == true"> -->
+<!-- 	                              <label class="error mt-2 text-danger">Campo Obrigatório</label> -->
+<!-- 	                            </div> -->
+	                          </div>
+	                        </div>
+                      </div>
+					</div>
 					<div class="modal-footer">
 						<div class="col-md-10">
 	                      <div class="form-group">
