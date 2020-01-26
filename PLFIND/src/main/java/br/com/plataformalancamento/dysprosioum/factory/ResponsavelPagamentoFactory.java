@@ -12,6 +12,14 @@ public class ResponsavelPagamentoFactory implements Serializable {
 
 	public ResponsavelPagamentoFactory() { }
 	
+	public static ResponsavelPagamentoDomain recuperarResponsavelPagamentoFactory(ResponsavelPagamentoDomain responsavelPagamentoDomain) {
+		responsavelPagamentoDomain.setNome(responsavelPagamentoDomain.getNome());
+		responsavelPagamentoDomain.setIsFontePagamento(Boolean.TRUE);
+		responsavelPagamentoDomain.setIsPessoaFinanceira(Boolean.TRUE);
+		responsavelPagamentoDomain.setIsValido(Boolean.TRUE);
+		return responsavelPagamentoDomain;
+	}
+	
 	public static ResponsavelPagamentoDomain getResposanvelPagamentoJamille() {
 		ResponsavelPagamentoDomain responsavelPagamentoDomain = new ResponsavelPagamentoDomain();
 			responsavelPagamentoDomain.setNome("Jamille Alves");

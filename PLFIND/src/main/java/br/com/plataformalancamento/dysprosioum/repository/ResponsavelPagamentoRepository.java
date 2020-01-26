@@ -3,10 +3,12 @@ package br.com.plataformalancamento.dysprosioum.repository;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.enterprise.context.RequestScoped;
 import javax.persistence.TypedQuery;
 
 import br.com.plataformalancamento.dysprosioum.entity.ResponsavelPagamentoDomain;
 
+@RequestScoped
 public class ResponsavelPagamentoRepository extends BaseRepository<ResponsavelPagamentoDomain> implements Serializable {
 
 	private static final long serialVersionUID = 1L;

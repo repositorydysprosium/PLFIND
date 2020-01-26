@@ -27,6 +27,7 @@ gerenciadorDespesaModule.controller('gerenciadorDespesaController', function($sc
 		var URL_CANAL_PAGAMENTO_PERSIST = "http://localhost:8180/PLFIND-1.0.0.0-SNAPSHOT/PLFIND/canalPagamentoResource/persist";
 		
 		var URL_RESPONSAVEL_PAGAMENTO = "http://localhost:8180/PLFIND-1.0.0.0-SNAPSHOT/PLFIND/responsavelPagamentoResource";
+		var URL_RESPONSAVEL_PAGAMENTO_PERSIST = "http://localhost:8180/PLFIND-1.0.0.0-SNAPSHOT/PLFIND/responsavelPagamentoResource/persist";
 		
 		var URL_DESPESA_VARIAVEL_FIND_ALL = "http://localhost:8180/PLFIND-1.0.0.0-SNAPSHOT/PLFIND/despesaVariavelResource/findAll";
 		var URL_DESPESA_VARIAVEL_PERSIST = "http://localhost:8180/PLFIND-1.0.0.0-SNAPSHOT/PLFIND/despesaVariavelResource/persist";
@@ -139,6 +140,20 @@ gerenciadorDespesaModule.controller('gerenciadorDespesaController', function($sc
 //			}
 		};
 		
+		$scope.cadastrarResponsavelPagamento = function(despesaModel) {
+			console.log(despesaModel);
+//			if(isValidaDespesaVariavel(despesaModel)) {
+				$http.post(URL_RESPONSAVEL_PAGAMENTO_PERSIST, despesaModel.responsavelPagamento).then(function(response) {
+					$scope.responsavelPagamentoList.push(response.data);
+					$scope.despesaModel.responsavelPagamento.codigo = response.data.codigo;
+//					$scope.clearDespesModelAll();
+					toastr.success('Responsável pelo Pagamento cadastrado com Sucesso!', 'Sucesso', {timeOut: 5000});
+				}, function(responseError) {
+					toastr.error('Não foi possível cadastrar o Responsável pelo Pagamento! ' + responseError.data + "'", 'Erro do Sistema', {timeOut: 10000});
+				});
+//			}
+		};
+		
 		$scope.cadastrarFontePagamento = function(despesaModel) {
 			console.log(despesaModel);
 //			if(isValidaDespesaVariavel(despesaModel)) {
@@ -201,6 +216,8 @@ gerenciadorDespesaModule.controller('gerenciadorDespesaController', function($sc
 				}
 				$scope.produtoServicoList.push(angular.copy(produtoServicoModel));
 				clearProdutoServico();
+			} else {
+				toastr.error('Não foi possivel cadastrar o Produto ou Serviço', 'Erro', {timeOut: 5000});
 			}
 		};
 

@@ -3,6 +3,8 @@ package br.com.plataformalancamento.dysprosioum.resource;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.enterprise.context.RequestScoped;
+import javax.inject.Inject;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -17,17 +19,17 @@ import br.com.plataformalancamento.dysprosioum.utility.ConstanteUtility;
 
 @Path(ConstanteUtility.FONTE_PAGAMENTO_RESOURCE)
 @Produces({MediaType.APPLICATION_JSON})
+@RequestScoped
 public class FontePagamentoResource implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	
 	private static final Logger LOGGER = Logger.getLogger(FontePagamentoResource.class);
 	
+	@Inject
 	private FontePagamentoService fontePagamentoService;
 	
-	public FontePagamentoResource() { 
-		this.fontePagamentoService = new FontePagamentoService();
-	}
+	public FontePagamentoResource() { }
 	
 	@GET
 	public List<FontePagamentoEntity> fontePagamentoEntityList() {
