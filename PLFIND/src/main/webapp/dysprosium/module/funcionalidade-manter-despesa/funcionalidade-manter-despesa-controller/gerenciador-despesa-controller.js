@@ -19,10 +19,15 @@ gerenciadorDespesaModule.controller('gerenciadorDespesaController', function($sc
 
 		var URL_FAVORECIDO_FIND_ALL = "http://localhost:8180/PLFIND-1.0.0.0-SNAPSHOT/PLFIND/favorecidoResource/findAll";
 		var URL_FAVORECIDO_PERSIST = "http://localhost:8180/PLFIND-1.0.0.0-SNAPSHOT/PLFIND/favorecidoResource/persist";
+		
 		var URL_FONTE_PAGAMENTO = "http://localhost:8180/PLFIND-1.0.0.0-SNAPSHOT/PLFIND/fontePagamentoResource";
+		var URL_FONTE_PAGAMENTO_PERSIST = "http://localhost:8180/PLFIND-1.0.0.0-SNAPSHOT/PLFIND/fontePagamentoResource/persist";
+		
 		var URL_CANAL_PAGAMENTO = "http://localhost:8180/PLFIND-1.0.0.0-SNAPSHOT/PLFIND/canalPagamentoResource/findAll";
 		var URL_CANAL_PAGAMENTO_PERSIST = "http://localhost:8180/PLFIND-1.0.0.0-SNAPSHOT/PLFIND/canalPagamentoResource/persist";
+		
 		var URL_RESPONSAVEL_PAGAMENTO = "http://localhost:8180/PLFIND-1.0.0.0-SNAPSHOT/PLFIND/responsavelPagamentoResource";
+		
 		var URL_DESPESA_VARIAVEL_FIND_ALL = "http://localhost:8180/PLFIND-1.0.0.0-SNAPSHOT/PLFIND/despesaVariavelResource/findAll";
 		var URL_DESPESA_VARIAVEL_PERSIST = "http://localhost:8180/PLFIND-1.0.0.0-SNAPSHOT/PLFIND/despesaVariavelResource/persist";
 
@@ -130,6 +135,20 @@ gerenciadorDespesaModule.controller('gerenciadorDespesaController', function($sc
 					toastr.success('Canal de Pagamento cadastrado com Sucesso!', 'Sucesso', {timeOut: 5000});
 				}, function(responseError) {
 					toastr.error('Não foi possível cadastrar o novo Canal de Pagamento! ' + responseError.data + "'", 'Erro do Sistema', {timeOut: 10000});
+				});
+//			}
+		};
+		
+		$scope.cadastrarFontePagamento = function(despesaModel) {
+			console.log(despesaModel);
+//			if(isValidaDespesaVariavel(despesaModel)) {
+				$http.post(URL_FONTE_PAGAMENTO_PERSIST, despesaModel.fontePagamento).then(function(response) {
+					$scope.fontePagamentoList.push(response.data);
+					$scope.despesaModel.fontePagamento.codigo = response.data.codigo;
+//					$scope.clearDespesModelAll();
+					toastr.success('Fonte de Pagamento cadastrado com Sucesso!', 'Sucesso', {timeOut: 5000});
+				}, function(responseError) {
+					toastr.error('Não foi possível cadastrar a nova Fonte de Pagamento! ' + responseError.data + "'", 'Erro do Sistema', {timeOut: 10000});
 				});
 //			}
 		};

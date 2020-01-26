@@ -19,4 +19,9 @@ public class FontePagamentoService implements Serializable {
 	public List<FontePagamentoEntity> findAll() {
 		return fontePagamentoRepository.findAll(); 
 	}
+	
+	public FontePagamentoEntity persist(FontePagamentoEntity fontePagamentoEntity) {
+		return this.fontePagamentoRepository.persist(fontePagamentoEntity);
+	}
+	
 }

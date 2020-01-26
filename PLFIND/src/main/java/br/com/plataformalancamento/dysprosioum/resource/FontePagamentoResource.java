@@ -3,9 +3,8 @@ package br.com.plataformalancamento.dysprosioum.resource;
 import java.io.Serializable;
 import java.util.List;
 
-import javax.enterprise.context.RequestScoped;
-import javax.inject.Inject;
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
@@ -33,6 +32,13 @@ public class FontePagamentoResource implements Serializable {
 	@GET
 	public List<FontePagamentoEntity> fontePagamentoEntityList() {
 		return fontePagamentoService.findAll();
+	}
+	
+	@POST
+	@Path("persist")
+	public FontePagamentoEntity persist(FontePagamentoEntity fontePagamentoEntity) {
+		this.fontePagamentoService.persist(fontePagamentoEntity);
+		return fontePagamentoEntity;
 	}
 	
 	public static Logger getLogger() {
