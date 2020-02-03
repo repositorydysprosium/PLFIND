@@ -10,7 +10,6 @@ import br.com.plataformalancamento.dysprosioum.entity.DespesaVariavelDomain;
 import br.com.plataformalancamento.dysprosioum.entity.FavorecidoDomain;
 import br.com.plataformalancamento.dysprosioum.entity.FontePagamentoEntity;
 import br.com.plataformalancamento.dysprosioum.entity.FormaPagamentoDomain;
-import br.com.plataformalancamento.dysprosioum.entity.ProdutoServicoDomain;
 import br.com.plataformalancamento.dysprosioum.entity.ResponsavelPagamentoDomain;
 
 public class DespesaVariavelFactory implements Serializable {
@@ -25,7 +24,7 @@ public class DespesaVariavelFactory implements Serializable {
 			despesaVariavelEntitySoDigitalInformatica.setFavorecido(new FavorecidoDomain(1L));
 //			despesaVariavelEntitySoDigitalInformatica.setItemDespesa(1L);
 //			despesaVariavelEntitySoDigitalInformatica.setFormaPagamento(1L);
-			despesaVariavelEntitySoDigitalInformatica.setProdutoServico(new ProdutoServicoDomain(1L));
+//			despesaVariavelEntitySoDigitalInformatica.setProdutoServico(new ProdutoServicoDomain(1L));
 			despesaVariavelEntitySoDigitalInformatica.setFontePagamento(new FontePagamentoEntity(1L));
 			despesaVariavelEntitySoDigitalInformatica.setCanalPagamento(new CanalPagamentoDomain(1L));
 //			despesaVariavelEntitySoDigitalInformatica.setResponsavelPagamento(1L);
@@ -44,7 +43,7 @@ public class DespesaVariavelFactory implements Serializable {
 			despesaVariavelEntitySupermercadoPraVoce.setFavorecido(new FavorecidoDomain(1L));
 //			despesaVariavelEntitySupermercadoPraVoce.setItemDespesa(1L);
 //			despesaVariavelEntitySupermercadoPraVoce.setFormaPagamento(1L);
-			despesaVariavelEntitySupermercadoPraVoce.setProdutoServico(new ProdutoServicoDomain(1L));
+//			despesaVariavelEntitySupermercadoPraVoce.setProdutoServico(new ProdutoServicoDomain(1L));
 			despesaVariavelEntitySupermercadoPraVoce.setFontePagamento(new FontePagamentoEntity(1L));
 			despesaVariavelEntitySupermercadoPraVoce.setCanalPagamento(new CanalPagamentoDomain(1L));
 //			despesaVariavelEntitySupermercadoPraVoce.setResponsavelPagamento(1L);
@@ -67,7 +66,7 @@ public class DespesaVariavelFactory implements Serializable {
 			depesaVariavelPanificadoraReiPao.setIsFormaPagamentoUnico(true);
 			depesaVariavelPanificadoraReiPao.setIsItemUnico(true);
 			depesaVariavelPanificadoraReiPao.setObservacao("");
-			depesaVariavelPanificadoraReiPao.setProdutoServico(new ProdutoServicoDomain(1L));
+//			depesaVariavelPanificadoraReiPao.setProdutoServico(new ProdutoServicoDomain(1L));
 			depesaVariavelPanificadoraReiPao.setResponsavelPagamento(new ResponsavelPagamentoDomain(1L));
 //			depesaVariavelPanificadoraReiPao.setValorDespesa(new BigDecimal(10));
 		return depesaVariavelPanificadoraReiPao;

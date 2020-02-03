@@ -451,10 +451,10 @@
                         </div>
                       </div>
                       <div class="col-md-4">
-                        <div id="produtoServico_" class="form-group">
-                          <label for="produtoServico" class="col-sm-12 col-form-label">Produto ou Serviço (obrigatório)</label>
+                        <div id="produtoServicoModel_" class="form-group">
+                          <label for="produtoServicoModel" class="col-sm-12 col-form-label">Produto ou Serviço (obrigatório)</label>
                           <div class="col-sm-20">
-                            <input id="produtoServico" type="text" name="produtoServico" ng-model="despesaModel.produtoServico.descricao" placeholder="Nome do Produto ou Serviço"  class="form-control" />
+                            <input id="produtoServicoModel" type="text" name="produtoServicoModel" ng-model="produtoServicoModel.descricao" placeholder="Nome do Produto ou Serviço"  class="form-control" />
                             <div ng-show="isCampoProdutoServicoInvalidoFlag == true">
                               <label class="error mt-2 text-danger">Campo Obrigatório</label>
                             </div>
@@ -465,7 +465,7 @@
                         <div id="valorProdutoServico_" class="form-group">
                           <label for="valorProdutoServico" class="col-sm-12 col-form-label">Valor da Despesa (obrigatório)</label>
                           <div class="col-sm-20">
-                            <input id="valorProdutoServico" type="text" name="valorProdutoServico" ng-model="despesaModel.produtoServico.valorProdutoServico" placeholder="R$ 00,00" class="form-control" />
+                            <input id="valorProdutoServico" type="text" name="valorProdutoServico" ng-model="produtoServicoModel.valorProdutoServico" placeholder="R$ 00,00" class="form-control" />
                             <div ng-show="isCampoValorDespesaInvalidoFlag == true">
                               <label class="error mt-2 text-danger">Campo Obrigatório</label>
                             </div>
@@ -476,7 +476,7 @@
                         <div id="quantidadeProdutoServico_" class="form-group">
                           <label for="quantidadeProdutoServico" class="col-sm-12 col-form-label">Quantidade</label>
                           <div class="col-sm-20">
-                            <input id="quantidadeProdutoServico" type="text" name="quantidadeProdutoServico" ng-model="despesaModel.produtoServico.quantidadeProdutoServico" placeholder="Quantidade" class="form-control" />
+                            <input id="quantidadeProdutoServico" type="text" name="quantidadeProdutoServico" ng-model="produtoServicoModel.quantidadeProdutoServico" placeholder="Quantidade" class="form-control" />
                             <div ng-show="isCampoQuantidadeProdutoServicoInvalidoFlag == true">
                               <label class="error mt-2 text-danger">Campo Obrigatório</label>
                             </div>
@@ -487,7 +487,7 @@
 
                     <div class="row" ng-if="isItemUnicoFlag">
                       <div class="col-lg-12 grid-margin stretch-card">
-                        <button type="button" ng-click="cadastrarProdutoServico(despesaModel)" class="btn btn-outline-secondary btn-lg btn-block">Cadastrar Produto ou Serviço</button>
+                        <button type="button" ng-click="cadastrarProdutoServico(produtoServicoModel)" class="btn btn-outline-secondary btn-lg btn-block">Cadastrar Produto ou Serviço</button>
                       </div>
                     </div>
 
@@ -509,8 +509,8 @@
                                 <tbody>
                                   <tr ng-repeat="produtoServicoResultado in produtoServicoList track by $index">
                                     <td>{{produtoServicoResultado.codigo}}</td>
-                                    <td>{{produtoServicoResultado.produtoServico.descricao}}</td>
-                                    <td>{{produtoServicoResultado.produtoServico.quantidadeProdutoServico}}</td>
+                                    <td>{{produtoServicoResultado.descricao}}</td>
+                                    <td>{{produtoServicoResultado.quantidadeProdutoServico}}</td>
                                     <td>{{produtoServicoResultado.valorProdutoServico}}</td>
                                     <td>
                                       <button class="btn btn-outline-info">Editar</button>
@@ -676,7 +676,7 @@
                     <div class="col-md-6">
                       <div class="form-group">
                         <div class="col-sm-20">
-                          <button type="submit" ng-click="persist(despesaModel)" class="btn btn-primary mr-2 btn-lg btn-block">Cadastrar Despesa</button>
+                          <button type="submit" ng-click="persist(despesaModel, produtoServicoModel)" class="btn btn-primary mr-2 btn-lg btn-block">Cadastrar Despesa</button>
                         </div>
                       </div>
                     </div>
@@ -794,7 +794,7 @@
 			<div class="modal-dialog modal-lg" role="document">
 				<div class="modal-content">
 					<div class="modal-header">
-						<h5 class="modal-title" id="cadastro_favorecido_modal">Cadastro de Canal de Pagamento</h5>
+						<h5 class="modal-title" id="cadastro_favorecido_modal">Cadastro do Responsável pelo Pagamento</h5>
 						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 							<span aria-hidden="true">&times;</span>
 						</button>

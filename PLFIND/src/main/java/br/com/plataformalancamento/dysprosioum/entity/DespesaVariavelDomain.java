@@ -2,14 +2,19 @@ package br.com.plataformalancamento.dysprosioum.entity;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
@@ -18,6 +23,7 @@ import javax.persistence.TemporalType;
 import javax.xml.bind.annotation.XmlRootElement;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import br.com.plataformalancamento.dysprosioum.utility.ConstanteUtility;
 
@@ -35,28 +41,28 @@ public class DespesaVariavelDomain implements Serializable {
 	private Long codigo;
 	
 	@OneToOne
-	@JoinColumn(name = "ID_FAVORECIDO", referencedColumnName = "codigo", nullable = false)
+	@JoinColumn(name = "ID_FAVORECIDO", referencedColumnName = "codigo", foreignKey = @ForeignKey(name="FK_FAVORECIDO"), nullable = false)
 	private FavorecidoDomain favorecido;
 	
 	@OneToOne
-	@JoinColumn(name = "ID_FONTE_PAGAMENTO", referencedColumnName = "codigo", nullable = false)
+	@JoinColumn(name = "ID_FONTE_PAGAMENTO", referencedColumnName = "codigo", foreignKey = @ForeignKey(name="FK_FONTE_PAGAMENTO"), nullable = false)
 	private FontePagamentoEntity fontePagamento;
 	
 	@OneToOne
-	@JoinColumn(name = "ID_FORMA_PAGAMENTO", referencedColumnName = "codigo", nullable = true)
+	@JoinColumn(name = "ID_FORMA_PAGAMENTO", referencedColumnName = "codigo", foreignKey = @ForeignKey(name="FK_FORMA_PAGAMENTO"), nullable = true)
 	private FormaPagamentoDomain formaPagamento;
 	
 	@OneToOne
-	@JoinColumn(name = "ID_CANAL_PAGAMENTO", referencedColumnName = "codigo", nullable = false)
+	@JoinColumn(name = "ID_CANAL_PAGAMENTO", referencedColumnName = "codigo", foreignKey = @ForeignKey(name="FK_CANAL_PAGAMENTO"), nullable = false)
 	private CanalPagamentoDomain canalPagamento;
 	
 	@OneToOne
-	@JoinColumn(name = "ID_RESPONSAVEL_PAGAMENTO", referencedColumnName = "codigo", nullable = false)
+	@JoinColumn(name = "ID_RESPONSAVEL_PAGAMENTO", referencedColumnName = "codigo", foreignKey = @ForeignKey(name="FK_RESPONSAVEL_PAGAMENTO"), nullable = false)
 	private ResponsavelPagamentoDomain responsavelPagamento;
 	
-	@OneToOne
-	@JoinColumn(name = "ID_PRODUTO_SERVICO", referencedColumnName = "codigo", nullable = false)
-	private ProdutoServicoDomain produtoServico;
+	@OneToMany(mappedBy = "despesaVariavelDomain", orphanRemoval = true, cascade = CascadeType.ALL)
+	@JsonManagedReference
+	private List<ProdutoServicoDomain> produtoServicoDomainList = new ArrayList<ProdutoServicoDomain>();
 	
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
 	@Temporal(TemporalType.DATE)
@@ -152,6 +158,7 @@ public class DespesaVariavelDomain implements Serializable {
 		this.responsavelPagamento = responsavelPagamento;
 	}
 
+	/*
 	public void setProdutoServico(ProdutoServicoDomain produtoServico) {
 		this.produtoServico = produtoServico;
 	}
@@ -159,6 +166,7 @@ public class DespesaVariavelDomain implements Serializable {
 	public ProdutoServicoDomain getProdutoServico() {
 		return produtoServico;
 	}
+	*/
 
 	public BigDecimal getValorTotalDespesa() {
 		return valorTotalDespesa;
@@ -186,6 +194,14 @@ public class DespesaVariavelDomain implements Serializable {
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;
+	}
+
+	public List<ProdutoServicoDomain> getProdutoServicoDomainList() {
+		return produtoServicoDomainList;
+	}
+
+	public void setProdutoServicoDomainList(List<ProdutoServicoDomain> produtoServicoDomainList) {
+		this.produtoServicoDomainList = produtoServicoDomainList;
 	}
 	
 }

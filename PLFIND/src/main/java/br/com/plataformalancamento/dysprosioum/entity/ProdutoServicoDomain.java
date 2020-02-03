@@ -5,12 +5,17 @@ import java.math.BigDecimal;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import br.com.plataformalancamento.dysprosioum.utility.ConstanteUtility;
 
@@ -32,6 +37,11 @@ public class ProdutoServicoDomain implements Serializable {
 	private Integer quantidadeProdutoServico;
 	
 	private BigDecimal valorProdutoServico;
+	
+	@ManyToOne
+	@JoinColumn(name = "ID_DESPESA_VARIAVEL", foreignKey = @ForeignKey(name="FK_DESPESA_VARIAVEL"), nullable = false)
+	@JsonBackReference
+	private DespesaVariavelDomain despesaVariavelDomain;
 	
 	public ProdutoServicoDomain() { }
 
@@ -81,6 +91,14 @@ public class ProdutoServicoDomain implements Serializable {
 
 	public void setQuantidadeProdutoServico(Integer quantidadeProdutoServico) {
 		this.quantidadeProdutoServico = quantidadeProdutoServico;
+	}
+
+	public DespesaVariavelDomain getDespesaVariavelDomain() {
+		return despesaVariavelDomain;
+	}
+
+	public void setDespesaVariavelDomain(DespesaVariavelDomain despesaVariavelDomain) {
+		this.despesaVariavelDomain = despesaVariavelDomain;
 	}
 
 	public static long getSerialversionuid() {
