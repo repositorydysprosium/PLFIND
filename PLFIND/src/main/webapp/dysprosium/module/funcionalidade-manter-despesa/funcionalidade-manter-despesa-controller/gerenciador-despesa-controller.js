@@ -76,7 +76,7 @@ gerenciadorDespesaModule.controller('gerenciadorDespesaController', function($sc
 				despesaModel.produtoServicoDomainList.push(produtoServicoModel);
 			}
 			
-			if(isValidaDespesaVariavel(despesaModel)) {
+			if(isValidaDespesaVariavel(despesaModel, produtoServicoModel)) {
 				$http.post(URL_DESPESA_VARIAVEL_PERSIST, despesaModel).then(function(response) {
 					$scope.despesaVariavelList.push(response.data);
 					$scope.clearDespesModelAll();
@@ -265,12 +265,12 @@ gerenciadorDespesaModule.controller('gerenciadorDespesaController', function($sc
 			}
 		};
 
-		function isValidaDespesaVariavel(despesaModel) {
+		function isValidaDespesaVariavel(despesaModel, produtoServicoModel) {
 			if(isCampoFavorecidoValid(despesaModel) && 
 			   isCampoDataDespesaValid(despesaModel) &&
 			   isCampoProdutoServicoValid(despesaModel) &&
-			   isCampoValorDespesaValid(despesaModel) &&
-			   isCampoQuantidadeProdutoServicoValid(despesaModel) &&
+			   isCampoValorDespesaValid(despesaModel, produtoServicoModel) &&
+			   isCampoQuantidadeProdutoServicoValid(despesaModel, produtoServicoModel) &&
 			   isCampoFontePagamentoValid(despesaModel) &&
 			   isCampoCanalPagamentoValid(despesaModel) && 
 			   isCampoResponsavelPagamentoValid(despesaModel)) {
@@ -315,7 +315,7 @@ gerenciadorDespesaModule.controller('gerenciadorDespesaController', function($sc
 			return true;
 		}
 
-		function isCampoValorDespesaValid(despesaModel) {
+		function isCampoValorDespesaValid(despesaModel, produtoServicoModel) {
 			if(!$scope.produtoServicoList.length > 0) {
 				if(produtoServicoModel.valorProdutoServico == null || produtoServicoModel.valorProdutoServico == undefined || produtoServicoModel.valorProdutoServicoa == "") {
 					valorProdutoServico_.className = "form-group has-danger";
@@ -329,7 +329,7 @@ gerenciadorDespesaModule.controller('gerenciadorDespesaController', function($sc
 			return true;
 		}
 
-		function isCampoQuantidadeProdutoServicoValid(despesaModel) {
+		function isCampoQuantidadeProdutoServicoValid(despesaModel, produtoServicoModel) {
 			if(!$scope.produtoServicoList.length > 0) {
 				if(produtoServicoModel.quantidadeProdutoServico == null || 
 				   produtoServicoModel.quantidadeProdutoServico == undefined || 
@@ -389,6 +389,15 @@ gerenciadorDespesaModule.controller('gerenciadorDespesaController', function($sc
 				canalPagamento: null,
 				responsavelPagamento: null
 			};
+			
+			$scope.produtoServicoModel = {
+				valorProdutoServico: null,
+				descricao: null,
+				quantidadeProdutoServico: null
+			};
+			
+			$scope.despesaModel.produtoServicoDomainList = [];
+			
 			$scope.produtoServicoList = [];
 			$scope.formaPagamentoList = [];
 			$scope.isItemUnicoFlag = false;
