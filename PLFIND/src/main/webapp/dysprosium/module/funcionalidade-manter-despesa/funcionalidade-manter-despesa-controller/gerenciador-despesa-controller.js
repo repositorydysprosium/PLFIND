@@ -80,11 +80,11 @@ gerenciadorDespesaModule.controller('gerenciadorDespesaController', function($sc
 				$http.post(URL_DESPESA_VARIAVEL_PERSIST, despesaModel).then(function(response) {
 					$scope.despesaVariavelList.push(response.data);
 					$scope.clearDespesModelAll();
-					toastr.success('Dados cadastrados com Sucesso!', 'Sucesso', {timeOut: 5000});
 				}, function(responseError) {
-					toastr.error('Não foi possível cadastrar a Despesa Variável! ' + responseError.data + "'", 'Erro do Sistema', {timeOut: 10000});
+					return toastr.error('Não foi possível cadastrar a Despesa Variável! ' + responseError.data + "'", 'Erro do Sistema', {timeOut: 10000});
 				});
 			}
+			return toastr.success('Dados cadastrados com Sucesso!', 'Sucesso', {timeOut: 5000});
 		};
 		
 		$scope.cadastrarProdutoServico = function(produtoServicoModel) {
