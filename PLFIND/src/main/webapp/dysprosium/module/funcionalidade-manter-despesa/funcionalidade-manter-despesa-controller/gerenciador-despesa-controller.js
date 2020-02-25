@@ -80,11 +80,11 @@ gerenciadorDespesaModule.controller('gerenciadorDespesaController', function($sc
 				$http.post(URL_DESPESA_VARIAVEL_PERSIST, despesaModel).then(function(response) {
 					$scope.despesaVariavelList.push(response.data);
 					$scope.clearDespesModelAll();
+					return toastr.success('Dados cadastrados com Sucesso!', 'Sucesso', {timeOut: 5000});
 				}, function(responseError) {
 					return toastr.error('Não foi possível cadastrar a Despesa Variável! ' + responseError.data + "'", 'Erro do Sistema', {timeOut: 10000});
 				});
 			}
-			return toastr.success('Dados cadastrados com Sucesso!', 'Sucesso', {timeOut: 5000});
 		};
 		
 		$scope.cadastrarProdutoServico = function(produtoServicoModel) {
@@ -134,8 +134,10 @@ gerenciadorDespesaModule.controller('gerenciadorDespesaController', function($sc
 			});
 		};
 		
-		$scope.cadastrarFavorecido = function(despesaModel) {
-			console.log(despesaModel);
+		$scope.cadastrarFavorecido = function(favorecidoModel) {
+			console.log(favorecidoModel);
+			despesaModel.favorecido = favorecidoModel;
+//			despesaModel.favorecido.codigo = null;
 //			if(isValidaDespesaVariavel(despesaModel)) {
 				$http.post(URL_FAVORECIDO_PERSIST, despesaModel.favorecido).then(function(response) {
 					$scope.favorecidoList.push(response.data);

@@ -19,7 +19,7 @@
 <link rel="shortcut icon" href="../../dependecy/font/materialdesignicons-webfont.woff" />
 <link rel="shortcut icon" href="../../dependecy/font/materialdesignicons-webfont.woff2" />
 <script src="../../module/funcionalidade-manter-despesa/funcionalidade-manter-despesa-controller/gerenciador-despesa-controller.js"></script>
-<title>PLFINC - Plataforma de Lançamento Financeiro</title>
+<title>PLFIND - Plataforma de Lançamento Financeiro</title>
 </head>
 <body ng-controller="gerenciadorDespesaController" class="sidebar-icon-only">
 
@@ -625,7 +625,7 @@
                   <div class="col-md-12">
                     <div id="observacao_" class="form-group">
                       <label for="observacao" class="col-sm-12 col-form-label">Observação (obrigatório)</label>
-                      <textarea id="observacao" ng-model="despesaModel.observacao" class="form-control" rows="4"></textarea>
+                      <textarea id="observacao" ng-model="despesaModel.observacao" class="form-control" rows="4" maxlength="255"></textarea>
                     </div>
                   </div>
 
@@ -718,7 +718,7 @@
 	                        <div id="cadastro_favorecido_" class="form-group">
 	                          <label for="cadastro_favorecido" class="col-sm-12 col-form-label">Nome (obrigatório)</label>
 	                          <div class="col-sm-20">
-	                            <input id="cadastro_favorecido" type="text" name="cadastro_favorecido" ng-model="despesaModel.favorecido.nome" placeholder="Nome do Favorecido" class="form-control" />
+	                            <input id="cadastro_favorecido" type="text" name="cadastro_favorecido" ng-model="favorecidoModel.nome" placeholder="Nome do Favorecido" class="form-control" />
 <!-- 	                            <div ng-show="isCamposDataDespesaInvalidoFlag == true"> -->
 <!-- 	                              <label class="error mt-2 text-danger">Campo Obrigatório</label> -->
 <!-- 	                            </div> -->
