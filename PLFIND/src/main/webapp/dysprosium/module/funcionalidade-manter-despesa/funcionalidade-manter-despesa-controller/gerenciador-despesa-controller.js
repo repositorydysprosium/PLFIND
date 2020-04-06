@@ -32,6 +32,8 @@ gerenciadorDespesaModule.controller('gerenciadorDespesaController', function($sc
 		var URL_DESPESA_VARIAVEL_FIND_ALL = "http://localhost:8180/PLFIND-1.0.0.0-SNAPSHOT/PLFIND/despesaVariavelResource/findAll";
 		var URL_DESPESA_VARIAVEL_PERSIST = "http://localhost:8180/PLFIND-1.0.0.0-SNAPSHOT/PLFIND/despesaVariavelResource/persist";
 
+		$scope.favorecidoModel = {};
+		
 		$scope.despesaModel = {};
 		
 		$scope.favorecidoList = [];
@@ -78,9 +80,9 @@ gerenciadorDespesaModule.controller('gerenciadorDespesaController', function($sc
 			
 			if(isValidaDespesaVariavel(despesaModel, produtoServicoModel)) {
 				$http.post(URL_DESPESA_VARIAVEL_PERSIST, despesaModel).then(function(response) {
+					toastr.success('Dados cadastrados com Sucesso!', 'Sucesso', {timeOut: 5000});
 					$scope.despesaVariavelList.push(response.data);
 					$scope.clearDespesModelAll();
-					return toastr.success('Dados cadastrados com Sucesso!', 'Sucesso', {timeOut: 5000});
 				}, function(responseError) {
 					return toastr.error('Não foi possível cadastrar a Despesa Variável! ' + responseError.data + "'", 'Erro do Sistema', {timeOut: 10000});
 				});
@@ -134,15 +136,12 @@ gerenciadorDespesaModule.controller('gerenciadorDespesaController', function($sc
 			});
 		};
 		
-		$scope.cadastrarFavorecido = function(favorecidoModel) {
-			console.log(favorecidoModel);
-			despesaModel.favorecido = favorecidoModel;
+		$scope.cadastrarFavorecido = function(despesaModel) {
 //			despesaModel.favorecido.codigo = null;
 //			if(isValidaDespesaVariavel(despesaModel)) {
 				$http.post(URL_FAVORECIDO_PERSIST, despesaModel.favorecido).then(function(response) {
 					$scope.favorecidoList.push(response.data);
 					$scope.despesaModel.favorecido.codigo = response.data.codigo;
-//					$scope.clearDespesModelAll();
 					toastr.success('Favorecido cadastrado com Sucesso!', 'Sucesso', {timeOut: 5000});
 				}, function(responseError) {
 					toastr.error('Não foi possível cadastrar o novo Favorecido! ' + responseError.data + "'", 'Erro do Sistema', {timeOut: 10000});

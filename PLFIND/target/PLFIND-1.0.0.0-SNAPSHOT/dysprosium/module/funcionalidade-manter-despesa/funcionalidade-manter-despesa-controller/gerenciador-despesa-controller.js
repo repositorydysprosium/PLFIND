@@ -9,43 +9,43 @@ gerenciadorDespesaModule.controller('gerenciadorDespesaController', function($sc
 			$scope.recuperarResponsavelPagamento();
 			$scope.despesaModel.isItemUnico = "true";
 			$scope.despesaModel.isFormaPagamentoUnico = "true";
-//			$scope.despesaModel.produtoServico.quantidadeProdutoServico = 1;
 			$scope.despesaModel.fontePagamento = null;
 			$scope.despesaModel.canalPagamento = null;
-			$scope.despesaModel.produtoServico = null;
-			$scope.despesaModel.responsavelPagamento = null;
+			$scope.produtoServicoModel = null;
 			toastr.options.progressBar = true;
 			toastr.options.positionClass = 'toast-top-right';
 			toastr.options.timeOut = '10000';
 		};
 
-		var URL_FAVORECIDO_FIND_ALL = "http://localhost:8080/PLFIND-1.0.0.0-SNAPSHOT/PLFIND/favorecidoResource/findAll";
-		var URL_FONTE_PAGAMENTO = "http://localhost:8080/PLFIND-1.0.0.0-SNAPSHOT/PLFIND/fontePagamentoResource";
-		var URL_CANAL_PAGAMENTO = "http://localhost:8080/PLFIND-1.0.0.0-SNAPSHOT/PLFIND/canalPagamentoResource/findAll";
-		var URL_RESPONSAVEL_PAGAMENTO = "http://localhost:8080/PLFIND-1.0.0.0-SNAPSHOT/PLFIND/responsavelPagamentoResource";
-		var URL_DESPESA_VARIAVEL_FIND_ALL = "http://localhost:8080/PLFIND-1.0.0.0-SNAPSHOT/PLFIND/despesaVariavelResource/findAll";
-		var URL_DESPESA_VARIAVEL_PERSIST = "http://localhost:8080/PLFIND-1.0.0.0-SNAPSHOT/PLFIND/despesaVariavelResource/persist";
-
-		$scope.favorecidoList = [];
+		var URL_FAVORECIDO_FIND_ALL = "http://localhost:8180/PLFIND-1.0.0.0-SNAPSHOT/PLFIND/favorecidoResource/findAll";
+		var URL_FAVORECIDO_PERSIST = "http://localhost:8180/PLFIND-1.0.0.0-SNAPSHOT/PLFIND/favorecidoResource/persist";
 		
+		var URL_FONTE_PAGAMENTO = "http://localhost:8180/PLFIND-1.0.0.0-SNAPSHOT/PLFIND/fontePagamentoResource";
+		var URL_FONTE_PAGAMENTO_PERSIST = "http://localhost:8180/PLFIND-1.0.0.0-SNAPSHOT/PLFIND/fontePagamentoResource/persist";
+		
+		var URL_CANAL_PAGAMENTO = "http://localhost:8180/PLFIND-1.0.0.0-SNAPSHOT/PLFIND/canalPagamentoResource/findAll";
+		var URL_CANAL_PAGAMENTO_PERSIST = "http://localhost:8180/PLFIND-1.0.0.0-SNAPSHOT/PLFIND/canalPagamentoResource/persist";
+		
+		var URL_RESPONSAVEL_PAGAMENTO = "http://localhost:8180/PLFIND-1.0.0.0-SNAPSHOT/PLFIND/responsavelPagamentoResource";
+		var URL_RESPONSAVEL_PAGAMENTO_PERSIST = "http://localhost:8180/PLFIND-1.0.0.0-SNAPSHOT/PLFIND/responsavelPagamentoResource/persist";
+		
+		var URL_DESPESA_VARIAVEL_FIND_ALL = "http://localhost:8180/PLFIND-1.0.0.0-SNAPSHOT/PLFIND/despesaVariavelResource/findAll";
+		var URL_DESPESA_VARIAVEL_PERSIST = "http://localhost:8180/PLFIND-1.0.0.0-SNAPSHOT/PLFIND/despesaVariavelResource/persist";
+
+		$scope.favorecidoModel = {};
+		
+		$scope.despesaModel = {};
+		
+		$scope.favorecidoList = [];
 		$scope.produtoServicoList = [];
-
 		$scope.formaPagamentoList = [];
-
 		$scope.fontePagamentoList = [];
-
 		$scope.canalPagamentoList = [];
-
 		$scope.responsavelPagamentoList = [];
-
 		$scope.despesaVariavelList = [];
 
-		$scope.despesaModel = {};
-
 		$scope.isItemUnicoFlag = false;
-
 		$scope.isFormaPagamentoUnicoFlag = false;
-
 		$scope.isCamposFavorecidoInvalidoFlag = false;
 		$scope.isCamposDataDespesaInvalidoFlag = false;
 		$scope.isCampoProdutoServicoInvalidoFlag = false;
@@ -54,10 +54,10 @@ gerenciadorDespesaModule.controller('gerenciadorDespesaController', function($sc
 		$scope.isCampoCanalPagamentoInvalidoFlag = false;
 		$scope.isCampoResponsavelPagamentoInvalidoFlag = false;
 		$scope.isCampoQuantidadeProdutoServicoInvalidoFlag = false;
-
+		
 		var produtoServicoModel = {
 			codigo: null,
-			produtoServico: null,
+			quantidadeProdutoServico: null,
 			valorProdutoServico: null,
 		};
 
@@ -66,6 +66,42 @@ gerenciadorDespesaModule.controller('gerenciadorDespesaController', function($sc
 			fontePagamento: null,
 			canalPagamento: null,
 			responsavelPagamento: null,
+		};
+		
+		$scope.persist = function(despesaModel, produtoServicoModel) {
+			console.log(despesaModel);
+			
+			if($scope.produtoServicoList.length != 0) {
+				despesaModel.produtoServicoDomainList = $scope.produtoServicoList;
+			} else {
+				despesaModel.produtoServicoDomainList = [];
+				despesaModel.produtoServicoDomainList.push(produtoServicoModel);
+			}
+			
+			if(isValidaDespesaVariavel(despesaModel, produtoServicoModel)) {
+				$http.post(URL_DESPESA_VARIAVEL_PERSIST, despesaModel).then(function(response) {
+					$scope.despesaVariavelList.push(response.data);
+					$scope.clearDespesModelAll();
+					return toastr.success('Dados cadastrados com Sucesso!', 'Sucesso', {timeOut: 5000});
+				}, function(responseError) {
+					return toastr.error('Não foi possível cadastrar a Despesa Variável! ' + responseError.data + "'", 'Erro do Sistema', {timeOut: 10000});
+				});
+			}
+		};
+		
+		$scope.cadastrarProdutoServico = function(produtoServicoModel) {
+//			if(isValidaDespesaVariavel(produtoServicoModel) && verificarProdutoServicoDuplicado(produtoServicoModel)) {
+//				produtoServicoModel.produtoServico = produtoServicoModel;
+//				produtoServicoModel.valorProdutoServico = despesaModel.valorProdutoServico;
+//				if(produtoServicoModel.quantidadeProdutoServico != 1) {
+//					produtoServicoModel.valorProdutoServico = calcularValorTotalProdutoServico(produtoServicoModel.valorProdutoServico);
+//					console.log(produtoServicoModel.valorProdutoServico);
+//				}
+				$scope.produtoServicoList.push(angular.copy(produtoServicoModel));
+				clearProdutoServico();
+//			} else {
+//				toastr.error('Não foi possivel cadastrar o Produto ou Serviço', 'Erro', {timeOut: 5000});
+//			}
 		};
 
 		$scope.recuperarFavorecido = function() {
@@ -99,19 +135,63 @@ gerenciadorDespesaModule.controller('gerenciadorDespesaController', function($sc
 				toastr.error('Serviço de recuperação do Responsável pelo Pagamento não encontrado!', 'Erro do Sistema', {timeOut: 10000});
 			});
 		};
-
-		$scope.persist = function(despesaModel) {
-			console.log(despesaModel);
-			if(isValidaDespesaVariavel(despesaModel)) {
-//				despesaModel.dataDespesa = formatarData(despesaModel.dataDespesa);
-				$http.post(URL_DESPESA_VARIAVEL_PERSIST, despesaModel).then(function(response) {
-					$scope.despesaVariavelList.push(response.data);
-					$scope.clearDespesModelAll();
-					toastr.success('Dados cadastrados com Sucesso!', 'Sucesso', {timeOut: 5000});
+		
+		$scope.cadastrarFavorecido = function(favorecidoModel) {
+			console.log(favorecidoModel);
+			despesaModel.favorecido = favorecidoModel;
+//			despesaModel.favorecido.codigo = null;
+//			if(isValidaDespesaVariavel(despesaModel)) {
+				$http.post(URL_FAVORECIDO_PERSIST, despesaModel.favorecido).then(function(response) {
+					$scope.favorecidoList.push(response.data);
+					$scope.despesaModel.favorecido.codigo = response.data.codigo;
+//					$scope.clearDespesModelAll();
+					toastr.success('Favorecido cadastrado com Sucesso!', 'Sucesso', {timeOut: 5000});
 				}, function(responseError) {
-					toastr.error('Não foi possível cadastrar a Despesa Variável! ' + responseError.data + "'", 'Erro do Sistema', {timeOut: 10000});
+					toastr.error('Não foi possível cadastrar o novo Favorecido! ' + responseError.data + "'", 'Erro do Sistema', {timeOut: 10000});
 				});
-			}
+//			}
+		};
+		
+		$scope.cadastrarCanalPagamento = function(despesaModel) {
+			console.log(despesaModel);
+//			if(isValidaDespesaVariavel(despesaModel)) {
+				$http.post(URL_CANAL_PAGAMENTO_PERSIST, despesaModel.canalPagamento).then(function(response) {
+					$scope.canalPagamentoList.push(response.data);
+					$scope.despesaModel.canalPagamento.codigo = response.data.codigo;
+//					$scope.clearDespesModelAll();
+					toastr.success('Canal de Pagamento cadastrado com Sucesso!', 'Sucesso', {timeOut: 5000});
+				}, function(responseError) {
+					toastr.error('Não foi possível cadastrar o novo Canal de Pagamento! ' + responseError.data + "'", 'Erro do Sistema', {timeOut: 10000});
+				});
+//			}
+		};
+		
+		$scope.cadastrarResponsavelPagamento = function(despesaModel) {
+			console.log(despesaModel);
+//			if(isValidaDespesaVariavel(despesaModel)) {
+				$http.post(URL_RESPONSAVEL_PAGAMENTO_PERSIST, despesaModel.responsavelPagamento).then(function(response) {
+					$scope.responsavelPagamentoList.push(response.data);
+					$scope.despesaModel.responsavelPagamento.codigo = response.data.codigo;
+//					$scope.clearDespesModelAll();
+					toastr.success('Responsável pelo Pagamento cadastrado com Sucesso!', 'Sucesso', {timeOut: 5000});
+				}, function(responseError) {
+					toastr.error('Não foi possível cadastrar o Responsável pelo Pagamento! ' + responseError.data + "'", 'Erro do Sistema', {timeOut: 10000});
+				});
+//			}
+		};
+		
+		$scope.cadastrarFontePagamento = function(despesaModel) {
+			console.log(despesaModel);
+//			if(isValidaDespesaVariavel(despesaModel)) {
+				$http.post(URL_FONTE_PAGAMENTO_PERSIST, despesaModel.fontePagamento).then(function(response) {
+					$scope.fontePagamentoList.push(response.data);
+					$scope.despesaModel.fontePagamento.codigo = response.data.codigo;
+//					$scope.clearDespesModelAll();
+					toastr.success('Fonte de Pagamento cadastrado com Sucesso!', 'Sucesso', {timeOut: 5000});
+				}, function(responseError) {
+					toastr.error('Não foi possível cadastrar a nova Fonte de Pagamento! ' + responseError.data + "'", 'Erro do Sistema', {timeOut: 10000});
+				});
+//			}
 		};
 		
 		function formatarData(data) {
@@ -119,36 +199,37 @@ gerenciadorDespesaModule.controller('gerenciadorDespesaController', function($sc
 			return dataFormatada;
 		};
 		
-		function verificarProdutoServicoDuplicado(produtoServico) {
-			if($scope.produtoServicoList.length > 0) {
-				for( let index = 0 ; index < $scope.produtoServicoList.length ; index++ ) {
-					var produtoServicoRetorno = $scope.produtoServicoList[index].produtoServico;
-					if (produtoServico.descricao === produtoServicoRetorno.descricao && 
-						produtoServicoRetorno.valorProdutoServico === produtoServicoRetorno.valorProdutoServico &&
-						produtoServicoRetorno.quantidadeProdutoServico === produtoServicoRetorno.quantidadeProdutoServico) {
-						toastr.error('Produto ou Serviço já cadastrado!', 'Dados Duplicados', {timeOut: 5000});
-						return false;
-					}
-				}
+		$scope.mascaraDataFormatoDDMMAAAA = function (dataParameter) {
+			var dataFormatada = dataParameter;
+			if (dataFormatada.length == 2) {
+				dataFormatada = dataFormatada + '/';
+				$scope.despesaModel.dataDespesa = dataFormatada;
+				return true;
 			}
-			return true;
+			if (dataFormatada.length == 5) {
+				dataFormatada = dataFormatada + '/';
+				$scope.despesaModel.dataDespesa = dataFormatada;
+				return true;
+			}
 		};
+		
+//		function verificarProdutoServicoDuplicado(produtoServico) {
+//			if($scope.produtoServicoList.length > 0) {
+//				for( let index = 0 ; index < $scope.produtoServicoList.length ; index++ ) {
+//					var produtoServicoRetorno = $scope.produtoServicoList[index].produtoServico;
+//					if (produtoServico.descricao === produtoServicoRetorno.descricao && 
+//						produtoServicoRetorno.valorProdutoServico === produtoServicoRetorno.valorProdutoServico &&
+//						produtoServicoRetorno.quantidadeProdutoServico === produtoServicoRetorno.quantidadeProdutoServico) {
+//						toastr.error('Produto ou Serviço já cadastrado!', 'Dados Duplicados', {timeOut: 5000});
+//						return false;
+//					}
+//				}
+//			}
+//			return true;
+//		};
 		
 		function calcularValorTotalProdutoServico(despesaModel) {
 			return despesaModel.valorProdutoServico * despesaModel.quantidadeProdutoServico;
-		};
-		
-		$scope.cadastrarProdutoServico = function(despesaModel) {
-			if(isValidaDespesaVariavel(despesaModel) && verificarProdutoServicoDuplicado(despesaModel.produtoServico)) {
-				produtoServicoModel.produtoServico = despesaModel.produtoServico;
-				produtoServicoModel.valorProdutoServico = despesaModel.valorProdutoServico;
-				if(despesaModel.produtoServico.quantidadeProdutoServico != 1) {
-					produtoServicoModel.valorProdutoServico = calcularValorTotalProdutoServico(despesaModel.produtoServico);
-					console.log(produtoServicoModel.valorProdutoServico);
-				}
-				$scope.produtoServicoList.push(angular.copy(produtoServicoModel));
-				clearProdutoServico();
-			}
 		};
 
 		$scope.cadastrarFormaPagamento = function(despesaModel) {
@@ -159,14 +240,14 @@ gerenciadorDespesaModule.controller('gerenciadorDespesaController', function($sc
 			clearFormaPagamento();
 		};
 
-		$scope.removeProdutoServico = function(produtoServicoModel) {
-			for( let index = 0 ; index < $scope.produtoServicoList.length ; index++ ) {
-				if (produtoServicoModel.produtoServico === $scope.produtoServicoList[index].produtoServico &&
-					produtoServicoModel.valorProdutoServico === $scope.produtoServicoList[index].valorProdutoServico) {
-					$scope.produtoServicoList.splice(index, 1);
-				}
-			}
-		};
+//		$scope.removeProdutoServico = function(produtoServicoModel) {
+//			for( let index = 0 ; index < $scope.produtoServicoList.length ; index++ ) {
+//				if (produtoServicoModel.produtoServico === $scope.produtoServicoList[index].produtoServico &&
+//					produtoServicoModel.valorProdutoServico === $scope.produtoServicoList[index].valorProdutoServico) {
+//					$scope.produtoServicoList.splice(index, 1);
+//				}
+//			}
+//		};
 
 		$scope.verificarItemUnico = function(despesaModel) {
 			if(despesaModel != undefined) {
@@ -188,12 +269,12 @@ gerenciadorDespesaModule.controller('gerenciadorDespesaController', function($sc
 			}
 		};
 
-		function isValidaDespesaVariavel(despesaModel) {
+		function isValidaDespesaVariavel(despesaModel, produtoServicoModel) {
 			if(isCampoFavorecidoValid(despesaModel) && 
 			   isCampoDataDespesaValid(despesaModel) &&
 			   isCampoProdutoServicoValid(despesaModel) &&
-			   isCampoValorDespesaValid(despesaModel) &&
-			   isCampoQuantidadeProdutoServicoValid(despesaModel) &&
+			   isCampoValorDespesaValid(despesaModel, produtoServicoModel) &&
+			   isCampoQuantidadeProdutoServicoValid(despesaModel, produtoServicoModel) &&
 			   isCampoFontePagamentoValid(despesaModel) &&
 			   isCampoCanalPagamentoValid(despesaModel) && 
 			   isCampoResponsavelPagamentoValid(despesaModel)) {
@@ -227,39 +308,43 @@ gerenciadorDespesaModule.controller('gerenciadorDespesaController', function($sc
 		}
 
 		function isCampoProdutoServicoValid(despesaModel) {
-			if(despesaModel.produtoServico == null || despesaModel.produtoServico == undefined || despesaModel.produtoServico == "") {
-				produtoServico_.className = "form-group has-danger";
+			if(produtoServicoModel == null || produtoServicoModel == undefined || produtoServicoModel == "") {
+				produtoServicoModel_.className = "form-group has-danger";
 				$scope.isCampoProdutoServicoInvalidoFlag = true;
 				return false;
 			} else {
-				produtoServico_.className = "form-group";
+				produtoServicoModel_.className = "form-group";
 				$scope.isCampoProdutoServicoInvalidoFlag = false;
 			}
 			return true;
 		}
 
-		function isCampoValorDespesaValid(despesaModel) {
-			if(despesaModel.produtoServico.valorProdutoServico == null || despesaModel.produtoServico.valorProdutoServico == undefined || despesaModel.produtoServico.valorProdutoServicoa == "") {
-				valorProdutoServico_.className = "form-group has-danger";
-				$scope.isCampoValorDespesaInvalidoFlag = true;
-				return false;
-			} else {
-				valorProdutoServico_.className = "form-group";
-				$scope.isCampoValorDespesaInvalidoFlag = false;
+		function isCampoValorDespesaValid(despesaModel, produtoServicoModel) {
+			if(!$scope.produtoServicoList.length > 0) {
+				if(produtoServicoModel.valorProdutoServico == null || produtoServicoModel.valorProdutoServico == undefined || produtoServicoModel.valorProdutoServicoa == "") {
+					valorProdutoServico_.className = "form-group has-danger";
+					$scope.isCampoValorDespesaInvalidoFlag = true;
+					return false;
+				} else {
+					valorProdutoServico_.className = "form-group";
+					$scope.isCampoValorDespesaInvalidoFlag = false;
+				}
 			}
 			return true;
 		}
 
-		function isCampoQuantidadeProdutoServicoValid(despesaModel) {
-			if(despesaModel.produtoServico.quantidadeProdutoServico == null || 
-			   despesaModel.produtoServico.quantidadeProdutoServico == undefined || 
-			   despesaModel.produtoServico.quantidadeProdutoServico == "") {
-				quantidadeProdutoServico_.className = "form-group has-danger text-danger";
-				$scope.isCampoQuantidadeProdutoServicoInvalidoFlag = true;
-				return false;
-			} else {
-				quantidadeProdutoServico_.className = "form-group";
-				$scope.isCampoQuantidadeProdutoServicoInvalidoFlag = false;
+		function isCampoQuantidadeProdutoServicoValid(despesaModel, produtoServicoModel) {
+			if(!$scope.produtoServicoList.length > 0) {
+				if(produtoServicoModel.quantidadeProdutoServico == null || 
+				   produtoServicoModel.quantidadeProdutoServico == undefined || 
+				   produtoServicoModel.quantidadeProdutoServico == "") {
+					quantidadeProdutoServico_.className = "form-group has-danger text-danger";
+					$scope.isCampoQuantidadeProdutoServicoInvalidoFlag = true;
+					return false;
+				} else {
+					quantidadeProdutoServico_.className = "form-group";
+					$scope.isCampoQuantidadeProdutoServicoInvalidoFlag = false;
+				}
 			}
 			return true;
 		}
@@ -303,19 +388,24 @@ gerenciadorDespesaModule.controller('gerenciadorDespesaController', function($sc
 		$scope.clearDespesModelAll = function() {
 			$scope.despesaModel = {
 				isItemUnico: "true",
-				quantidadeProdutoServico: 1,
 				isFormaPagamentoUnico: "true",
 				fontePagamento: null,
 				canalPagamento: null,
-				responsavelPagamento: null,
-				produtoServico: null,
+				responsavelPagamento: null
 			};
+			
+			$scope.produtoServicoModel = {
+				valorProdutoServico: null,
+				descricao: null,
+				quantidadeProdutoServico: null
+			};
+			
+			$scope.despesaModel.produtoServicoDomainList = [];
+			
 			$scope.produtoServicoList = [];
 			$scope.formaPagamentoList = [];
 			$scope.isItemUnicoFlag = false;
 			$scope.isFormaPagamentoUnicoFlag = false;
-
-			$scope.despesaModel.quantidadeProdutoServico = 1;
 
 			favorecido_.className = "form-group";
 			$scope.isCamposFavorecidoInvalidoFlag = false;
@@ -343,8 +433,7 @@ gerenciadorDespesaModule.controller('gerenciadorDespesaController', function($sc
 		};
 
 		function clearProdutoServico() {
-			$scope.despesaModel.produtoServico = null;
-			$scope.despesaModel.valorProdutoServico = null;
+			$scope.produtoServicoModel = null;
 		};
 
 		function clearFormaPagamento() {

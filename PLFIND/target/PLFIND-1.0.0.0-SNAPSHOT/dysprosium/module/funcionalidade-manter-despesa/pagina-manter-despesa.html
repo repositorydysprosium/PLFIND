@@ -19,7 +19,7 @@
 <link rel="shortcut icon" href="../../dependecy/font/materialdesignicons-webfont.woff" />
 <link rel="shortcut icon" href="../../dependecy/font/materialdesignicons-webfont.woff2" />
 <script src="../../module/funcionalidade-manter-despesa/funcionalidade-manter-despesa-controller/gerenciador-despesa-controller.js"></script>
-<title>PLFINC - Plataforma de Lançamento Financeiro</title>
+<title>PLFIND - Plataforma de Lançamento Financeiro</title>
 </head>
 <body ng-controller="gerenciadorDespesaController" class="sidebar-icon-only">
 
@@ -84,16 +84,34 @@
         <li class="nav-item menu-items"><a class="nav-link" href="../../index.html"> <span class="menu-icon"> <i class="mdi mdi-speedometer"></i>
           </span> <span class="menu-title">Principal</span>
         </a></li>
-        <li class="nav-item menu-items"><a class="nav-link" data-toggle="collapse" href="#page-layouts" aria-expanded="false" aria-controls="page-layouts"> <span class="menu-icon"> <i class="mdi mdi-view-list"></i>
-          </span> <span class="menu-title">Lançamentos</span> <i class="menu-arrow"></i>
-        </a>
+        
+        <li class="nav-item menu-items">
+        	<a class="nav-link" data-toggle="collapse" href="#page-layouts" aria-expanded="false" aria-controls="page-layouts">
+        		<span class="menu-icon"><i class="mdi mdi-view-list"></i></span>
+          		<span class="menu-title">Receita</span><i class="menu-arrow"></i>
+        	</a>
           <div class="collapse" id="page-layouts">
             <ul class="nav flex-column sub-menu">
-              <li class="nav-item"><a class="nav-link" href="../../pages/layout/boxed-layout.html">Despesa Variável</a></li>
-              <li class="nav-item"><a class="nav-link" href="../../pages/layout/rtl-layout.html">Pagamentos</a></li>
+              <li class="nav-item"><a class="nav-link" href="../../pagina-gerenciar-receita.html">Gerenciar Receita</a></li>
+              <li class="nav-item"><a class="nav-link" href="pagina-manter-receita.html">Cadastro de Receita</a></li>
             </ul>
-          </div></li>
-        <li class="nav-item menu-items"><a class="nav-link" data-toggle="collapse" href="#sidebar-layouts" aria-expanded="false" aria-controls="sidebar-layouts"> <span class="menu-icon"> <i class="mdi mdi-crosshairs-gps"></i>
+          </div>
+       </li>
+       
+        <li class="nav-item menu-items">
+        	<a class="nav-link" data-toggle="collapse" href="#page-layouts" aria-expanded="false" aria-controls="page-layouts">
+        		<span class="menu-icon"><i class="mdi mdi-view-list"></i></span>
+          		<span class="menu-title">Despesa</span><i class="menu-arrow"></i>
+        	</a>
+          <div class="collapse" id="page-layouts">
+            <ul class="nav flex-column sub-menu">
+              <li class="nav-item"><a class="nav-link" href="../../pagina-gerenciar-despesa-variavel.html">Gerenciar Despesa</a></li>
+              <li class="nav-item"><a class="nav-link" href="pagina-manter-despesa.html">Cadastro de Despesa</a></li>
+            </ul>
+          </div>
+       </li>
+
+		<li class="nav-item menu-items"><a class="nav-link" data-toggle="collapse" href="#sidebar-layouts" aria-expanded="false" aria-controls="sidebar-layouts"> <span class="menu-icon"> <i class="mdi mdi-crosshairs-gps"></i>
           </span> <span class="menu-title">Pagamentos</span> <i class="menu-arrow"></i>
         </a>
           <div class="collapse" id="sidebar-layouts">
@@ -126,16 +144,6 @@
             <ul class="nav flex-column sub-menu">
               <li class="nav-item"><a class="nav-link" href="../../pages/samples/error-404.html"> 404 </a></li>
               <li class="nav-item"><a class="nav-link" href="../../pages/samples/error-500.html"> 500 </a></li>
-            </ul>
-          </div></li>
-        <li class="nav-item menu-items"><a class="nav-link" data-toggle="collapse" href="#e-commerce" aria-expanded="false" aria-controls="e-commerce"> <span class="menu-icon"> <i class="mdi mdi-medical-bag"></i>
-          </span> <span class="menu-title">E-commerce</span> <i class="menu-arrow"></i>
-        </a>
-          <div class="collapse" id="e-commerce">
-            <ul class="nav flex-column sub-menu">
-              <li class="nav-item"><a class="nav-link" href="../../pages/samples/invoice.html"> Invoice </a></li>
-              <li class="nav-item"><a class="nav-link" href="../../pages/samples/pricing-table.html"> Pricing Table </a></li>
-              <li class="nav-item"><a class="nav-link" href="../../pages/samples/orders.html"> Orders </a></li>
             </ul>
           </div></li>
         <li class="nav-item nav-category"><span class="nav-link">Calendário</span></li>
@@ -360,12 +368,13 @@
             <div class="col-md-12 grid-margin stretch-card">
               <div class="card">
                 <div class="card-body">
-                  <h4 class="card-title">Cadastrar Despesas Variáveis</h4>
+                  <h4 class="card-title">Cadastrar Despesa Variável</h4>
                   <div class="dropdown-divider"></div>
                   <form class="forms-sample">
 
                     <div class="row">
-                      <div class="col-md-8">
+                    
+                      <div class="col-md-7">
                         <div id="favorecido_" class="form-group">
                           <label for="favorecido" class="col-sm-8 col-form-label">Favorecido (obrigatório)</label>
                           <div class="col-sm-20">
@@ -379,6 +388,17 @@
                               <label class="error mt-2 text-danger">Campo Obrigatório</label>
                             </div>
                           </div>
+                        </div>
+                      </div>
+                      
+                       <div class="col-md-1">
+                        <div id="dataDespesa_" class="form-group">
+                          <label for="dataDespesa" class="col-sm-12 col-form-label"></label>
+                          <div class="col-sm-20">
+							<div class="col-sm-12" style="padding-top: 14px;">
+								<button type="submit" data-toggle="modal" data-target="#exampleModal" class="btn btn-primary mb-2">+</button>
+							</div>
+						  </div>
                         </div>
                       </div>
                       
@@ -396,12 +416,20 @@
                       </div>
                       -->
                       
+<!--                       <div class="col-md-1"> -->
+<!--                         <div id="cadastrar_favorecido_" class="form-group"> -->
+<!--                           <div class="col-sm-20"> -->
+<!-- 							<input type="submit" value="+" data-toggle="modal" data-target="#exampleModal" class="btn btn-inverse-primary" style="margin: 35px"> -->
+<!--                           </div> -->
+<!--                         </div> -->
+<!--                       </div> -->
+                      
                       <div class="col-md-4">
                         <div id="dataDespesa_" class="form-group">
                           <label for="dataDespesa" class="col-sm-12 col-form-label">Data da Despesa (obrigatório)</label>
                           <div class="col-sm-20">
                             <div id="datepicker-popup" class="input-group date datepicker">
-	                          <input type="text" id="dataDespesa" name="dataDespesa" ng-model="despesaModel.dataDespesa" placeholder="DD/MM/AAAA" class="form-control">
+	                          <input type="text" id="dataDespesa" name="dataDespesa" ng-model="despesaModel.dataDespesa" placeholder="DD/MM/AAAA" ng-change="mascaraDataFormatoDDMMAAAA(despesaModel.dataDespesa);" maxlength="10" class="form-control">
 	                          <span class="input-group-addon input-group-append border-left">
 	                            <span class="mdi mdi-calendar input-group-text"></span>
 	                          </span>
@@ -423,10 +451,10 @@
                         </div>
                       </div>
                       <div class="col-md-4">
-                        <div id="produtoServico_" class="form-group">
-                          <label for="produtoServico" class="col-sm-12 col-form-label">Produto ou Serviço (obrigatório)</label>
+                        <div id="produtoServicoModel_" class="form-group">
+                          <label for="produtoServicoModel" class="col-sm-12 col-form-label">Produto ou Serviço (obrigatório)</label>
                           <div class="col-sm-20">
-                            <input id="produtoServico" type="text" name="produtoServico" ng-model="despesaModel.produtoServico.descricao" placeholder="Nome do Produto ou Serviço"  class="form-control" />
+                            <input id="produtoServicoModel" type="text" name="produtoServicoModel" ng-model="produtoServicoModel.descricao" placeholder="Nome do Produto ou Serviço"  class="form-control" />
                             <div ng-show="isCampoProdutoServicoInvalidoFlag == true">
                               <label class="error mt-2 text-danger">Campo Obrigatório</label>
                             </div>
@@ -437,7 +465,7 @@
                         <div id="valorProdutoServico_" class="form-group">
                           <label for="valorProdutoServico" class="col-sm-12 col-form-label">Valor da Despesa (obrigatório)</label>
                           <div class="col-sm-20">
-                            <input id="valorProdutoServico" type="text" name="valorProdutoServico" ng-model="despesaModel.produtoServico.valorProdutoServico" placeholder="R$ 00,00" class="form-control" />
+                            <input id="valorProdutoServico" type="text" name="valorProdutoServico" ng-model="produtoServicoModel.valorProdutoServico" placeholder="R$ 00,00" class="form-control" />
                             <div ng-show="isCampoValorDespesaInvalidoFlag == true">
                               <label class="error mt-2 text-danger">Campo Obrigatório</label>
                             </div>
@@ -448,7 +476,7 @@
                         <div id="quantidadeProdutoServico_" class="form-group">
                           <label for="quantidadeProdutoServico" class="col-sm-12 col-form-label">Quantidade</label>
                           <div class="col-sm-20">
-                            <input id="quantidadeProdutoServico" type="text" name="quantidadeProdutoServico" value="1" ng-model="despesaModel.produtoServico.quantidadeProdutoServico" placeholder="Quantidade" class="form-control" />
+                            <input id="quantidadeProdutoServico" type="text" name="quantidadeProdutoServico" ng-model="produtoServicoModel.quantidadeProdutoServico" placeholder="Quantidade" class="form-control" />
                             <div ng-show="isCampoQuantidadeProdutoServicoInvalidoFlag == true">
                               <label class="error mt-2 text-danger">Campo Obrigatório</label>
                             </div>
@@ -459,11 +487,11 @@
 
                     <div class="row" ng-if="isItemUnicoFlag">
                       <div class="col-lg-12 grid-margin stretch-card">
-                        <button type="button" ng-click="cadastrarProdutoServico(despesaModel)" class="btn btn-outline-secondary btn-lg btn-block">Cadastrar Produto ou Serviço</button>
+                        <button type="button" ng-click="cadastrarProdutoServico(produtoServicoModel)" class="btn btn-outline-secondary btn-lg btn-block">Cadastrar Produto ou Serviço</button>
                       </div>
                     </div>
 
-                    <div class="row"  ng-if="produtoServicoList.length > 0">
+                    <div class="row"  ng-if="produtoServicoList.length > 0 && isItemUnicoFlag">
                       <div class="col-lg-12 grid-margin stretch-card">
                         <div class="card">
                           <div class="card-body">
@@ -481,8 +509,8 @@
                                 <tbody>
                                   <tr ng-repeat="produtoServicoResultado in produtoServicoList track by $index">
                                     <td>{{produtoServicoResultado.codigo}}</td>
-                                    <td>{{produtoServicoResultado.produtoServico.descricao}}</td>
-                                    <td>{{produtoServicoResultado.produtoServico.quantidadeProdutoServico}}</td>
+                                    <td>{{produtoServicoResultado.descricao}}</td>
+                                    <td>{{produtoServicoResultado.quantidadeProdutoServico}}</td>
                                     <td>{{produtoServicoResultado.valorProdutoServico}}</td>
                                     <td>
                                       <button class="btn btn-outline-info">Editar</button>
@@ -498,7 +526,7 @@
                     </div>
 
                     <div class="row">
-                      <div class="col-md-3">
+                      <div class="col-md-2">
                         <div class="form-group">
                           <label for="isFormaPagamentoUnico">Forma de Pagamento</label>
                           <select id="isFormaPagamentoUnico" name="isFormaPagamentoUnico" ng-model="despesaModel.isFormaPagamentoUnico" ng-change="verificarFormaPagamentoUnico(despesaModel)" class="form-control">
@@ -507,7 +535,7 @@
                           </select>
                         </div>
                       </div>
-                      <div class="col-md-3">
+                      <div class="col-md-9">
                         <div id="fontePagamento_" class="form-group">
                           <label for="fontePagamento">Fonte de Pagamento (obrigatório)</label>
                           <select id="fontePagamento"
@@ -521,7 +549,21 @@
                           </div>
                         </div>
                       </div>
-                      <div class="col-md-3">
+											<div class="col-md-1">
+												<div id="fontePagamento_" class="form-group">
+													<label for="fontePagamento" class="col-sm-12 col-form-label"></label>
+													<div class="col-sm-20">
+														<div class="col-sm-12" style="padding-top: 2px;">
+															<button type="submit" data-toggle="modal" data-target="#cadastrar_fonte_pagamento_modal_" class="btn btn-primary mb-2">+</button>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+                      
+                      <div class="row">
+                      
+                      <div class="col-md-5">
                         <div id="canalPagamento_" class="form-group">
                           <label for="canalPagamento">Canal de Pagamento (obrigatório)</label>
                           <select id="canalPagamento" 
@@ -535,7 +577,19 @@
                           </div>
                         </div>
                       </div>
-                      <div class="col-md-3">
+                      
+                      <div class="col-md-1">
+                        <div id="canalPagamento_" class="form-group">
+                          <label for="canalPagamento" class="col-sm-12 col-form-label"></label>
+                          <div class="col-sm-20">
+							<div class="col-sm-12" style="padding-top: 2px;">
+								<button type="submit" data-toggle="modal" data-target="#cadastrar_canal_pagamento_modal_" class="btn btn-primary mb-2">+</button>
+							</div>
+						  </div>
+                        </div>
+                      </div>
+                      
+                      <div class="col-md-5">
                         <div id="responsavelPagamento_" class="form-group">
                           <label for="responsavelPagamento">Responsável pelo Pagamento (obrigatório)</label>
                           <select id="responsavelPagamento" 
@@ -549,7 +603,18 @@
                           </div>
                         </div>
                       </div>
-                    </div>
+
+                    <div class="col-md-1">
+                        <div id="responsavelPagamentoModal_" class="form-group">
+                          <label for="canalPagamento" class="col-sm-12 col-form-label"></label>
+                          <div class="col-sm-20">
+							<div class="col-sm-12" style="padding-top: 2px;">
+								<button type="submit" data-toggle="modal" data-target="#cadastrar_responsavel_pagamento_modal_" class="btn btn-primary mb-2">+</button>
+							</div>
+						  </div>
+                        </div>
+                      </div>
+                  </div>
 
                   <div class="row" ng-if="isFormaPagamentoUnicoFlag">
                     <div class="col-lg-12 grid-margin stretch-card">
@@ -559,12 +624,12 @@
 
                   <div class="col-md-12">
                     <div id="observacao_" class="form-group">
-                      <label for="observacao">Observação (obrigatório)</label>
-                      <textarea id="observacao" ng-model="despesaModel.observacao" class="form-control" rows="4"></textarea>
+                      <label for="observacao" class="col-sm-12 col-form-label">Observação (obrigatório)</label>
+                      <textarea id="observacao" ng-model="despesaModel.observacao" class="form-control" rows="4" maxlength="255"></textarea>
                     </div>
                   </div>
 
-                  <div class="row" ng-if="formaPagamentoList.length > 0">
+                  <div class="row" ng-if="formaPagamentoList.length > 0 && isFormaPagamentoUnicoFlag">
                     <div class="col-lg-12 grid-margin stretch-card">
                       <div class="card">
                         <div class="card-body">
@@ -611,7 +676,7 @@
                     <div class="col-md-6">
                       <div class="form-group">
                         <div class="col-sm-20">
-                          <button type="submit" ng-click="persist(despesaModel)" class="btn btn-primary mr-2 btn-lg btn-block">Cadastrar Despesa</button>
+                          <button type="submit" ng-click="persist(despesaModel, produtoServicoModel)" class="btn btn-primary mr-2 btn-lg btn-block">Cadastrar Despesa</button>
                         </div>
                       </div>
                     </div>
@@ -637,7 +702,180 @@
             </div>
           </div>
           <!--CONTEUDO -->
-        </div>
+          
+          <!-- MODAL -->
+		  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="cadastro_favorecido_modal" aria-hidden="true">
+			<div class="modal-dialog modal-lg" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="cadastro_favorecido_modal">Cadastro de Favorecido</h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<div class="col-md-12">
+	                        <div id="cadastro_favorecido_" class="form-group">
+	                          <label for="cadastro_favorecido" class="col-sm-12 col-form-label">Nome (obrigatório)</label>
+	                          <div class="col-sm-20">
+	                            <input id="cadastro_favorecido" type="text" name="cadastro_favorecido" ng-model="favorecidoModel.nome" placeholder="Nome do Favorecido" class="form-control" />
+<!-- 	                            <div ng-show="isCamposDataDespesaInvalidoFlag == true"> -->
+<!-- 	                              <label class="error mt-2 text-danger">Campo Obrigatório</label> -->
+<!-- 	                            </div> -->
+	                          </div>
+	                        </div>
+                      </div>
+					</div>
+					<div class="modal-footer">
+						<div class="col-md-10">
+	                      <div class="form-group">
+	                        <div class="col-sm-20">
+	                          <button type="button" data-dismiss="modal" ng-click="cadastrarFavorecido(despesaModel)" class="btn btn-primary btn-block">Cadastrar Favorecido</button>
+	                        </div>
+	                      </div>
+	                    </div>
+						<div class="col-md-2">
+	                      <div class="form-group">
+	                        <div class="col-sm-20">
+	                          <button type="button" data-dismiss="modal" class="btn btn-danger btn-block">Cancelar</button>
+	                        </div>
+	                      </div>
+	                    </div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="modal fade" id="cadastrar_canal_pagamento_modal_" tabindex="-1" role="dialog" aria-labelledby="cadastrar_canal_pagamento_modal" aria-hidden="true">
+			<div class="modal-dialog modal-lg" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="cadastro_favorecido_modal">Cadastro de Canal de Pagamento</h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					
+					<div class="modal-body">
+						<div class="col-md-12">
+	                        <div id="cadastro_favorecido_" class="form-group">
+	                          <label for="cadastro_favorecido" class="col-sm-12 col-form-label">Nome do Canal de Pagamento (obrigatório)</label>
+	                          <div class="col-sm-20">
+	                            <input id="cadastro_favorecido" type="text" name="cadastro_favorecido" ng-model="despesaModel.canalPagamento.nome" placeholder="Nome do Canal de Pagamento" class="form-control" />
+<!-- 	                            <div ng-show="isCamposDataDespesaInvalidoFlag == true"> -->
+<!-- 	                              <label class="error mt-2 text-danger">Campo Obrigatório</label> -->
+<!-- 	                            </div> -->
+	                          </div>
+	                        </div>
+                      </div>
+					</div>
+					
+					<div class="modal-footer">
+						<div class="col-md-10">
+	                      <div class="form-group">
+	                        <div class="col-sm-20">
+	                          <button type="button" data-dismiss="modal" ng-click="cadastrarCanalPagamento(despesaModel)" class="btn btn-primary btn-block">Cadastrar Favorecido</button>
+	                        </div>
+	                      </div>
+	                    </div>
+						<div class="col-md-2">
+	                      <div class="form-group">
+	                        <div class="col-sm-20">
+	                          <button type="button" data-dismiss="modal" class="btn btn-danger btn-block">Cancelar</button>
+	                        </div>
+	                      </div>
+	                    </div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="modal fade" id="cadastrar_responsavel_pagamento_modal_" tabindex="-1" role="dialog" aria-labelledby="cadastrar_canal_pagamento_modal" aria-hidden="true">
+			<div class="modal-dialog modal-lg" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="cadastro_favorecido_modal">Cadastro do Responsável pelo Pagamento</h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<div class="col-md-12">
+	                        <div id="cadastrar_responsavel_pagamento_modal" class="form-group">
+	                          <label for="cadastrar_responsavel_pagamento_modal" class="col-sm-12 col-form-label">Nome do Responsável do Pagamento (obrigatório)</label>
+	                          <div class="col-sm-20">
+	                            <input id="cadastrar_responsavel_pagamento" type="text" name="cadastrar_responsavel_pagamento" ng-model="despesaModel.responsavelPagamento.nome" placeholder="Nome do Responsável pelo Pagamento" class="form-control" />
+<!-- 	                            <div ng-show="isCamposDataDespesaInvalidoFlag == true"> -->
+<!-- 	                              <label class="error mt-2 text-danger">Campo Obrigatório</label> -->
+<!-- 	                            </div> -->
+	                          </div>
+	                        </div>
+                      </div>
+					</div>
+					<div class="modal-footer">
+						<div class="col-md-10">
+	                      <div class="form-group">
+	                        <div class="col-sm-20">
+	                          <button type="button" data-dismiss="modal" ng-click="cadastrarResponsavelPagamento(despesaModel)" class="btn btn-primary btn-block">Cadastrar Favorecido</button>
+	                        </div>
+	                      </div>
+	                    </div>
+						<div class="col-md-2">
+	                      <div class="form-group">
+	                        <div class="col-sm-20">
+	                          <button type="button" data-dismiss="modal" class="btn btn-danger btn-block">Cancelar</button>
+	                        </div>
+	                      </div>
+	                    </div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="modal fade" id="cadastrar_fonte_pagamento_modal_" tabindex="-1" role="dialog" aria-labelledby="cadastrar_fonte_pagamento_modal" aria-hidden="true">
+			<div class="modal-dialog modal-lg" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="cadastrar_fonte_pagamento_modal">Cadastro de Fonte de Pagamento</h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<div class="col-md-12">
+	                        <div id="cadastrar_fonte_pagamento_modal" class="form-group">
+	                          <label for="cadastrar_fonte_pagamento_modal" class="col-sm-12 col-form-label">Nome da Fonte de Pagamento (obrigatório)</label>
+	                          <div class="col-sm-20">
+	                            <input id="cadastrar_fonte_pagamento_modal" type="text" name="cadastrar_fonte_pagamento" ng-model="despesaModel.fontePagamento.nome" placeholder="Nome do Responsável pelo Pagamento" class="form-control" />
+<!-- 	                            <div ng-show="isCamposDataDespesaInvalidoFlag == true"> -->
+<!-- 	                              <label class="error mt-2 text-danger">Campo Obrigatório</label> -->
+<!-- 	                            </div> -->
+	                          </div>
+	                        </div>
+                      </div>
+					</div>
+					<div class="modal-footer">
+						<div class="col-md-10">
+	                      <div class="form-group">
+	                        <div class="col-sm-20">
+	                          <button type="button" data-dismiss="modal" ng-click="cadastrarFontePagamento(despesaModel)" class="btn btn-primary btn-block">Cadastrar Fonte de Pagamento</button>
+	                        </div>
+	                      </div>
+	                    </div>
+						<div class="col-md-2">
+	                      <div class="form-group">
+	                        <div class="col-sm-20">
+	                          <button type="button" data-dismiss="modal" class="btn btn-danger btn-block">Cancelar</button>
+	                        </div>
+	                      </div>
+	                    </div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- MODAL -->
+
+				</div>
         <footer class="footer">
           <div class="d-sm-flex justify-content-center justify-content-sm-between">
             <span class="text-muted text-center text-sm-justify d-block d-sm-inline-block">Plataforma de Lançamento Financeiro Dysprosium</span> 

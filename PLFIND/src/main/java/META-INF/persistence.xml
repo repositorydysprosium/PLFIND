@@ -7,7 +7,6 @@
 
 	<persistence-unit name="PLFIND">
 		<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
-<!-- 		<jta-data-source>java:jboss/datasources/PostgresDS</jta-data-source>  -->
 		
 		<class>br.com.plataformalancamento.dysprosioum.entity.DespesaVariavelDomain</class>
 		<class>br.com.plataformalancamento.dysprosioum.entity.CanalPagamentoDomain</class>
@@ -18,21 +17,18 @@
 		<class>br.com.plataformalancamento.dysprosioum.entity.ResponsavelPagamentoDomain</class>
 		
 		<properties>
-			<property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/dbd_plfind" />
-			<property name="javax.persistence.jdbc.user" value="postgres" />
+			<property name="hibernate.connection.characterEncoding" value="utf8"/>
+			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/dbd_plfind" />
+			<property name="javax.persistence.jdbc.user" value="dysprosium" />
 			<property name="javax.persistence.jdbc.password" value="dysprosium" />
-<!-- 			<property name="javax.persistence.jdbc.password" value="plataforma" /> -->
-			<property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver" />
-			<property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect" />
-<!-- 			<property name="hibernate.transaction.jta.platform" value="java:jboss/datasources/PostgresDS" /> -->
+			<property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" />
+			<property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect" />
 			<property name="hibernate.show_sql" value="true" />
 			<property name="hibernate.format_sql" value="false" />
 			<property name="hibernate.hbm2ddl.auto" value="update" />
 <!-- 			<property name="hibernate.hbm2ddl.auto" value="validate" /> -->
 <!-- 			<property name="hibernate.hbm2ddl.auto" value="create-drop" /> -->
-<!-- 			<property name="hibernate.connection.characterEncoding" value="utf8"/> -->
 <!--         	<property name="hibernate.connection.useUnicode" value="true"/> -->
-<!--         	<property name="hibernate.connection.charSet" value="UTF-8"/> -->
 		</properties>
 	</persistence-unit>
 		
